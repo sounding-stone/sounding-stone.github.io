@@ -36,7 +36,7 @@ body{
 .probe table{border-collapse:collapse; width:100%; min-width:30rem}
 .probe td{padding:.15rem .9rem; white-space:nowrap}
 .probe tr td:nth-child(2){border-left:1px solid var(--rule); color:var(--amber)}
-.probe .head td{color:var(--dim); font-size:.72rem; white-space:normal;
+.probe tr.head td, .probe tr.head td:nth-child(2){color:var(--dim); font-size:.72rem; white-space:normal;
   border-bottom:1px solid var(--rule); padding:.7rem .9rem; line-height:1.45}
 .probe .lie{color:var(--ink)}
 .caption{font-size:.9rem; color:var(--dim); margin:0 0 3.2rem; max-width:34rem}
@@ -81,12 +81,12 @@ footer .name{font-family:var(--mono); font-size:.82rem; color:var(--ink)}
   </tr>
   <tr><td class="lie">soundingstone.org &nbsp;"errorCode": 404</td><td>unregistered</td></tr>
   <tr><td class="lie">soundingstone.io &nbsp;&nbsp;"errorCode": 404</td><td>unmeasurable by this method</td></tr>
-  <tr><td class="lie">github.io &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"errorCode": 404</td><td>registered, and serving every<br>GitHub&nbsp;Pages site on the internet</td></tr>
+  <tr><td class="lie">github.io &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"errorCode": 404</td><td>registered; serves GitHub&nbsp;Pages</td></tr>
 </table>
 </div>
 <p class="caption">Three identical fields, three different truths. The left column is everything
-the tool gave me. The right column took four more commands, and I only went looking for it
-because a control row came back wrong.</p>
+the tool gave me. The right column took two more control rows and a second look at the
+response body, and I only went looking because a control row came back wrong.</p>
 
 <h1>Two kinds of 404</h1>
 <p class="byline">2026&#8209;09&#8209;08 &nbsp; Yu Hsien Fang</p>
@@ -102,7 +102,7 @@ before a control group caught it.</p>
 <p>I needed to know whether a handful of domain names were available. Five minutes of
 work. I ran <code>whois</code>:</p>
 
-<pre>soundingstone.com  -&gt; Domain Name: soundingstone.com   Creation Date: 1999-04-27
+<pre>soundingstone.com  -&gt; Creation Date: 1999-04-27   (excerpted)
 soundingstone.dev  -&gt; (no output)
 soundingstone.io   -&gt; (no output)
 soundings.dev      -&gt; (no output)</pre>
@@ -172,8 +172,9 @@ conclude. It costs one more command.</p>
 <h2>What generalises</h2>
 
 <p>Nothing above involved a bug. Every tool did what it documented. Exit codes were zero,
-HTTP responses arrived, the JSON was valid. All four failures were in the reading, and
-three of the four rendered as a confident string on my screen.</p>
+HTTP responses arrived, the JSON was valid. All four failures were in the reading, not in
+the tools. One of them had already been printed as a confident answer before anything
+caught it; the other three were one incurious grep away from the same fate.</p>
 
 <div class="rule-box">
 <p><strong>Every check ships with a known-positive and a known-negative in the same
@@ -189,7 +190,7 @@ you asked about.</p>
 
 <p><a href="checks/availability.sh"><code>checks/availability.sh</code></a> does the domain
 case with the controls wired in. It refuses to run the candidates at all if the controls
-fail to separate. It is forty lines and it is not the point. The point is the two extra
+fail to separate. It is 46 lines and it is not the point. The point is the two extra
 rows in every batch you run.</p>
 
 <footer>
