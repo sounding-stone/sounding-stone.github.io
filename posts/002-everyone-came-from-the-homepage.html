@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Everyone came from the homepage — Sounding Stone</title>
+<meta name="description" content="A catalogue of tools that reported success, or reported nothing, and were believed. Entry 002: a referrer column that was reporting a policy, not a behaviour.">
+<style>
+:root{
+  --paper:#EDEEF0; --ink:#1A1F2B; --rule:#C9CCD1;
+  --amber:#8C5D04; --dim:#5C6472; --block:#E3E5E9;
+  --serif: ui-serif,"Iowan Old Style",Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --mono: ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161B; --ink:#E4E6EA; --rule:#343A45; --amber:#E0AE45; --dim:#8F98A6; --block:#1C1F26; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.66;
+  font-kerning:normal; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:41rem; margin:0 auto; padding:2rem 1.5rem 6rem}
+
+/* masthead */
+.mast{display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--mono); font-size:.78rem; color:var(--dim);
+  padding-bottom:.6rem; border-bottom:1px solid var(--rule); margin-bottom:3.5rem}
+.mast b{font-weight:600; color:var(--ink); letter-spacing:-.02em}
+.mast a{color:inherit; text-decoration:none}
+.mast a:hover{color:var(--amber)}
+
+/* hero: the evidence, before the headline */
+.probe{border:1px solid var(--ink); background:var(--block); margin:0 0 1.1rem;
+  font-family:var(--mono); font-size:.8rem; line-height:1.9; overflow-x:auto}
+.probe table{border-collapse:collapse; width:100%; min-width:30rem}
+.probe td{padding:.15rem .9rem; white-space:nowrap}
+.probe tr td:nth-child(2){border-left:1px solid var(--rule); color:var(--amber)}
+.probe tr.head td, .probe tr.head td:nth-child(2){color:var(--dim); font-size:.72rem; white-space:normal;
+  border-bottom:1px solid var(--rule); padding:.7rem .9rem; line-height:1.45}
+.probe .lie{color:var(--ink)}
+.caption{font-size:.9rem; color:var(--dim); margin:0 0 3.2rem; max-width:34rem}
+
+h1{font-family:var(--mono); font-size:clamp(1.9rem,6.5vw,2.7rem); font-weight:600;
+  letter-spacing:-.045em; line-height:1.05; margin:0 0 .55rem}
+.byline{font-family:var(--mono); font-size:.78rem; color:var(--dim); margin:0 0 2.6rem}
+h2{font-family:var(--mono); font-size:1.02rem; font-weight:600; letter-spacing:-.02em;
+  margin:3rem 0 .9rem}
+p{margin:0 0 1.15rem}
+strong{font-weight:600}
+pre{background:var(--block); border-left:2px solid var(--rule); margin:1.6rem 0;
+  padding:1rem 1.1rem; overflow-x:auto; font-family:var(--mono);
+  font-size:.79rem; line-height:1.75}
+code{font-family:var(--mono); font-size:.88em}
+p code{background:var(--block); padding:.08em .32em}
+a{color:var(--ink); text-decoration-thickness:1px; text-underline-offset:.18em}
+a:hover{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+.rule-box{border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+  padding:1.3rem 0; margin:2.2rem 0}
+.rule-box p:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--rule); margin-top:4.5rem; padding-top:1.4rem;
+  font-size:.9rem; color:var(--dim)}
+footer .name{font-family:var(--mono); font-size:.82rem; color:var(--ink)}
+@media (max-width:34rem){ .wrap{padding-top:1.4rem} h2{margin-top:2.4rem} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <b><a href="../">sounding&#8209;stone</a></b>
+  <span>catalogue no. 002</span>
+</header>
+
+<div class="probe">
+<table>
+  <tr class="head">
+    <td>what the referrer field said</td>
+    <td>what is actually true<br>(established outside this data)</td>
+  </tr>
+  <tr><td class="lie">http://a.example/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;an overwhelming majority</td><td>some page on a.example, path withheld upstream</td></tr>
+  <tr><td class="lie">http://a.example/deep/path &nbsp;&nbsp;a handful</td><td>the only referrers whose site opted into paths</td></tr>
+  <tr><td class="lie">(field absent)</td><td>referrer suppressed by policy</td></tr>
+</table>
+</div>
+<p class="caption">The left column is the entire field. Getting the right column took a
+two-origin test harness and one control row I added only because a second measurement of
+the same question disagreed with me.</p>
+
+<h1>Everyone came from the homepage</h1>
+<p class="byline">2026&#8209;09&#8209;12 &nbsp; Yu Hsien Fang</p>
+
+<p>One value in a referrer column outnumbered every other value by a wide margin: a bare
+origin with a trailing slash. I read it as that site's homepage and wrote it into three
+documents. Nobody's homepage was involved. The field was populated, the counts were right,
+and the aggregation was correct.</p>
+
+<h2>The job</h2>
+
+<p>Find out which page on another site was sending people to a site I work on. The
+analytics tool already had a page-referrer dimension, so this looked like reading one
+column. The distribution was lopsided in a way that felt like a finding: one value held
+almost everything, and the rest were deep paths with tiny counts.</p>
+
+<p>I explained that shape before I asked what produced it. That is the whole error, and
+everything below is the cost of it.</p>
+
+<h2>The tail I used as proof</h2>
+
+<p>A second, independent measurement of the same question came back with a completely
+different top entry page. I defended my number, and my defence was the tail: the report
+<em>did</em> contain rows with full deep paths, so the field clearly was not being
+truncated.</p>
+
+<p>That argument runs backwards. Those rows were not evidence the field was intact. They
+were the only rows whose sending site had opted into sending a path at all. I took the
+residue of the masking as proof that there was no masking.</p>
+
+<h2>What the browser actually sends</h2>
+
+<p>Two origins on localhost &mdash; a page server on <code>:8001</code>, and on
+<code>:8002</code> a server that echoes back the <code>Referer</code> header it received. A
+link from a deep path on the first to the second, clicked in a real browser:</p>
+
+<pre>chromium 143.0.7499.4 &mdash; link from http://127.0.0.1:8001/deep/path/&lt;page&gt;.html
+
+no policy set                -&gt; Referer: http://127.0.0.1:8001/
+no-referrer-when-downgrade   -&gt; Referer: http://127.0.0.1:8001/deep/path/nrwd.html
+unsafe-url                   -&gt; Referer: http://127.0.0.1:8001/deep/path/unsafe.html
+no-referrer                  -&gt; Referer: None</pre>
+
+<p>With no policy set, the browser sent the origin and dropped the path. That is the
+current default (<code>strict-origin-when-cross-origin</code>), not a misconfiguration
+&mdash; a site does not have to do anything to flatten its own outbound referrers, it has
+to do something to <em>stop</em> that.</p>
+
+<p>The row that settles it is the one I should have run first:</p>
+
+<pre>from ROOT       -&gt; Referer: http://127.0.0.1:8001/
+from DEEP PATH  -&gt; Referer: http://127.0.0.1:8001/</pre>
+
+<p>Byte-identical. A genuine landing on the root and a withheld path arrive as the same
+string. Nothing anywhere in the data separates them, which means no amount of care applied
+to that column would have gotten me to the right answer.</p>
+
+<p>The fourth case is worth its own line. Under <code>no-referrer</code> the header is
+simply absent &mdash; the same thing that arrives when somebody types the URL. A site with
+a strict policy shows up in the receiver's report as traffic with no source.</p>
+
+<h2>What I got wrong</h2>
+
+<p><strong>I explained a distribution before asking what generated its values.</strong>
+When one value holds an overwhelming majority and everything else is a long tail of
+fragments, that majority value is the first place to look for a default, a truncation, or a
+policy. I treated it as the finding instead of as the thing to check.</p>
+
+<p><strong>I audited a masked field using the field.</strong> The surviving full-path rows
+were a sampling artefact of the masking. I used them as a control group. They cannot be one
+&mdash; they are drawn from exactly the population that behaves differently.</p>
+
+<p><strong>I had the answer available the whole time and ran the command late.</strong> One
+<code>curl -sSI</code> against the referring origin takes a second and returns the policy. I
+ran it only after being contradicted. There was no <code>Referrer-Policy</code> header and
+no meta tag, so the browser default applied, so the path was never sent, so my column had
+always meant &ldquo;somewhere on that site.&rdquo;</p>
+
+<h2>How much of the web is flattened</h2>
+
+<p>I wrote the check below and ran it over thirty sites I had no stake in:</p>
+
+<pre>25  ORIGIN-ONLY     (no path can reach you)
+ 4  NO-REFERRER     (nothing reaches you)
+ 1  PATH-VISIBLE    (a path-level claim is possible)</pre>
+
+<p>One of thirty could support the kind of sentence I had written. Of the twenty-five
+origin-only sites, most set no policy at all and simply inherit the default.</p>
+
+<p>One wart from that run, because it is the same disease: my first pass read only the
+response header and reported &ldquo;no policy set&rdquo; for two of those sites. Both
+actually set a policy in a <code>&lt;meta&gt;</code> tag, and they landed in the same bucket
+anyway. That was luck. Had either used <code>unsafe-url</code>, a header-only check would
+have been wrong in the direction that matters, and it would have been wrong with exit
+status zero.</p>
+
+<h2>What generalises</h2>
+
+<p>Nothing above was a bug. The analytics field was valid and correctly populated, the
+browser followed its documented default, the counts were accurate, and the conclusion was
+fabricated. The mistake was reading a field as a record of behaviour when its values were
+being manufactured by a policy several layers upstream.</p>
+
+<div class="rule-box">
+<p><strong>Before you read a field, find out what upstream can flatten it, and treat the
+majority value as the first suspect.</strong> A field that is present, valid and
+well-populated can still be reporting a policy rather than a behaviour. The question is not
+&ldquo;is this value correct&rdquo; &mdash; it was correct &mdash; but &ldquo;what range of
+true states produce this value.&rdquo;</p>
+<p>The corollary is the part that cost me the most: <strong>you cannot audit a masked field
+using that field.</strong> The rows that survived unmasked are a sampling artefact, not a
+control group. The control has to come from outside the data &mdash; in this case, the
+policy the sending origin actually set, which is one request away and which I did not
+make.</p>
+</div>
+
+<h2>The check</h2>
+
+<p><a href="../checks/referrer.sh"><code>checks/referrer.sh</code></a> is 67 lines. Given
+referring origins, it classifies each one PATH-VISIBLE, ORIGIN-ONLY or NO-REFERRER, and it
+ships a known-positive and a known-negative in every run. If the two controls fail to
+separate, it refuses to classify the candidates at all.</p>
+
+<pre>$ ./checks/referrer.sh en.wikipedia.org news.ycombinator.com github.com \
+      www.djangoproject.com techcrunch.com
+
+control +  www.bbc.com                  PATH-VISIBLE  no-referrer-when-downgrade
+control -  www.debian.org               NO-REFERRER   no-referrer
+
+en.wikipedia.org             ORIGIN-ONLY   origin-when-cross-origin
+news.ycombinator.com         ORIGIN-ONLY   origin
+github.com                   ORIGIN-ONLY   strict-origin-when-cross-origin
+www.djangoproject.com        NO-REFERRER   same-origin
+techcrunch.com               PATH-VISIBLE  no-referrer-when-downgrade
+
+ORIGIN-ONLY and NO-REFERRER origins cannot support any path-level claim.
+A bare origin in a referrer report is not a landing on that origin's root.</pre>
+
+<p>Broken deliberately, it refuses: pointing the known-positive at an origin-only host
+exits 2, pointing the known-negative at a path-visible host exits 2, making both controls
+identical exits 2. An unreachable candidate exits 3.</p>
+
+<p>That last exit code exists because the first version of this script had the bug this
+entry is about. A host it could not reach fell into the same bucket as a host that reachably
+sets no policy, and it printed a confident <code>ORIGIN-ONLY</code> verdict for a hostname
+that does not exist, with exit status zero. The controls did not catch it, because the
+controls are hardcoded and were perfectly fine. So a caveat on the rule I shipped in
+<a href="001-two-kinds-of-404.html">001</a>: a control group proves the method can separate
+the cases it exists to separate. It does not prove that any particular row is about the
+thing it names.</p>
+
+<footer>
+<p>This is a catalogue of cases where a tool reported success, or reported nothing, and I
+believed it. Each entry gets the date, the commands, and the shape of the error. More will
+follow.</p>
+<p><span class="name">Sounding Stone</span> &mdash; before the large investment, throw a
+small stone and listen for the echo. Written by Yu Hsien Fang.</p>
+</footer>
+
+</div>
+</body>
+</html>

@@ -12,18 +12,43 @@ a valid response, a confident string, and a conclusion that was never in the dat
 
 | No. | Title | Date |
 |-----|-------|------|
-| 001 | [Two kinds of 404](index.html) | 2026-09-08 |
+| 002 | [Everyone came from the homepage](posts/002-everyone-came-from-the-homepage.html) | 2026-09-12 |
+| 001 | [Two kinds of 404](posts/001-two-kinds-of-404.html) | 2026-09-08 |
 
 ## Layout
 
-- `index.html` — the current entry, and the **canonical text**. Single file, no build step,
-  no dependencies, no JavaScript.
+- `index.html` — the entry list. No build step, no dependencies, no JavaScript.
+- `posts/` — one file per entry, and the **canonical text** of it. Each file is
+  self-contained, including its own stylesheet.
 - `checks/` — runnable artefacts from the entries. Each one ships its own control group and
   refuses to report if the controls fail to separate.
-- `posts/` — archive of earlier entries once `index.html` moves on.
+
+Entry 001 originally lived at `index.html`, which was also the site root. Moving it into
+`posts/` frees the root for the list, so the root no longer serves 001. GitHub Pages cannot
+redirect, and the list has to live at the root, so no stub is possible: anyone who
+bookmarked the root now gets the list, with 001 one click away.
 
 There is deliberately one copy of each text. A second copy is a second thing to keep in
 sync, and nothing here would detect the drift.
+
+## checks/referrer.sh
+
+Whether a path-level referrer from a given origin can reach you at all, with a
+known-positive and a known-negative in every run.
+
+```
+$ ./checks/referrer.sh en.wikipedia.org www.djangoproject.com techcrunch.com
+
+control +  www.bbc.com                  PATH-VISIBLE  no-referrer-when-downgrade
+control -  www.debian.org               NO-REFERRER   no-referrer
+
+en.wikipedia.org             ORIGIN-ONLY   origin-when-cross-origin
+www.djangoproject.com        NO-REFERRER   same-origin
+techcrunch.com               PATH-VISIBLE  no-referrer-when-downgrade
+```
+
+Exits 2 if the controls fail to separate, and 3 if a candidate could not be reached —
+unreachable must not share a bucket with "reachable, sets no policy".
 
 ## checks/availability.sh
 
