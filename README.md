@@ -12,6 +12,7 @@ a valid response, a confident string, and a conclusion that was never in the dat
 
 | No. | Title | Date |
 |-----|-------|------|
+| 003 | [That's all of them](posts/003-thats-all-of-them.html) | 2026-09-19 |
 | 002 | [Everyone came from the homepage](posts/002-everyone-came-from-the-homepage.html) | 2026-09-12 |
 | 001 | [Two kinds of 404](posts/001-two-kinds-of-404.html) | 2026-09-08 |
 
@@ -30,6 +31,28 @@ bookmarked the root now gets the list, with 001 one click away.
 
 There is deliberately one copy of each text. A second copy is a second thing to keep in
 sync, and nothing here would detect the drift.
+
+## checks/exhaustive.py
+
+Whether a paginated result can support an exhaustive claim at all: COMPLETE, TRUNCATED or
+UNMEASURABLE per endpoint, with a known-positive and a known-negative fixture in every run.
+
+```
+$ ./checks/exhaustive.py items total_count 5 \
+    'https://api.github.com/search/repositories?q=stars:%3E390000&per_page={n}' \
+    'https://api.github.com/search/repositories?q=stars:%3E395000&per_page={n}'
+
+control +  control-truncated.json   TRUNCATED     fixture, declared total 4210, returned 5
+control -  control-complete.json    COMPLETE      fixture, declared total 3, returned 3
+
+TRUNCATED     http 200, declared total 6, returned 5
+COMPLETE      http 200, declared total 5, returned 5
+```
+
+Exits 1 if anything is TRUNCATED, 2 if the controls fail to separate, and 3 if anything is
+UNMEASURABLE. `len(rows) == page_size` with no declared total is UNMEASURABLE, never
+COMPLETE: the `n+1` probe can prove truncation but never completeness, because an endpoint
+that clamps page size to `n` is indistinguishable from one that holds exactly `n` rows.
 
 ## checks/referrer.sh
 

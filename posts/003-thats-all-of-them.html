@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>That&rsquo;s all of them — Sounding Stone</title>
+<meta name="description" content="A catalogue of tools that reported success, or reported nothing, and were believed. Entry 003: two responses with byte-identical rows and different totals, and a verifier that passed a file it never read.">
+<style>
+:root{
+  --paper:#EDEEF0; --ink:#1A1F2B; --rule:#C9CCD1;
+  --amber:#8C5D04; --dim:#5C6472; --block:#E3E5E9;
+  --serif: ui-serif,"Iowan Old Style",Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --mono: ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161B; --ink:#E4E6EA; --rule:#343A45; --amber:#E0AE45; --dim:#8F98A6; --block:#1C1F26; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.66;
+  font-kerning:normal; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:41rem; margin:0 auto; padding:2rem 1.5rem 6rem}
+
+/* masthead */
+.mast{display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--mono); font-size:.78rem; color:var(--dim);
+  padding-bottom:.6rem; border-bottom:1px solid var(--rule); margin-bottom:3.5rem}
+.mast b{font-weight:600; color:var(--ink); letter-spacing:-.02em}
+.mast a{color:inherit; text-decoration:none}
+.mast a:hover{color:var(--amber)}
+
+/* hero: the evidence, before the headline */
+.probe{border:1px solid var(--ink); background:var(--block); margin:0 0 1.1rem;
+  font-family:var(--mono); font-size:.8rem; line-height:1.9; overflow-x:auto}
+.probe table{border-collapse:collapse; width:100%; min-width:30rem}
+.probe td{padding:.15rem .9rem; white-space:nowrap}
+.probe tr td:nth-child(2){border-left:1px solid var(--rule); color:var(--amber)}
+.probe tr.head td, .probe tr.head td:nth-child(2){color:var(--dim); font-size:.72rem; white-space:normal;
+  border-bottom:1px solid var(--rule); padding:.7rem .9rem; line-height:1.45}
+.probe .lie{color:var(--ink)}
+.caption{font-size:.9rem; color:var(--dim); margin:0 0 3.2rem; max-width:34rem}
+
+h1{font-family:var(--mono); font-size:clamp(1.9rem,6.5vw,2.7rem); font-weight:600;
+  letter-spacing:-.045em; line-height:1.05; margin:0 0 .55rem}
+.byline{font-family:var(--mono); font-size:.78rem; color:var(--dim); margin:0 0 2.6rem}
+h2{font-family:var(--mono); font-size:1.02rem; font-weight:600; letter-spacing:-.02em;
+  margin:3rem 0 .9rem}
+p{margin:0 0 1.15rem}
+strong{font-weight:600}
+blockquote{margin:1.6rem 0 1.6rem; padding:0 0 0 1.1rem; border-left:2px solid var(--rule);
+  color:var(--dim); font-size:.98rem}
+blockquote p:last-child{margin-bottom:0}
+pre{background:var(--block); border-left:2px solid var(--rule); margin:1.6rem 0;
+  padding:1rem 1.1rem; overflow-x:auto; font-family:var(--mono);
+  font-size:.79rem; line-height:1.75}
+code{font-family:var(--mono); font-size:.88em}
+p code{background:var(--block); padding:.08em .32em}
+a{color:var(--ink); text-decoration-thickness:1px; text-underline-offset:.18em}
+a:hover{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+.rule-box{border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+  padding:1.3rem 0; margin:2.2rem 0}
+.rule-box p:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--rule); margin-top:4.5rem; padding-top:1.4rem;
+  font-size:.9rem; color:var(--dim)}
+footer .name{font-family:var(--mono); font-size:.82rem; color:var(--ink)}
+@media (max-width:34rem){ .wrap{padding-top:1.4rem} h2{margin-top:2.4rem} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <b><a href="../">sounding&#8209;stone</a></b>
+  <span>catalogue no. 003</span>
+</header>
+
+<div class="probe">
+<table>
+  <tr class="head">
+    <td>what the rows said</td>
+    <td>what separated them<br>(a field I was not reading)</td>
+  </tr>
+  <tr><td class="lie">stars:&gt;390000 &nbsp;&rarr;&nbsp; 5 repositories</td><td>total_count: 6</td></tr>
+  <tr><td class="lie">stars:&gt;395000 &nbsp;&rarr;&nbsp; the same 34,246 bytes</td><td>total_count: 5</td></tr>
+  <tr><td class="lie">0 label(s) checked, all correct.</td><td>the word 0</td></tr>
+</table>
+</div>
+<p class="caption">The first two rows are not merely the same five names on screen; the two
+<code>items</code> arrays are byte-for-byte identical. One of them is missing a repository.
+The third row is my own verifier reporting success over an empty set, with exit status
+zero.</p>
+
+<h1>That&rsquo;s all of them</h1>
+<p class="byline">2026&#8209;09&#8209;19 &nbsp; Yu Hsien Fang</p>
+
+<p>Last entry was about a referrer column whose majority value was manufactured by a policy
+upstream. It had a loose end at the bottom, which I moved here because it turned out to be
+the more expensive half:</p>
+
+<blockquote><p>Because the masking pushes nearly everything into a single value, the
+informative rows are all rare, which means they all sit at the bottom of a report sorted by
+count. The query behind my original table had a row limit on it. The rows that could have
+answered the question were below the cut, and they were below the cut for the same reason
+they were informative.</p></blockquote>
+
+<p>What I did not notice when I wrote that is that a trimmed result and a complete one can
+be identical on screen &mdash; identical to the byte, as it turns out &mdash; and that the
+only thing standing between them is a number I habitually skip.</p>
+
+<h2>Two queries, five rows each</h2>
+
+<p>GitHub's search API takes a <code>per_page</code> parameter, and reports the size of the
+whole match set in <code>total_count</code>. Two queries, both at <code>per_page=5</code>,
+eight seconds apart:</p>
+
+<pre>q=stars:&gt;390000   total_count=6   len(items)=5
+q=stars:&gt;395000   total_count=5   len(items)=5</pre>
+
+<p>Both returned five rows, and not just the same five repositories in the same order with
+the same star counts: the two <code>items</code> arrays are the same 34,246 bytes,
+sha256 <code>638ac4994d0fc41f&hellip;</code>. The first is missing a repository. The second
+is complete. I know the missing one is <code>openclaw/openclaw</code> at 390,033 stars only
+because I went and asked for page two.</p>
+
+<p>Both responses are correct and both fields are documented; nothing here is a bug. But
+nothing in the rows tells you which case you are in. Three queries with genuinely different
+answer sizes, all at <code>per_page=5</code>:</p>
+
+<pre>language:rust stars:&gt;10000    total_count=251   items: 32,524 bytes, sha256 414046569362453f
+language:rust stars:&gt;60000    total_count=23    items: 32,524 bytes, sha256 414046569362453f
+language:rust stars:&gt;100000   total_count=8     items: 32,524 bytes, sha256 414046569362453f</pre>
+
+<p>Three different true totals, one identical page. The rows cannot tell you the total, and
+no amount of care applied to the rows will change that. Two commands, if you want to watch
+it happen:</p>
+
+<pre>for s in 390000 395000; do
+  curl -sS -H 'Accept: application/vnd.github+json' \
+    "https://api.github.com/search/repositories?q=stars:%3E$s&amp;per_page=5" \
+  | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['total_count'], len(d['items']))"
+  sleep 8   # unauthenticated search is limited to ten requests per minute
+done
+# -&gt;  6 5
+#     5 5</pre>
+
+<h2>What I got wrong</h2>
+
+<p><strong>I wrote an exhaustive sentence about a result I had bounded myself.</strong> Words
+like <em>all</em>, <em>only</em> and <em>the rest are</em> claim a denominator, and
+<code>per_page=5</code> guarantees I never saw one. Both facts sat in the same shell
+command.</p>
+
+<p><strong><code>head</code> makes me careful and <code>limit</code> does not.</strong>
+Piping into <code>head -20</code> looks like formatting, so it feels like throwing data
+away. <code>per_page=5</code> and <code>LIMIT 5</code> look like part of the question being
+asked. They do the same thing, and the one that reads as a query parameter is the one I stop
+watching.</p>
+
+<p><strong>Re-reading cannot catch this, and I re-read.</strong> My double-check re-ran the
+same command. A second look verifies that I read the output correctly, and the output was
+incomplete identically both times.</p>
+
+<h2>The same shape in something I wrote myself</h2>
+
+<p>I keep date labels in notes, in the form <code>2026-09-19 (Sat)</code>. The weekday is
+the part I get wrong, because it is derived rather than copied, so I wrote a 26-line checker
+for it. What follows is a rebuild of that checker in an English-locale form so it runs
+anywhere; every output in this section is from the rebuild, not from the original incident.
+Four labels, one wrong on purpose:</p>
+
+<pre>$ python3 datecheck.py notes_md.md 2026
+WRONG: 9/21 (Wed) -&gt; Mon, not Wed
+1/4 label(s) WRONG.
+exit=1</pre>
+
+<p>Then the same four labels, with the same one still wrong, written the way I actually
+write dates:</p>
+
+<pre>$ python3 datecheck.py notes_iso.md 2026
+0 label(s) checked, all correct.
+exit=0</pre>
+
+<p>The pattern was <code>(\d{1,2})/(\d{1,2})\s*\((\w{3})\)</code> and the second file says
+<code>2026-09-21 (Wed)</code>. So the checker examined nothing, found no mismatches among
+the nothing it examined, and said so accurately. <code>0 label(s) checked</code> and
+<code>all correct</code> are both true, exit zero is correct, and the screen says the file
+is fine.</p>
+
+<p>A verifier cannot count what it failed to recognise, which means the denominator it
+prints is the size of its own reach and not the size of the job. Printing more numbers does
+not by itself fix that.</p>
+
+<p>The fix is a third state. Widen the pattern, report the count, and refuse to pass when
+the count is zero &mdash; the verdict half of the diff:</p>
+
+<pre>+    if total == 0 and allow_empty:
++        print("0 label(s) found - nothing to check (--allow-empty).")
++        return 0
++    if total == 0:
++        print("NOTHING CHECKED - 0 date label(s) found. This is NOT a pass.")
++        print("  Either the text has no label, or the label is in a form")
++        print("  this checker does not recognise. Pass --allow-empty to accept.")
++        return 2
+     if bad:
+         print(f"{bad}/{total} label(s) WRONG.")
+         return 1
+-    print(f"{total} label(s) checked, all correct.")
++    print(f"{total} label(s) checked, 0 wrong.")
+     return 0</pre>
+
+<p>That third exit code is not free. The hook that consumed this checker treated any nonzero
+status as &ldquo;wrong label&rdquo;, so two files with no dates in them went from passing to
+blocked without my touching the hook at all. Changing a verdict is a data change; changing
+the vocabulary of verdicts is an interface change. That is a separate entry.</p>
+
+<h2>What generalises</h2>
+
+<div class="rule-box">
+<p><strong>A verdict is only as good as the denominator it was computed over, and most tools
+do not print the denominator.</strong> <code>len(rows) == page_size</code> is the exact case
+where &ldquo;I fetched a slice&rdquo; and &ldquo;that is all of it&rdquo; produce identical
+output. <code>checked == 0</code> is the exact case where &ldquo;everything passed&rdquo;
+and &ldquo;I examined nothing&rdquo; produce identical output. In both, the number that
+separates them exists somewhere, and in both I had not read it.</p>
+<p>So: never let a denominator of zero, or of exactly your own limit, exit as a pass. Report
+it as unmeasured, and make the caller handle that as a third state.</p>
+</div>
+
+<h2>The check</h2>
+
+<p><a href="../checks/exhaustive.py"><code>checks/exhaustive.py</code></a> is 122 lines.
+Given a paginated URL with a <code>{n}</code> page-size slot, it classifies each endpoint
+COMPLETE, TRUNCATED or UNMEASURABLE. A declared total is the only thing that can earn
+COMPLETE; where none is declared it probes one row past the page size, which can prove
+truncation but never completeness. It runs a known-positive and a known-negative fixture on
+every invocation and refuses to classify anything if the two fail to separate.</p>
+
+<pre>$ ./checks/exhaustive.py items total_count 5 \
+    'https://api.github.com/search/repositories?q=stars:%3E390000&amp;per_page={n}' \
+    'https://api.github.com/search/repositories?q=stars:%3E395000&amp;per_page={n}'
+
+control +  control-truncated.json   TRUNCATED     fixture, declared total 4210, returned 5
+control -  control-complete.json    COMPLETE      fixture, declared total 3, returned 3
+
+TRUNCATED     http 200, declared total 6, returned 5
+COMPLETE      http 200, declared total 5, returned 5
+
+TRUNCATED or UNMEASURABLE cannot support 'all', 'only' or 'the rest are'.
+exit=1</pre>
+
+<p>Eleven deliberate breakages, all caught. Corrupt either control, in any of six ways, and
+it exits 2 without classifying anything. Hand it a broken candidate &mdash; an HTTP error, a
+rows key that is not a list, a real rate-limit body, a page size clamped at or below what
+you asked for &mdash; and it exits 3.</p>
+
+<p>The rate-limit case is not hypothetical. I hit the unauthenticated search limit while
+measuring this entry &mdash; ten requests per minute &mdash; and the 403 body is valid JSON
+with a <code>message</code> field, no <code>items</code> and no <code>total_count</code>.
+Had I written the version I would normally write:</p>
+
+<pre>t = d.get('total_count', 0); n = len(d.get('items', []))
+print(f'total_count={t}  len(items)={n}  ' + ('TRUNCATED' if n&lt;t else 'COMPLETE'))
+
+&rarr;  total_count=0  len(items)=0  COMPLETE
+   exit status: 0</pre>
+
+<p>A defensive default turns a rate-limit error into a confident report that there is
+nothing there. Same disease one layer down: <code>0</code> as a fallback is a denominator I
+made up.</p>
+
+<p>The script also shipped with the bug this entry is about, and the controls did not catch
+it. Where no total is declared, the fallback is to ask for <code>n+1</code> rows and see
+whether an extra one arrives. GitHub clamps <code>per_page</code> to 100, so at page size
+100 asking for 101 returns 100 again &mdash; and the first version read that as
+&ldquo;there are exactly 100&rdquo;: COMPLETE, exit 0, for a query whose declared
+<code>total_count</code> was 251. The probe has its own invisible ceiling, and my controls
+are fixtures, which never clamp.</p>
+
+<p>It shipped that way in two branches, not one. The other reads &ldquo;fewer rows came back
+than I asked for, so that must be all of them&rdquo; as exhaustion, and printed COMPLETE,
+exit 0, for that same 251-row query at page size 500. Both are UNMEASURABLE now.</p>
+
+<p>The repair is a demotion rather than a fix:</p>
+
+<pre>UNMEASURABLE  http 200, returned 100; page size 101 also returned 100
+              - exactly-100 and page-size-clamped-at-100 are indistinguishable</pre>
+
+<p>If asking for <code>n+1</code> returns <code>n</code> again, the answer is UNMEASURABLE,
+because &ldquo;there are exactly n&rdquo; and &ldquo;this endpoint caps page size at
+n&rdquo; cannot be told apart from outside. Which means the <code>n+1</code> probe can only
+ever prove truncation, never completeness. Only a declared total can do that, and where an
+endpoint declares no total, an exhaustive claim about it is not available to you at any page
+size. That is a second caveat on the control-group rule from
+<a href="001-two-kinds-of-404.html">001</a>: a fixture cannot exhibit a limit that only the
+live endpoint imposes.</p>
+
+<footer>
+<p>This is a catalogue of cases where a tool reported success, or reported nothing, and I
+believed it. Each entry gets the date, the commands, and the shape of the error. More will
+follow.</p>
+<p><span class="name">Sounding Stone</span> &mdash; before the large investment, throw a
+small stone and listen for the echo. Written by Yu Hsien Fang.</p>
+</footer>
+
+</div>
+</body>
+</html>
