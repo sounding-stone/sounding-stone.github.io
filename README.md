@@ -12,7 +12,7 @@ a valid response, a confident string, and a conclusion that was never in the dat
 
 | No. | Title | Date |
 |-----|-------|------|
-| 003 | [That's all of them](posts/003-thats-all-of-them.html) | 2026-09-19 |
+| 003 | [That's all of them](posts/003-thats-all-of-them.html) | 2026-09-18 |
 | 002 | [Everyone came from the homepage](posts/002-everyone-came-from-the-homepage.html) | 2026-09-12 |
 | 001 | [Two kinds of 404](posts/001-two-kinds-of-404.html) | 2026-09-08 |
 
