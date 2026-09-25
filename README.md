@@ -12,6 +12,7 @@ a valid response, a confident string, and a conclusion that was never in the dat
 
 | No. | Title | Date |
 |-----|-------|------|
+| 004 | [yaml ok](posts/004-yaml-ok.html) | 2026-09-25 |
 | 003 | [That's all of them](posts/003-thats-all-of-them.html) | 2026-09-18 |
 | 002 | [Everyone came from the homepage](posts/002-everyone-came-from-the-homepage.html) | 2026-09-12 |
 | 001 | [Two kinds of 404](posts/001-two-kinds-of-404.html) | 2026-09-08 |
@@ -31,6 +32,27 @@ bookmarked the root now gets the list, with 001 one click away.
 
 There is deliberately one copy of each text. A second copy is a second thing to keep in
 sync, and nothing here would detect the drift.
+
+## checks/removal.py
+
+Whether deleting one entry from a YAML list changed anything else: REMOVED, DAMAGED or
+UNPARSEABLE, with repeated keys treated as fatal and five built-in controls in every run.
+
+```
+$ ./checks/removal.py before.yaml watchlist.yaml contract_reply
+control +  UNPARSEABLE  orphaned tail, keys shared with neighbour
+control +  DAMAGED      orphaned tail, key new to neighbour
+control +  UNPARSEABLE  BEFORE already had a duplicate key
+control +  DAMAGED      a top-level key outside the list went missing
+control -  REMOVED      clean removal
+
+UNPARSEABLE  watchlist.yaml  (removed 'contract_reply' from before.yaml)
+             duplicate key 'known_positive' at lines 6 and 9
+```
+
+Exits 0 for REMOVED, 1 for DAMAGED or UNPARSEABLE, 2 if the controls fail, and 3 if an input
+file cannot be read. The controls cover the classification but not the mapping from verdict
+to exit status: forcing that to 0 passes every control.
 
 ## checks/exhaustive.py
 

@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>yaml ok — Sounding Stone</title>
+<meta name="description" content="A catalogue of tools that reported success, or reported nothing, and were believed. Entry 004: an agent deleted one entry from a YAML file, ran two checks that both passed, and left two of its lines attached to the entry above.">
+<style>
+:root{
+  --paper:#EDEEF0; --ink:#1A1F2B; --rule:#C9CCD1;
+  --amber:#8C5D04; --dim:#5C6472; --block:#E3E5E9;
+  --serif: ui-serif,"Iowan Old Style",Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --mono: ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161B; --ink:#E4E6EA; --rule:#343A45; --amber:#E0AE45; --dim:#8F98A6; --block:#1C1F26; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.66;
+  font-kerning:normal; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:41rem; margin:0 auto; padding:2rem 1.5rem 6rem}
+
+/* masthead */
+.mast{display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--mono); font-size:.78rem; color:var(--dim);
+  padding-bottom:.6rem; border-bottom:1px solid var(--rule); margin-bottom:3.5rem}
+.mast b{font-weight:600; color:var(--ink); letter-spacing:-.02em}
+.mast a{color:inherit; text-decoration:none}
+.mast a:hover{color:var(--amber)}
+
+/* hero: the evidence, before the headline */
+.probe{border:1px solid var(--ink); background:var(--block); margin:0 0 1.1rem;
+  font-family:var(--mono); font-size:.8rem; line-height:1.9; overflow-x:auto}
+.probe table{border-collapse:collapse; width:100%; min-width:30rem}
+.probe td{padding:.15rem .9rem; white-space:nowrap}
+.probe tr td:nth-child(2){border-left:1px solid var(--rule); color:var(--amber)}
+.probe tr.head td, .probe tr.head td:nth-child(2){color:var(--dim); font-size:.72rem; white-space:normal;
+  border-bottom:1px solid var(--rule); padding:.7rem .9rem; line-height:1.45}
+.probe .lie{color:var(--ink)}
+.caption{font-size:.9rem; color:var(--dim); margin:0 0 3.2rem; max-width:34rem}
+
+h1{font-family:var(--mono); font-size:clamp(1.9rem,6.5vw,2.7rem); font-weight:600;
+  letter-spacing:-.045em; line-height:1.05; margin:0 0 .55rem}
+.byline{font-family:var(--mono); font-size:.78rem; color:var(--dim); margin:0 0 2.6rem}
+h2{font-family:var(--mono); font-size:1.02rem; font-weight:600; letter-spacing:-.02em;
+  margin:3rem 0 .9rem}
+p{margin:0 0 1.15rem}
+strong{font-weight:600}
+blockquote{margin:1.6rem 0 1.6rem; padding:0 0 0 1.1rem; border-left:2px solid var(--rule);
+  color:var(--dim); font-size:.98rem}
+blockquote p:last-child{margin-bottom:0}
+pre{background:var(--block); border-left:2px solid var(--rule); margin:1.6rem 0;
+  padding:1rem 1.1rem; overflow-x:auto; font-family:var(--mono);
+  font-size:.79rem; line-height:1.75}
+code{font-family:var(--mono); font-size:.88em}
+p code{background:var(--block); padding:.08em .32em}
+a{color:var(--ink); text-decoration-thickness:1px; text-underline-offset:.18em}
+a:hover{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+.rule-box{border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+  padding:1.3rem 0; margin:2.2rem 0}
+.rule-box p:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--rule); margin-top:4.5rem; padding-top:1.4rem;
+  font-size:.9rem; color:var(--dim)}
+footer .name{font-family:var(--mono); font-size:.82rem; color:var(--ink)}
+@media (max-width:34rem){ .wrap{padding-top:1.4rem} h2{margin-top:2.4rem} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <b><a href="../">sounding&#8209;stone</a></b>
+  <span>catalogue no. 004</span>
+</header>
+
+<div class="probe">
+<table>
+  <tr class="head">
+    <td>what the check printed</td>
+    <td>what it was true about</td>
+  </tr>
+  <tr><td class="lie">grep -c &lt;entry-id&gt; &nbsp;&rarr;&nbsp; 0</td><td>the line carrying the id was gone</td></tr>
+  <tr><td class="lie">yaml.safe_load(...) &nbsp;&rarr;&nbsp; yaml ok</td><td>the file was valid YAML</td></tr>
+  <tr><td class="lie">7 h 25 min later: duplicate key: known_positive</td><td>two fields of the deleted entry now<br>belonged to the entry above it</td></tr>
+</table>
+</div>
+<p class="caption">The first two rows are the checks an agent ran after deleting one entry
+from a file. Both were correct. The third row is a different script, reading the same file
+the same afternoon.</p>
+
+<h1>yaml ok</h1>
+<p class="byline">2026&#8209;09&#8209;25 &nbsp; Yu Hsien Fang</p>
+
+<p>I keep a YAML file of conditions that an agent evaluates each morning: one entry per
+condition, each with an id, a date after which it expires, a field recording the example
+that proved the condition was detectable, and a free-text note. When a condition has done
+its job I remove the entry and move it to an archive file.</p>
+
+<p>This morning one had done its job. I told the agent to go ahead, and it wrote a small
+script to cut the entry out. The part that matters:</p>
+
+<pre>s=[i for i,l in enumerate(L) if l=="  - id: &lt;entry-id&gt;"]; assert len(s)==1; s=s[0]
+e=s+1
+while L[e].strip()!="": e+=1
+block=L[s:e]
+del L[s:e+1]  # also drop one trailing blank</pre>
+
+<p>Find the entry's first line, walk forward to the first blank line, delete. Then it checked
+its work, in the same command (paths shortened to file names, id redacted):</p>
+
+<pre>grep -c "&lt;entry-id&gt;" watchlist.yaml _watch_state.yaml watchlist_tombstones.md; python3 -c "import yaml;yaml.safe_load(open('watchlist.yaml'));yaml.safe_load(open('_watch_state.yaml'));print('yaml ok')"
+
+watchlist.yaml:0
+_watch_state.yaml:0
+watchlist_tombstones.md:5
+yaml ok</pre>
+
+<p>Zero occurrences left in the live file, five in the archive, and both files parse. Its
+report to me, paraphrased: every step had returned zero, and both YAML files had been
+checked and parsed normally.</p>
+
+<p>That was 08:33. At 15:58 a different script of mine, which loads the same file with a
+stricter parser, stopped with:</p>
+
+<pre>WS_LAYER0 FAIL: watchlist.yaml YAML 解析失敗：duplicate key: known_positive</pre>
+
+<p>(解析失敗 is &ldquo;failed to parse&rdquo;.)</p>
+
+<h2>What had happened</h2>
+
+<p>The entry had a blank line in the middle of it. The loop stopped there. Of the ten lines
+the entry occupied, it deleted the first eight &mdash; the id line, six fields, and the blank
+line &mdash; and left the last two, <code>known_positive:</code> and <code>note:</code>, indented exactly as before.</p>
+
+<p>A blank line does not end a YAML mapping, and neither does a comment. Indentation does.
+So the two leftover lines were not debris to the parser; they were two more keys of the
+entry above, which already had a <code>known_positive</code> and a <code>note</code> of its own. PyYAML's
+<code>safe_load</code> does not reject a mapping with a repeated key. It keeps the last value and says
+nothing. The YAML 1.2 spec is explicit that &ldquo;each of the keys is unique&rdquo;; PyYAML 6.0.3, the
+version on this machine, does not enforce it.</p>
+
+<p>So after the edit, the file parsed, the removed id appeared nowhere, the number of
+entries had gone from four to three, and the entry that survived above the gap was carrying
+the removed entry's evidence and the removed entry's notes in place of its own. The two
+orphaned lines were 607 and 2,400 characters long, and they sat directly under the removed
+entry's section comment, which the loop had not touched either. To someone scrolling, they
+would read as the remains of that section, not as part of the entry above.</p>
+
+<h2>Reproducing it</h2>
+
+<p>Twenty lines of YAML with the same shape, and the same loop:</p>
+
+<pre>$ cat watchlist.yaml
+# Conditions an agent checks every morning. One entry per condition.
+watches:
+  - id: invoice_paid
+    predicate: "the vendor invoice shows as paid"
+    expiry: "2026-10-31"
+    known_positive: "invoice 1041, paid 2026-08-02"
+    note: "monthly; re-arm after it fires"
+
+  - id: contract_reply
+    predicate: "the other side replies about the contract"
+    expiry: "2026-10-31"
+    probe: "from:legal@example.org newer_than:14d"
+
+    known_positive: "reply of 2026-07-21, same thread"
+    note: "merged two documents into one watch on 2026-09-20"
+
+  - id: release_note
+    predicate: "a release note for version 2 is posted"
+    expiry: "2026-11-30"
+    note: "the posting is the signal, not the release"
+
+$ cat unpin.py
+import sys
+p, wid = sys.argv[1], sys.argv[2]
+L = open(p, encoding="utf-8").read().split("\n")
+s = [i for i, l in enumerate(L) if l == "  - id: " + wid]; assert len(s) == 1; s = s[0]
+e = s + 1
+while L[e].strip() != "": e += 1
+del L[s:e+1]  # also drop one trailing blank
+open(p, "w", encoding="utf-8").write("\n".join(L))
+
+$ python3 unpin.py watchlist.yaml contract_reply; echo "exit=$?"
+exit=0
+$ grep -c contract_reply watchlist.yaml
+0
+$ python3 -c "import yaml; yaml.safe_load(open('watchlist.yaml')); print('yaml ok')"
+yaml ok
+$ python3 -c "import yaml; d = yaml.safe_load(open('watchlist.yaml')); print(len(d['watches'])); print(d['watches'][0])"
+2
+{'id': 'invoice_paid', 'predicate': 'the vendor invoice shows as paid', 'expiry': '2026-10-31', 'known_positive': 'reply of 2026-07-21, same thread', 'note': 'merged two documents into one watch on 2026-09-20'}</pre>
+
+<p><code>invoice_paid</code> now says its proof of detectability is a contract reply.</p>
+
+<p>The agent had saved a copy of the real file before editing it, and the repair at 16:00 saved
+another copy before touching anything. Running <code>unpin.py</code> on the first copy produces a file
+byte-for-byte identical to the second, so this is the mechanism and not a plausible story
+about one.</p>
+
+<p>Python's <code>json</code> module, <code>jq</code>, and Ruby's <code>YAML.safe_load</code> (Ruby 2.6) do the same thing with
+a repeated key: last value wins, no error. I tested those three and no others.</p>
+
+<h2>What I got wrong</h2>
+
+<p>I read &ldquo;both files checked, both parse normally&rdquo; as &ldquo;the file is right&rdquo;. The report said
+something narrower, and it said it accurately.</p>
+
+<p>Both checks asked whether the edit had happened. Neither asked whether anything else had
+happened. <code>grep -c</code> for the id is a test of absence, and deleting only the first line of the
+entry is enough to pass it. <code>safe_load</code> is a test of syntax, and the damaged file was
+syntactically fine. Between them they confirm that something was removed and that what is
+left is YAML. That is also true of a correct removal, which is why the output looked the way
+a correct removal looks.</p>
+
+<p>I knew the right check. A month earlier I split this same file into three, and my notes from
+that day say the split had to be proved by loading the file before and after and showing the
+two objects were identical; it was. A split is supposed to change nothing, and &ldquo;nothing
+changed&rdquo; is easy to state as a comparison. A removal is supposed to change exactly one thing,
+and I did not write that one down as a comparison, so nobody ran it.</p>
+
+<h2>What caught it, and why that was luck</h2>
+
+<p>The script that failed at 15:58 uses a loader I had subclassed to make repeated keys fatal.
+It caught this because the orphaned lines happened to share field names with their new
+parent. Change one thing in the reconstruction &mdash; let the entry's tail be a field the entry
+above does not have &mdash; and the strict loader has nothing to object to:</p>
+
+<pre>$ sed -n 10,11p before2.yaml     # contract_reply's tail; invoice_paid has no probe
+
+    probe: "from:legal@example.org newer_than:14d"
+$ cp before2.yaml after2.yaml; python3 unpin.py after2.yaml contract_reply
+$ grep -c contract_reply after2.yaml
+0
+$ python3 -c "import yaml; yaml.safe_load(open('after2.yaml')); print('yaml ok')"
+yaml ok
+$ python3 -c "import sys; sys.path.insert(0,'checks'); import removal, yaml; d=yaml.load(open('after2.yaml'), Loader=removal.Strict); print('strict ok:', d['watches'][0])"
+strict ok: {'id': 'invoice_paid', 'predicate': 'the vendor invoice shows as paid', 'expiry': '2026-10-31', 'note': 'monthly; re-arm after it fires', 'probe': 'from:legal@example.org newer_than:14d'}</pre>
+
+<p>That variant is one I constructed; it is not what happened today. In it, the invoice watch
+has acquired a search query for mail from a legal department, and every parser is satisfied.
+The only thing that sees it is a comparison against the file as it was before the edit.</p>
+
+<p>Downstream programs are no help either, and correctly so. One of mine reads this file every
+morning to compute expiry dates. Its source carries this comment: &ldquo;a broken YAML must never
+leave yesterday's &hellip; JSON for the briefing to mistake as today.&rdquo; It uses <code>safe_load</code>. I ran
+it on the real broken file and on the repaired one; the two outputs are identical apart from
+the timestamp field. It reads ids and dates, and those had not moved.</p>
+
+<h2>What generalises</h2>
+
+<p>A check that an edit happened is not a check that only the edit happened. After deleting an
+entry, the claim worth testing is that the result equals the original minus that entry, with
+every other entry unchanged, parsed by something that treats a repeated key as an error.
+Absence of the id, a valid parse, and the expected count are all consequences of a correct
+removal, and all three survive this incorrect one.</p>
+
+<h2>The check</h2>
+
+<p><code>checks/removal.py</code> is 108 lines. Given the file before, the file after, and the id that was
+supposed to go, it answers REMOVED, DAMAGED or UNPARSEABLE. It loads both files with repeated
+keys made fatal, then compares every surviving entry field by field against the original.
+Five built-in controls run on every invocation, and if any of them comes out wrong it refuses
+to classify anything.</p>
+
+<pre>$ ./checks/removal.py before.yaml watchlist.yaml contract_reply
+control +  UNPARSEABLE  orphaned tail, keys shared with neighbour
+control +  DAMAGED      orphaned tail, key new to neighbour
+control +  UNPARSEABLE  BEFORE already had a duplicate key
+control +  DAMAGED      a top-level key outside the list went missing
+control -  REMOVED      clean removal
+
+UNPARSEABLE  watchlist.yaml  (removed 'contract_reply' from before.yaml)
+             duplicate key 'known_positive' at lines 6 and 9
+exit=1</pre>
+
+<p>The constructed variant comes out <code>DAMAGED  invoice_paid: gained 'probe'</code>. A correct removal
+comes out <code>REMOVED</code> with exit 0, and so does the real file as repaired this afternoon, checked
+against the agent's pre-edit copy.</p>
+
+<p>I broke the script twelve ways. Eleven were caught by the controls, exit 2: making the
+loader lenient, disabling the repeated-key test, comparing entries by id only, comparing
+counts only, dropping the &ldquo;gained a key&rdquo; branch, forcing either verdict, keeping the wrong
+entry in the expected list, dropping the top-level comparison, and corrupting either the
+positive or the negative fixture.</p>
+
+<p>One survived. Forcing the exit status to 0 leaves every control passing: the script still
+prints UNPARSEABLE, and exits as if it had printed REMOVED. The controls test the
+classification; what <code>main()</code> does with the classification never passes through them.
+Anything that reads only the exit status of this check is trusting a line of code that no
+control covers. I have left it that way and written it down here rather than add a control
+for the control.</p>
+
+<footer>
+<p>This is a catalogue of cases where a tool reported success, or reported nothing, and I
+believed it. Each entry gets the date, the commands, and the shape of the error. More will
+follow.</p>
+<p><span class="name">Sounding Stone</span> &mdash; before the large investment, throw a
+small stone and listen for the echo. Written by Yu Hsien Fang.</p>
+</footer>
+
+</div>
+</body>
+</html>
