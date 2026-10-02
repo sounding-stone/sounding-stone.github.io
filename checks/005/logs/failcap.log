@@ -1,0 +1,39 @@
+
+Running 12 tests using 1 worker
+
+  ✓   1 fx/failcap/s.spec.js:3:3 › step 01 (1.0s)
+  ✓   2 fx/failcap/s.spec.js:3:3 › step 02 (1.0s)
+  ✘   3 fx/failcap/s.spec.js:3:3 › step 03 (1.0s)
+  ✓   4 fx/failcap/s.spec.js:3:3 › step 04 (1.0s)
+  ✓   5 fx/failcap/s.spec.js:3:3 › step 05 (1.0s)
+  ✓   6 fx/failcap/s.spec.js:3:3 › step 06 (1.0s)
+  ✓   7 fx/failcap/s.spec.js:3:3 › step 07 (1.0s)
+  ✓   8 fx/failcap/s.spec.js:3:3 › step 08 (1.0s)
+  ✓   9 fx/failcap/s.spec.js:3:3 › step 09 (1.0s)
+Timed out waiting 10s for the test suite to run
+Timed out waiting 10s for the teardown for test suite to run
+
+
+  1) fx/failcap/s.spec.js:3:3 › step 03 ────────────────────────────────────────────────────────────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "ok"
+    Received: "wrong"
+
+      3 |   test('step ' + String(i).padStart(2,'0'), async () => {
+      4 |     await new Promise(r => setTimeout(r, 1000));
+    > 5 |     expect(i === 3 ? 'wrong' : 'ok').toBe('ok');
+        |                                      ^
+      6 |   });
+      7 | }
+      8 |
+        at /work/fx/failcap/s.spec.js:5:38
+
+    Error Context: test-results/s-step-03/error-context.md
+
+  1 failed
+    fx/failcap/s.spec.js:3:3 › step 03 ─────────────────────────────────────────────────────────────
+  3 did not run
+  8 passed (10.0s)
+  2 errors were not a part of any test, see above for details

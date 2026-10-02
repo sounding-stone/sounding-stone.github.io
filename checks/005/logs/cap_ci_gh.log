@@ -1,0 +1,19 @@
+e2e	Run tests	2026-01-01T00:00:00.0000000Z 
+e2e	Run tests	2026-01-01T00:00:00.0000000Z Running 12 tests using 1 worker
+e2e	Run tests	2026-01-01T00:00:00.0000000Z 
+e2e	Run tests	2026-01-01T00:00:00.0000000Z   ✓   1 fx/cap/s.spec.js:3:3 › step 01 (1.0s)
+e2e	Run tests	2026-01-01T00:00:00.0000000Z   ✓   2 fx/cap/s.spec.js:3:3 › step 02 (1.0s)
+e2e	Run tests	2026-01-01T00:00:00.0000000Z   ✓   3 fx/cap/s.spec.js:3:3 › step 03 (1.0s)
+e2e	Run tests	2026-01-01T00:00:00.0000000Z   ✓   4 fx/cap/s.spec.js:3:3 › step 04 (1.0s)
+e2e	Run tests	2026-01-01T00:00:00.0000000Z   ✓   5 fx/cap/s.spec.js:3:3 › step 05 (1.0s)
+e2e	Run tests	2026-01-01T00:00:00.0000000Z   ✓   6 fx/cap/s.spec.js:3:3 › step 06 (1.0s)
+e2e	Run tests	2026-01-01T00:00:00.0000000Z   ✓   7 fx/cap/s.spec.js:3:3 › step 07 (1.0s)
+e2e	Run tests	2026-01-01T00:00:00.0000000Z   ✓   8 fx/cap/s.spec.js:3:3 › step 08 (1.0s)
+e2e	Run tests	2026-01-01T00:00:00.0000000Z   ✓   9 fx/cap/s.spec.js:3:3 › step 09 (1.0s)
+e2e	Run tests	2026-01-01T00:00:00.0000000Z Timed out waiting 10s for the test suite to run
+e2e	Run tests	2026-01-01T00:00:00.0000000Z Timed out waiting 10s for the teardown for test suite to run
+e2e	Run tests	2026-01-01T00:00:00.0000000Z 
+e2e	Run tests	2026-01-01T00:00:00.0000000Z   3 did not run
+e2e	Run tests	2026-01-01T00:00:00.0000000Z   9 passed (10.0s)
+e2e	Run tests	2026-01-01T00:00:00.0000000Z   2 errors were not a part of any test, see above for details
+e2e	Run tests	2026-01-01T00:00:00.0000000Z   ✘  10 fx/cap/s.spec.js:3:3 › step 10 (0.4s)

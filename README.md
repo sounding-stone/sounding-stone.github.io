@@ -12,6 +12,7 @@ a valid response, a confident string, and a conclusion that was never in the dat
 
 | No. | Title | Date |
 |-----|-------|------|
+| 005 | [69 passed (10.0m)](posts/005-69-passed.html) | 2026-10-02 |
 | 004 | [yaml ok](posts/004-yaml-ok.html) | 2026-09-25 |
 | 003 | [That's all of them](posts/003-thats-all-of-them.html) | 2026-09-18 |
 | 002 | [Everyone came from the homepage](posts/002-everyone-came-from-the-homepage.html) | 2026-09-12 |
@@ -32,6 +33,26 @@ bookmarked the root now gets the list, with 001 one click away.
 
 There is deliberately one copy of each text. A second copy is a second thing to keep in
 sync, and nothing here would detect the drift.
+
+## checks/suite_cap.py
+
+Reads a Playwright run log and says whether the suite finished or hit its clock: PASS,
+TEST_FAILURE, SUITE_TIMEOUT or NO_SUMMARY. It reads the summary block before any `✘` mark,
+and counts "did not run" as what it is. The controls and the mutation run live in
+`checks/005/` so the script itself stays the 56 lines quoted in the entry.
+
+```
+$ python3 checks/suite_cap.py checks/005/logs/cap.log
+planned: 12  did not run: 3  passed: 9  wall: 10.0s
+verdict: SUITE_TIMEOUT (suite clock 10s ran out; 3 did not run)
+
+$ cd checks/005 && python3 controls.py ../suite_cap.py     # 8 fixtures, exit = failures
+$ cd checks/005 && python3 mutate.py ../suite_cap.py       # 10 mutants, 9 caught, 1 equivalent
+```
+
+Exits 0 for PASS, 1 for TEST_FAILURE, 2 for SUITE_TIMEOUT, 3 for NO_SUMMARY. The eight
+fixtures are synthetic Playwright 1.59 output; the two real CI logs the entry describes are
+not shipped. The surviving mutant is equivalent on every fixture and is disclosed in the entry.
 
 ## checks/removal.py
 

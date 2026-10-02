@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>69 passed (10.0m) — Sounding Stone</title>
+<meta name="description" content="A catalogue of tools that reported success, or reported nothing, and were believed. Entry 005: a test suite ran out of its ten-minute limit and said so in the log, and an agent that read down from the one red mark below it called the failure a flake.">
+<style>
+:root{
+  --paper:#EDEEF0; --ink:#1A1F2B; --rule:#C9CCD1;
+  --amber:#8C5D04; --dim:#5C6472; --block:#E3E5E9;
+  --serif: ui-serif,"Iowan Old Style",Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --mono: ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161B; --ink:#E4E6EA; --rule:#343A45; --amber:#E0AE45; --dim:#8F98A6; --block:#1C1F26; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.66;
+  font-kerning:normal; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:41rem; margin:0 auto; padding:2rem 1.5rem 6rem}
+
+/* masthead */
+.mast{display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--mono); font-size:.78rem; color:var(--dim);
+  padding-bottom:.6rem; border-bottom:1px solid var(--rule); margin-bottom:3.5rem}
+.mast b{font-weight:600; color:var(--ink); letter-spacing:-.02em}
+.mast a{color:inherit; text-decoration:none}
+.mast a:hover{color:var(--amber)}
+
+/* hero: the evidence, before the headline */
+.probe{border:1px solid var(--ink); background:var(--block); margin:0 0 1.1rem;
+  font-family:var(--mono); font-size:.8rem; line-height:1.9; overflow-x:auto}
+.probe table{border-collapse:collapse; width:100%; min-width:30rem}
+.probe td{padding:.15rem .9rem; white-space:nowrap}
+.probe tr td:nth-child(2){border-left:1px solid var(--rule); color:var(--amber)}
+.probe tr.head td, .probe tr.head td:nth-child(2){color:var(--dim); font-size:.72rem; white-space:normal;
+  border-bottom:1px solid var(--rule); padding:.7rem .9rem; line-height:1.45}
+.probe .lie{color:var(--ink)}
+.caption{font-size:.9rem; color:var(--dim); margin:0 0 3.2rem; max-width:34rem}
+
+h1{font-family:var(--mono); font-size:clamp(1.9rem,6.5vw,2.7rem); font-weight:600;
+  letter-spacing:-.045em; line-height:1.05; margin:0 0 .55rem}
+.byline{font-family:var(--mono); font-size:.78rem; color:var(--dim); margin:0 0 2.6rem}
+h2{font-family:var(--mono); font-size:1.02rem; font-weight:600; letter-spacing:-.02em;
+  margin:3rem 0 .9rem}
+p{margin:0 0 1.15rem}
+strong{font-weight:600}
+blockquote{margin:1.6rem 0 1.6rem; padding:0 0 0 1.1rem; border-left:2px solid var(--rule);
+  color:var(--dim); font-size:.98rem}
+blockquote p:last-child{margin-bottom:0}
+pre{background:var(--block); border-left:2px solid var(--rule); margin:1.6rem 0;
+  padding:1rem 1.1rem; overflow-x:auto; font-family:var(--mono);
+  font-size:.79rem; line-height:1.75}
+code{font-family:var(--mono); font-size:.88em}
+p code{background:var(--block); padding:.08em .32em}
+a{color:var(--ink); text-decoration-thickness:1px; text-underline-offset:.18em}
+a:hover{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+.rule-box{border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+  padding:1.3rem 0; margin:2.2rem 0}
+.rule-box p:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--rule); margin-top:4.5rem; padding-top:1.4rem;
+  font-size:.9rem; color:var(--dim)}
+footer .name{font-family:var(--mono); font-size:.82rem; color:var(--ink)}
+@media (max-width:34rem){ .wrap{padding-top:1.4rem} h2{margin-top:2.4rem} }
+</style>
+<style>
+ol,ul{margin:0 0 1.15rem; padding-left:1.4rem}
+li{margin:0 0 .7rem}
+li pre{margin:.9rem 0}
+li code{background:var(--block); padding:.08em .32em}
+.grid{border-collapse:collapse; margin:1.6rem 0; font-size:.92rem; width:100%}
+.grid th, .grid td{text-align:left; vertical-align:top; padding:.45rem .7rem .45rem 0;
+  border-bottom:1px solid var(--rule)}
+.grid th{font-family:var(--mono); font-size:.72rem; font-weight:600; color:var(--dim);
+  border-bottom:1px solid var(--ink)}
+.grid td code{background:var(--block); padding:.08em .32em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <b><a href="../">sounding&#8209;stone</a></b>
+  <span>catalogue no. 005</span>
+</header>
+
+<div class="probe">
+<table>
+  <tr class="head">
+    <td>what was printed</td>
+    <td>what it was true about</td>
+  </tr>
+  <tr><td class="lie">&#10008;&nbsp; 71 [chromium] &rsaquo; &lt;spec A&gt; (3.2s)</td><td>the test that was running when<br>the suite's clock ran out</td></tr>
+  <tr><td class="lie">20 passed (35.1s)<br>(that test, locally, --repeat-each=20)</td><td>the test passes on its own</td></tr>
+  <tr><td class="lie">86 passed (2.9m)<br>(whole suite, locally, CI=1)</td><td>the suite passes on this machine,<br>in under a third of its time limit</td></tr>
+  <tr><td class="lie">69 passed (10.0m)</td><td>the suite was stopped at its<br>10-minute limit</td></tr>
+</table>
+</div>
+<p class="caption">Four lines from one night. The first came from the CI log of a failed deploy, the
+next two from the agent checking locally, and the fourth from the same CI log as the first,
+25 lines above it. All four are accurate. The agent acted on the first one.</p>
+
+<h1>69 passed (10.0m)</h1>
+<p class="byline">2026&#8209;10&#8209;02 &nbsp; Yu Hsien Fang</p>
+
+<p>At two in the morning an agent was shipping a frontend change for me. The deploy workflow
+runs the end-to-end suite (Playwright, 87 tests, one worker) before it deploys. The suite
+failed, so nothing deployed. That part worked as designed.</p>
+
+<p>The agent's job was to find out why. It was my agent and my deploy, so what follows is
+written as my mistake.</p>
+
+<h2>What was on the screen</h2>
+
+<p>The failed job's log is 4,079 lines, most of it output from the test server. The agent
+pulled it with <code>gh run view --log-failed</code> and filtered it five times in two minutes. The
+filters, run again today on the same log:</p>
+
+<ol>
+<li><code>grep -E "&#10008;|failed|Error:|expect\(|Timeout|&rsaquo;" | head -30</code> matched 87 lines. The first 30
+   were all passing tests (<code>&rsaquo;</code> appears on every test line). The one <code>&#10008;</code> was match 86.
+   <code>Timeout</code> does not match <code>Timed out</code>.</li>
+<li><code>grep -E "&#10008;|[0-9]+ failed|[0-9]+ flaky|[0-9]+ passed" | head -12</code> matched 3 lines: a
+   server log line containing <code>0x6d8becd0 failed with error</code>, then <code>69 passed (10.0m)</code>,
+   then the <code>&#10008;</code>. This is the one that had the answer on screen.</li>
+<li><code>sed -n '/&#10008;  71/,/&hellip;/p'</code>: everything from the <code>&#10008;</code> downward.</li>
+<li>A grep that did include <code>Timed out</code>, piped to <code>head -25</code>. It matched 1,065 lines. All
+   25 shown were JSON log lines whose key names contain <code>Locator</code>. The <code>Timed out</code> lines
+   were matches 1,056 and 1,057.</li>
+<li><code>awk '/&#10008;  71/{f=1} f'</code>: from the <code>&#10008;</code> downward again. What it printed (test name
+   redacted):
+<pre>  &#10008;  71 [chromium] &rsaquo; &lt;spec A&gt; (3.2s)
+&#9888;  Script exited unsuccessfully (code 1)
+Error: Script "npx playwright test" exited with code 1
+##[error]Process completed with exit code 1.</pre></li>
+</ol>
+
+<p>Between the fourth and fifth filter it ran the failing test 20 times locally:</p>
+
+<pre>  20 passed (35.1s)</pre>
+
+<p>After the fifth, its conclusion, paraphrased from its log: the CI output ends right after
+the <code>&#10008;</code>, CI probably runs with <code>--max-failures</code>, and no error message was printed. It tried
+to download the run's artifacts (there were none), then ran the whole suite locally with the
+CI settings:</p>
+
+<pre>  86 passed (2.9m)</pre>
+
+<p>Fails in CI, passes locally twenty times out of twenty: it read that as a timing flake,
+and wrote a brief for a second agent to investigate it. Find out whether the test's timing
+assumption was wrong or the product had a race; fix it by waiting on events (no sleeps, no
+looser assertions, no retries); add a step that keeps traces when the suite fails.</p>
+
+<h2>What the log said</h2>
+
+<p>This is the part of the same log that none of the five reads showed, 25 lines above the
+<code>&#10008;</code> (timestamps are UTC; the 18 lines of server output between the summary and the <code>&#10008;</code>
+are omitted):</p>
+
+<pre>2026-09-28T18:04:16.2295329Z Timed out waiting 600s for the test suite to run
+2026-09-28T18:04:16.2497652Z Timed out waiting 600s for the teardown for test suite to run
+2026-09-28T18:04:16.2522829Z
+2026-09-28T18:04:16.2646700Z   1 skipped
+2026-09-28T18:04:16.2647531Z   17 did not run
+2026-09-28T18:04:16.2648185Z   69 passed (10.0m)
+2026-09-28T18:04:16.2649338Z   2 errors were not a part of any test, see above for details
+   &hellip; 18 lines of test-server output &hellip;
+2026-09-28T18:04:18.1338119Z   &#10008;  71 [chromium] &rsaquo; &lt;spec A&gt; (3.2s)</pre>
+
+<p>The config had <code>globalTimeout: 10 * 60_000</code>. The suite needs about 2.9 minutes on my
+machine; on the CI runner it ran out of ten. Playwright stopped, said so in English, counted
+what had and had not run, and pointed upward (&ldquo;see above for details&rdquo;). The <code>&#10008;</code> arrived 1.9
+seconds after the summary, for the test that was still running when the clock stopped. The
+summary's three counts (1 + 17 + 69) already add up to the 87 planned tests without it.</p>
+
+<p>Nothing in this log is false. The <code>&#10008;</code> is a real mark on a real test. <code>20 passed</code> and
+<code>86 passed (2.9m)</code> are true. The cause was printed once, in plain words, above the only line
+the agent went looking for.</p>
+
+<h2>What I got wrong</h2>
+
+<ul>
+<li><strong>I let the red mark set the question.</strong> Every filter after the first was built around
+  <code>&#10008; 71</code>: grep for its name, print from it downward. A summary is printed once, at the end
+  of the run; the mark for a test killed by the global timeout is printed after it. Reading
+  down from the mark is reading past the answer.</li>
+<li><strong>I had <code>69 passed (10.0m)</code> in front of me and didn't read it.</strong> 69 is not 87, and 10.0m
+  is a round number. Either one was enough.</li>
+<li><strong><code>| head</code> let the noise decide what I saw.</strong> Twice the pattern was close enough; the
+  output limit cut the matching line, behind 30 passing tests in one case and 1,055 JSON
+  lines in the other. A count first (<code>grep -c</code>) would have shown 1,065 matches where I
+  expected a handful.</li>
+<li><strong>I treated &ldquo;passes locally&rdquo; as evidence about CI.</strong> The local runs answered &ldquo;does this
+  test pass on its own&rdquo; and &ldquo;does the suite pass here&rdquo;. The CI question was about time, and
+  the durations were right there: 35 s, 2.9 m, 10.0 m.</li>
+<li><strong>I paid for it with another agent's round.</strong> The second agent changed how the test waits
+  and added trace upload. Neither change was harmful. Neither was the fix. A third agent
+  reviewing that work wrote, paraphrased, that the explanation did not match how the page
+  actually gates rendering and that it could not claim the CI root cause had been found.
+  The work merged; its tests were green.</li>
+</ul>
+
+<p>From the agent's &ldquo;no error was printed&rdquo; to the pull request that raised the limit: 46 minutes.</p>
+
+<h2>What caught it</h2>
+
+<p>The next deploy failed too, on a different test:</p>
+
+<pre>2026-09-28T18:51:51.8227139Z Timed out waiting 600s for the test suite to run
+2026-09-28T18:51:51.8328764Z Timed out waiting 600s for the teardown for test suite to run
+2026-09-28T18:51:51.8341319Z
+2026-09-28T18:51:51.8427921Z   1 skipped
+2026-09-28T18:51:51.8428532Z   1 did not run
+2026-09-28T18:51:51.8428947Z   85 passed (10.0m)
+2026-09-28T18:51:51.8429636Z   2 errors were not a part of any test, see above for details
+2026-09-28T18:51:51.9359902Z   &#10008;  87 [mobile-chromium] &rsaquo; &lt;spec B&gt; (487ms)</pre>
+
+<p>A different test, failing after 487 ms, at the same 10.0 minutes. One failure points at a
+test. Two failures on unrelated tests, stopping at the same wall-clock time, point at a
+clock. The agent grepped the config for timeouts, found <code>globalTimeout: 10 * 60_000</code>, and
+raised it to 15 minutes.</p>
+
+<p>This was luck more than method. If the second run had happened to finish in 9 m 58 s, the
+flake story would have looked confirmed.</p>
+
+<h2>Reproducing it</h2>
+
+<p>You need Node and <code>npm i -D @playwright/test</code>. No browser is needed. I used Playwright
+1.59.1, the version in that project's lockfile, on Node 24.9.0.</p>
+
+<p><code>playwright.config.js</code>:</p>
+
+<pre>module.exports = { testDir: './tests', workers: 1, reporter: 'list', globalTimeout: 10_000, timeout: 30_000 };</pre>
+
+<p><code>tests/s.spec.js</code>: twelve tests of one second each, against a ten-second limit:</p>
+
+<pre>const { test, expect } = require('@playwright/test');
+for (let i = 1; i &lt;= 12; i++) {
+  test('step ' + String(i).padStart(2,'0'), async () =&gt; {
+    await new Promise(r =&gt; setTimeout(r, 1000));
+    expect('ok').toBe('ok');
+  });
+}</pre>
+
+<p><code>npx playwright test</code>, exit code 1:</p>
+
+<pre>Running 12 tests using 1 worker
+
+  &#10003;   1 tests/s.spec.js:3:3 &rsaquo; step 01 (1.0s)
+  &hellip;
+  &#10003;   9 tests/s.spec.js:3:3 &rsaquo; step 09 (1.0s)
+Timed out waiting 10s for the test suite to run
+Timed out waiting 10s for the teardown for test suite to run
+
+  3 did not run
+  9 passed (10.0s)
+  2 errors were not a part of any test, see above for details</pre>
+
+<p>One difference from CI: locally I could not get the trailing <code>&#10008;</code> to appear, with or
+without a browser page in the test, with or without <code>CI=1</code> and <code>retries: 1</code>. Locally the
+interrupted test is only counted under &ldquo;did not run&rdquo;. I don't know what in the CI setup
+prints the late <code>&#10008;</code>. The summary block is the same in both.</p>
+
+<h2>What generalises</h2>
+
+<ul>
+<li>Read the summary block before any mark. Check that its counts add up to the number of
+  planned tests (<code>Running 87 tests</code>) and that the duration isn't sitting on a configured
+  limit. A run that stops at exactly 10.0m when <code>globalTimeout</code> is 10 minutes has told you
+  its cause.</li>
+<li>Count before you limit. <code>grep -c</code> first; if the count is not what you expected, the
+  pattern is matching something else, and <code>head</code> will show you that something else.</li>
+<li>&ldquo;Passes locally&rdquo; is a claim about local conditions. When CI and local disagree, compare
+  durations, not pass counts.</li>
+</ul>
+
+<h2>The check</h2>
+
+<p><a href="../checks/suite_cap.py"><code>suite_cap.py</code></a> reads a Playwright list-reporter log, raw or with GitHub Actions prefixes,
+and answers from the summary block only. It never looks at <code>&#10008;</code>.</p>
+
+<pre>$ python3 suite_cap.py ci-run-1.log
+planned: 87  skipped: 1  did not run: 17  passed: 69  wall: 10.0m
+verdict: SUITE_TIMEOUT (suite clock 600s ran out; 17 did not run)
+$ echo $?
+2</pre>
+
+<p>Exit codes: 0 pass, 1 test failure, 2 suite timeout (test failures, if any, reported
+alongside), 3 no summary found. Exit 3 means the script will not guess: a log cut off before
+the summary is not treated as a failure of whichever test it ends on.</p>
+
+<p>Controls (<code>controls.py</code>), generated with the reproduction above:</p>
+
+<table class="grid">
+  <tr><th>fixture</th><th>expected</th></tr>
+  <tr><td><code>cap</code> (12 &times; 1 s against 10 s)</td><td>SUITE_TIMEOUT, &ldquo;3 did not run&rdquo;</td></tr>
+  <tr><td><code>cap_ci</code> (same, with a trailing <code>&#10008;</code> after the summary, as CI printed it)</td><td>SUITE_TIMEOUT, not TEST_FAILURE</td></tr>
+  <tr><td><code>cap_ci_gh</code> (same, with GitHub Actions line prefixes)</td><td>SUITE_TIMEOUT</td></tr>
+  <tr><td><code>noisy_cap</code> (adds a <code>0x6d8becd0 failed</code> server line and a <code>&hellip;LocatorCount</code> JSON line)</td><td>SUITE_TIMEOUT, no &ldquo;failed&rdquo;</td></tr>
+  <tr><td><code>fail</code> (6 tests, one real assertion failure)</td><td>TEST_FAILURE (1 failed)</td></tr>
+  <tr><td><code>failcap</code> (one real failure, then the clock runs out)</td><td>SUITE_TIMEOUT + 1 failed</td></tr>
+  <tr><td><code>pass</code></td><td>PASS</td></tr>
+  <tr><td><code>truncated</code> (first 8 lines of <code>fail</code>, ending on its <code>&#10008;</code>)</td><td>NO_SUMMARY</td></tr>
+</table>
+
+<p>All 8 pass. Then <code>mutate.py</code> breaks the script ten ways and reruns the controls:</p>
+
+<pre>caught   (1 controls failed)  count regex unanchored (search, no $)
+caught   (5 controls failed)  suite-timeout line ignored
+caught   (6 controls failed)  verdict taken from first red mark
+caught   (3 controls failed)  read from the red mark downward
+caught   (1 controls failed)  only the first 30 lines (head -30)
+caught   (1 controls failed)  TEST_FAILURE exits 0
+caught   (1 controls failed)  NO_SUMMARY exits 0 (guesses PASS)
+caught   (1 controls failed)  no CI prefix support
+caught   (1 controls failed)  'did not run' not counted
+SURVIVED (0 controls failed)  cap regex keyed on teardown line
+10 mutants, 9 caught, 1 survived</pre>
+
+<p>Three of the mutants are the five reads above, written as code: verdict from the first red
+mark, reading from the mark downward, and <code>head -30</code>. The survivor keys the timeout on the
+second &ldquo;Timed out&rdquo; line instead of the first. Playwright printed both lines together in every
+run I have, so the controls can't tell the two apart. I'm leaving it as a known gap rather
+than writing a fixture Playwright doesn't produce.</p>
+
+<p>On the two real CI logs (not published), the script returns <code>SUITE_TIMEOUT</code> both times: 17
+did not run in the first, 1 in the second.</p>
+
+<footer>
+<p>This is a catalogue of cases where a tool reported success, or reported nothing, and I
+believed it. Each entry gets the date, the commands, and the shape of the error. More will
+follow.</p>
+<p><span class="name">Sounding Stone</span> &mdash; before the large investment, throw a
+small stone and listen for the echo. Written by Yu Hsien Fang.</p>
+</footer>
+
+</div>
+</body>
+</html>

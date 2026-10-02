@@ -1,0 +1,18 @@
+
+Running 12 tests using 1 worker
+
+  ✓   1 fx/cap/s.spec.js:3:3 › step 01 (1.0s)
+  ✓   2 fx/cap/s.spec.js:3:3 › step 02 (1.0s)
+  ✓   3 fx/cap/s.spec.js:3:3 › step 03 (1.0s)
+  ✓   4 fx/cap/s.spec.js:3:3 › step 04 (1.0s)
+  ✓   5 fx/cap/s.spec.js:3:3 › step 05 (1.0s)
+  ✓   6 fx/cap/s.spec.js:3:3 › step 06 (1.0s)
+  ✓   7 fx/cap/s.spec.js:3:3 › step 07 (1.0s)
+  ✓   8 fx/cap/s.spec.js:3:3 › step 08 (1.0s)
+  ✓   9 fx/cap/s.spec.js:3:3 › step 09 (1.0s)
+Timed out waiting 10s for the test suite to run
+Timed out waiting 10s for the teardown for test suite to run
+
+  3 did not run
+  9 passed (10.0s)
+  2 errors were not a part of any test, see above for details

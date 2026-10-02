@@ -1,0 +1,32 @@
+
+Running 6 tests using 1 worker
+
+  ✓  1 fx/fail/s.spec.js:3:3 › step 01 (1.0s)
+  ✓  2 fx/fail/s.spec.js:3:3 › step 02 (1.0s)
+  ✓  3 fx/fail/s.spec.js:3:3 › step 03 (1.0s)
+  ✘  4 fx/fail/s.spec.js:3:3 › step 04 (1.0s)
+  ✓  5 fx/fail/s.spec.js:3:3 › step 05 (1.0s)
+  ✓  6 fx/fail/s.spec.js:3:3 › step 06 (1.0s)
+
+
+  1) fx/fail/s.spec.js:3:3 › step 04 ───────────────────────────────────────────────────────────────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "ok"
+    Received: "wrong"
+
+      3 |   test('step ' + String(i).padStart(2,'0'), async () => {
+      4 |     await new Promise(r => setTimeout(r, 1000));
+    > 5 |     expect(i === 4 ? 'wrong' : 'ok').toBe('ok');
+        |                                      ^
+      6 |   });
+      7 | }
+      8 |
+        at /work/fx/fail/s.spec.js:5:38
+
+    Error Context: test-results/s-step-04/error-context.md
+
+  1 failed
+    fx/fail/s.spec.js:3:3 › step 04 ────────────────────────────────────────────────────────────────
+  5 passed (6.6s)

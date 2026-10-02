@@ -1,0 +1,8 @@
+
+Running 6 tests using 1 worker
+
+  ✓  1 fx/fail/s.spec.js:3:3 › step 01 (1.0s)
+  ✓  2 fx/fail/s.spec.js:3:3 › step 02 (1.0s)
+  ✓  3 fx/fail/s.spec.js:3:3 › step 03 (1.0s)
+  ✘  4 fx/fail/s.spec.js:3:3 › step 04 (1.0s)
+  ✓  5 fx/fail/s.spec.js:3:3 › step 05 (1.0s)
