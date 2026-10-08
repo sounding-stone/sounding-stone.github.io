@@ -12,6 +12,7 @@ a valid response, a confident string, and a conclusion that was never in the dat
 
 | No. | Title | Date |
 |-----|-------|------|
+| 006 | [resolve equal: False](posts/006-resolve-equal-false.html) | 2026-10-08 |
 | 005 | [69 passed (10.0m)](posts/005-69-passed.html) | 2026-10-02 |
 | 004 | [yaml ok](posts/004-yaml-ok.html) | 2026-09-25 |
 | 003 | [That's all of them](posts/003-thats-all-of-them.html) | 2026-09-18 |
@@ -33,6 +34,34 @@ bookmarked the root now gets the list, with 001 one click away.
 
 There is deliberately one copy of each text. A second copy is a second thing to keep in
 sync, and nothing here would detect the drift.
+
+## checks/alias_check.py
+
+Asks an "is this the protected file?" predicate about spellings of one file (symlink,
+symlinked parent, `..`, hard link, different case, decomposed Unicode) and about files that are
+not it (a sibling, a byte-identical copy). Which spellings open the file is known by
+construction, from a fresh directory holding exactly one file, so the checker does not share an
+answer with the predicate it checks. Spellings the volume does not open are skipped and said so.
+The predicates, controls, mutation run and lock demo live in `checks/006/`.
+
+```
+$ cd checks/006 && python3 ../alias_check.py guards.py:resolve_eq
+...
+MISS  hard link           -> False (want True)
+MISS  case                -> False (want True)
+MISS  unicode (NFD)       -> False (want True)
+...
+verdict: 3 wrong
+
+$ cd checks/006 && python3 controls.py      # 7 predicates + usage error, exit = failures
+$ cd checks/006 && python3 mutate.py        # 11 mutants, 10 caught, 1 survived
+```
+
+Exits 0 when every answer is right, 1 when any is wrong, 2 on a usage error. The expected
+answers in `controls.py` are for a default (case-insensitive) APFS volume. The surviving mutant
+is equivalent on that volume and is disclosed in the entry. `lockdemo.py` is the lock half of the
+entry: `mkdir -p V/Tasks locks && echo x > V/Tasks/Main.md`, then
+`python3 lockdemo.py V/Tasks/Main.md & sleep 0.5; python3 lockdemo.py V/Tasks/Main.md; python3 lockdemo.py v/tasks/main.md; wait`.
 
 ## checks/suite_cap.py
 

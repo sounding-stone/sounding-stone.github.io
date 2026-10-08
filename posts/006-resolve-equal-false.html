@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>resolve equal: False — Sounding Stone</title>
+<meta name="description" content="A catalogue of tools that reported success, or reported nothing, and were believed. Entry 006: a production-write guard compared two resolved path strings, 358 tests and 49 of 49 mutants agreed it was right, and a reviewer agent opened the same file through a lowercase spelling.">
+<style>
+:root{
+  --paper:#EDEEF0; --ink:#1A1F2B; --rule:#C9CCD1;
+  --amber:#8C5D04; --dim:#5C6472; --block:#E3E5E9;
+  --serif: ui-serif,"Iowan Old Style",Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --mono: ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161B; --ink:#E4E6EA; --rule:#343A45; --amber:#E0AE45; --dim:#8F98A6; --block:#1C1F26; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.66;
+  font-kerning:normal; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:41rem; margin:0 auto; padding:2rem 1.5rem 6rem}
+
+/* masthead */
+.mast{display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--mono); font-size:.78rem; color:var(--dim);
+  padding-bottom:.6rem; border-bottom:1px solid var(--rule); margin-bottom:3.5rem}
+.mast b{font-weight:600; color:var(--ink); letter-spacing:-.02em}
+.mast a{color:inherit; text-decoration:none}
+.mast a:hover{color:var(--amber)}
+
+/* hero: the evidence, before the headline */
+.probe{border:1px solid var(--ink); background:var(--block); margin:0 0 1.1rem;
+  font-family:var(--mono); font-size:.8rem; line-height:1.9; overflow-x:auto}
+.probe table{border-collapse:collapse; width:100%; min-width:30rem}
+.probe td{padding:.15rem .9rem; white-space:nowrap}
+.probe tr td:nth-child(2){border-left:1px solid var(--rule); color:var(--amber)}
+.probe tr.head td, .probe tr.head td:nth-child(2){color:var(--dim); font-size:.72rem; white-space:normal;
+  border-bottom:1px solid var(--rule); padding:.7rem .9rem; line-height:1.45}
+.probe .lie{color:var(--ink)}
+.caption{font-size:.9rem; color:var(--dim); margin:0 0 3.2rem; max-width:34rem}
+
+h1{font-family:var(--mono); font-size:clamp(1.9rem,6.5vw,2.7rem); font-weight:600;
+  letter-spacing:-.045em; line-height:1.05; margin:0 0 .55rem}
+.byline{font-family:var(--mono); font-size:.78rem; color:var(--dim); margin:0 0 2.6rem}
+h2{font-family:var(--mono); font-size:1.02rem; font-weight:600; letter-spacing:-.02em;
+  margin:3rem 0 .9rem}
+p{margin:0 0 1.15rem}
+strong{font-weight:600}
+blockquote{margin:1.6rem 0 1.6rem; padding:0 0 0 1.1rem; border-left:2px solid var(--rule);
+  color:var(--dim); font-size:.98rem}
+blockquote p:last-child{margin-bottom:0}
+pre{background:var(--block); border-left:2px solid var(--rule); margin:1.6rem 0;
+  padding:1rem 1.1rem; overflow-x:auto; font-family:var(--mono);
+  font-size:.79rem; line-height:1.75}
+code{font-family:var(--mono); font-size:.88em}
+p code{background:var(--block); padding:.08em .32em}
+a{color:var(--ink); text-decoration-thickness:1px; text-underline-offset:.18em}
+a:hover{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+.rule-box{border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+  padding:1.3rem 0; margin:2.2rem 0}
+.rule-box p:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--rule); margin-top:4.5rem; padding-top:1.4rem;
+  font-size:.9rem; color:var(--dim)}
+footer .name{font-family:var(--mono); font-size:.82rem; color:var(--ink)}
+@media (max-width:34rem){ .wrap{padding-top:1.4rem} h2{margin-top:2.4rem} }
+</style>
+<style>
+ol,ul{margin:0 0 1.15rem; padding-left:1.4rem}
+li{margin:0 0 .7rem}
+li pre{margin:.9rem 0}
+li code{background:var(--block); padding:.08em .32em}
+.grid{border-collapse:collapse; margin:1.6rem 0; font-size:.92rem; width:100%}
+.grid th, .grid td{text-align:left; vertical-align:top; padding:.45rem .7rem .45rem 0;
+  border-bottom:1px solid var(--rule)}
+.grid th{font-family:var(--mono); font-size:.72rem; font-weight:600; color:var(--dim);
+  border-bottom:1px solid var(--ink)}
+.grid td code{background:var(--block); padding:.08em .32em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <b><a href="../">sounding&#8209;stone</a></b>
+  <span>catalogue no. 006</span>
+</header>
+
+<div class="probe">
+<table>
+  <tr class="head">
+    <td>what was printed</td>
+    <td>what it was true about</td>
+  </tr>
+  <tr><td class="lie">1 failed, 358 passed, 5 deselected</td><td>the tests the coding agent wrote pass; the one failure was older and unrelated</td></tr>
+  <tr><td class="lie">49/49 killed</td><td>delete or disable any guarded line and some test notices</td></tr>
+  <tr><td class="lie">resolve equal: False</td><td>the two strings differ</td></tr>
+  <tr><td class="lie">samefile: True</td><td>the two strings open one file</td></tr>
+  <tr><td class="lie">[&lt;desktop&gt;] case-alias ADD with tmp roots: ACCEPTED rc0; production file now has the line: True</td><td>the guard let a run configured for testing write to the production file</td></tr>
+</table>
+</div>
+<p class="caption">The first two lines are from the coding agent's report. The last three are from a reviewer agent, about ten minutes into its review of the same commit. Every line is accurate.</p>
+
+<h1>resolve equal: False</h1>
+<p class="byline">2026&#8209;10&#8209;08 &nbsp; Yu Hsien Fang</p>
+
+<p>I keep my tasks in one Markdown file and change it through a small CLI that agents call. Last week I had an agent add a guard to that CLI. The rule was simple: a run that writes to the real task file must also use the real state directories, and a run pointed at test directories must not touch the real task file. Test harnesses set those directories through environment variables, so without the guard a test run with the wrong path could write to the file I actually use.</p>
+<p>The spec was written by my agent; I never read that line. It said the target counts as production when it is the production file "after resolve" (translated from my notes). The coding agent implemented it in one line:</p>
+<pre>target_prod = taskforge.resolve() == PRODUCTION_TASKFORGE.resolve()</pre>
+<p>I never read that line, but the agents and the workflow were mine, so what follows is written as my mistake.</p>
+<h2>What the report said</h2>
+<p>The coding agent finished at 11:46. Its report:</p>
+<pre>1 failed, 358 passed, 5 deselected in 25.74s</pre>
+<p>The one failure was a test that had been red before the work started and had nothing to do with it. Then the mutation run:</p>
+<pre>Top-level command: `.venv/bin/python tools/run_w5_mutants.py` → rc 0, **49/49 killed**.</pre>
+<p>Two of the 49 mutants were on the guard. One replaced the check on the state directory with <code>return False</code>; the other replaced the line that ties the target to the directories with <code>if False:</code>. Both were killed. The test that killed the second one is called <code>test_production_binding_resolved_aliases_every_host</code>. It makes a symlink to the production file, calls the CLI through the symlink with test directories, and expects a refusal. It got one.</p>
+<p>I read that as: the guard works, and it has been checked against aliases.</p>
+<h2>What the reviewer did</h2>
+<p>I send each round of this kind of work to a reviewer agent that has not seen the development. Its brief had a line for the guard: try to construct a call that writes the production task file with non-production directories, on either machine.</p>
+<p>Seven minutes in, it ran this probe (temp prefix shortened to <code>$S</code>):</p>
+<pre>a = Path(s) / "case/Vault Dir/_taskMgt/TaskForge.md"
+b = Path(s) / "case/vault dir/_taskmgt/taskforge.md"
+print("exists lower:", b.exists())
+print("resolve equal:", a.resolve() == b.resolve())
+print("samefile:", os.path.samefile(a, b))</pre>
+<pre>exists lower: True
+resolve equal: False
+samefile: True
+$S/case/Vault Dir/_taskMgt/TaskForge.md
+$S/case/vault dir/_taskmgt/taskforge.md</pre>
+<p>The default macOS volume ignores case when it opens a file and keeps whatever case you typed in the path you hold. <code>resolve()</code> follows symlinks and removes <code>..</code>; it handed back the lowercase string unchanged. Two strings, one file.</p>
+<p>Its first attack, two minutes later, set up a stand-in production file in a temp directory and tried to mark a task done through a lowercase spelling of it:</p>
+<pre>alias samefile: True | resolve equal: False
+lock keys equal: False
+case-alias: rejected -&gt; mutation id is not globally unique: 01ARZ3NDEKTSV4RRFFQ69G5FAV</pre>
+<p>A refusal. The reviewer read the message: it came from a different check, one that counts task ids, not from the guard. It switched to an operation that check doesn't cover, adding a task, and ran it as both machines:</p>
+<pre>[&lt;desktop&gt;] case-alias ADD with tmp roots: ACCEPTED rc0; production file now has the line: True | lock dir: ['e993f900', 'store.ho', 'store.lo']
+[laptop] case-alias ADD with tmp roots: ACCEPTED rc0; production file now has the line: True | lock dir: ['e993f900', 'store.ho', 'store.lo']</pre>
+<p>That was 11:59, ten minutes after it started. The stand-in production file had the new line. The per-target lock file (<code>e993f900…</code>) had a name that a writer using the real spelling would not compute, because its key was a hash of the same string: <code>sha256(str(taskforge.resolve()))</code>.</p>
+<p>The reviewer's own severity note, paraphrased: this needs a deliberately configured test environment plus a mis-cased path; it is not something you hit by accident. My real task file was never written through this. The work was on a branch, and it merged later that day after the fixes below.</p>
+<h2>What I got wrong</h2>
+<ul>
+<li><strong>I specified identity as a string.</strong> "After resolve" answers where symlinks and <code>..</code> lead. It does not answer which file a path opens. The question the guard needed answered was the second one.</li>
+<li><strong>I took a test's name for its coverage.</strong> <code>resolved_aliases_every_host</code> built one kind of alias, a symlink, which is the one kind <code>resolve()</code> handles. The name said more than the test did.</li>
+<li><strong>I read 49/49 as "the guard is right".</strong> A mutant asks whether the tests notice when a line is deleted or switched off. Every mutant on the guard did that. None replaced the comparison with a different idea of what "the same file" means, and the mutants came from the same agent that wrote the comparison, so none would have.</li>
+<li><strong>The knowledge was already in the file.</strong> Fifty-six lines below the guard, in the same module, the same agent had written this for the record files:<pre># On a case-insensitive volume, an uppercase argument can open a lowercase
+# directory entry. Check the actual entry as well as the requested basename.</pre>That check had its own test (<code>test_loader_rejects_filename_case_and_symlink</code>) and its own mutant, killed. It was applied to record filenames and not to the one comparison that protected the production file.</li>
+</ul>
+<h2>The fix took two more rounds</h2>
+<p>Round two (12:10) switched the production check to <code>os.path.samefile</code> and keyed the per-target lock on the file's inode. The next fresh reviewer found the inode key moved: the CLI writes by writing a temp file and renaming it over the original, so every write produces a new inode. Its measurement:</p>
+<pre>per-target lock files after 2 mutations: 2</pre>
+<p>It also found that a second tool, which writes the same file and had not yet been updated, still used the old string key. While the CLI held its locks:</p>
+<pre>[UNPATCHED production ti] while wm holds locks -&gt; ti key 743f968d1a9f | ti acquired after 0.00s</pre>
+<p>and that tool's 18 tests skip themselves when they find the old version, so a CI run in that window would have been green. Both programs also take one store-wide lock at a fixed path, which is what kept them serialized; the reviewer said so, and I have no evidence the two ever wrote at the same time.</p>
+<p>Round three (12:51) keyed the lock on the case-folded resolved path and kept <code>samefile</code> for the production check, with case-folding only as a fallback when the file does not exist yet. That merged at 13:10.</p>
+<p>Case-folding is still a string. I checked the two ways it can be wrong. A path whose <code>é</code> is spelled in decomposed Unicode (NFD) opens the same file on APFS and does not compare equal after <code>casefold()</code>. And on a case-sensitive volume, <code>Main.md</code> and <code>main.md</code> are two files that case-fold to one key (that direction only over-locks). The reviewer judged the first one unreachable for this tool because its real paths are ASCII. I agree, and I'm noting it because it is the same kind of answer as the one that failed.</p>
+<h2>Reproducing it</h2>
+<p>Any Mac with a default (case-insensitive) volume. Python 3.12 at the time, 3.14.6 today; same result.</p>
+<pre>mkdir -p /tmp/demo6/Vault/Tasks &amp;&amp; echo x &gt; /tmp/demo6/Vault/Tasks/Main.md
+python3 -c 'import os; from pathlib import Path as P; a = P("/tmp/demo6/Vault/Tasks/Main.md"); b = P("/tmp/demo6/vault/tasks/main.md"); print(b.exists(), a.resolve() == b.resolve(), os.path.samefile(a, b)); print(b.resolve())'</pre>
+<pre>True False True
+/private/tmp/demo6/vault/tasks/main.md</pre>
+<p>The lock half: two processes, one lock directory, keys from <code>sha256(str(path.resolve()))</code> (<a href="../checks/006/lockdemo.py"><code>lockdemo.py</code></a>, below). The first holds its lock for two seconds while the other two try:</p>
+<pre>V/Tasks/Main.md: lock acquired (98cabf8178ad.lock)
+V/Tasks/Main.md: busy (98cabf8178ad.lock)
+v/tasks/main.md: lock acquired (6c8c9c38d4d7.lock)</pre>
+<h2>What generalises</h2>
+<ul>
+<li><strong>To ask "is this that file", ask the filesystem.</strong> <code>os.path.samefile</code>, or compare <code>(st_dev, st_ino)</code> from <code>os.stat</code>. <code>resolve()</code>, <code>realpath</code>, <code>casefold()</code> and Unicode normalisation each remove one way of spelling a path differently; the volume decides which spellings open the same file, and it can be different on the next machine.</li>
+<li><strong>Key a lock on a name you chose, not on how the caller spelled the target.</strong> One fixed lock path per resource held up here; the key derived from the caller's path split twice, by case and then by inode.</li>
+<li><strong>A guard needs a test written by someone who wants it to fail.</strong> Mutation testing checks the tests against the code's own idea. To check the idea, give the guard a list of spellings built without it, or give it to a reviewer whose job is to get through.</li>
+<li><strong>A refusal is evidence about the check that refused.</strong> Read the message before counting it as the guard working.</li>
+</ul>
+<h2>The check</h2>
+<p><a href="../checks/alias_check.py"><code>alias_check.py</code></a> takes any predicate <code>f(candidate, protected) -&gt; bool</code> and asks it about spellings of one file and about files that are not it. Which spellings open the file is known by construction (a fresh directory holding exactly one file), not by calling <code>samefile</code>, so the checker does not share an answer with the predicate it checks. Spellings that this volume does not open are skipped and said so.</p>
+<pre>$ python3 alias_check.py guards.py:resolve_eq
+ok    exact               -&gt; True  (want True)
+ok    symlink             -&gt; True  (want True)
+ok    symlinked parent    -&gt; True  (want True)
+ok    dot-dot             -&gt; True  (want True)
+MISS  hard link           -&gt; False (want True)
+MISS  case                -&gt; False (want True)
+MISS  unicode (NFD)       -&gt; False (want True)
+ok    sibling             -&gt; False (want False)
+ok    byte-identical copy -&gt; False (want False)
+verdict: 3 wrong</pre>
+<p>Exit 1. With <code>guards.py:samefile</code> every answer is right and it exits 0. <code>controls.py</code> runs it against seven predicates whose right answers are known (the first-round guard is the known positive), and <code>mutate.py</code> breaks the checker eleven ways. Ten are caught. The one that survives keeps a spelling without first checking that the volume opens it. On a default macOS volume that changes nothing, so the controls cannot see it; on a case-sensitive volume it turns a correct <code>samefile</code> predicate into a <code>FileNotFoundError</code> and a false <code>MISS</code>. I tested that on a case-sensitive disk image. My controls only run on one kind of volume, and that is the gap.</p>
+
+<footer>
+<p>This is a catalogue of cases where a tool reported success, or reported nothing, and I
+believed it. Each entry gets the date, the commands, and the shape of the error. More will
+follow.</p>
+<p><span class="name">Sounding Stone</span> &mdash; before the large investment, throw a
+small stone and listen for the echo. Written by Yu Hsien Fang.</p>
+</footer>
+
+</div>
+</body>
+</html>
