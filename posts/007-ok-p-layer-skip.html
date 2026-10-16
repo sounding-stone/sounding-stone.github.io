@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OK — P layer SKIP — Sounding Stone</title>
+<meta name="description" content="A catalogue of tools that reported success, or reported nothing, and were believed. Entry 007: an agent added a comment to the end of one config line, a lint stopped reading its word list, skipped a whole layer and printed OK with exit 0, and the lint's 30 tests stayed green.">
+<style>
+:root{
+  --paper:#EDEEF0; --ink:#1A1F2B; --rule:#C9CCD1;
+  --amber:#8C5D04; --dim:#5C6472; --block:#E3E5E9;
+  --serif: ui-serif,"Iowan Old Style",Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --mono: ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161B; --ink:#E4E6EA; --rule:#343A45; --amber:#E0AE45; --dim:#8F98A6; --block:#1C1F26; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.66;
+  font-kerning:normal; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:41rem; margin:0 auto; padding:2rem 1.5rem 6rem}
+
+/* masthead */
+.mast{display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--mono); font-size:.78rem; color:var(--dim);
+  padding-bottom:.6rem; border-bottom:1px solid var(--rule); margin-bottom:3.5rem}
+.mast b{font-weight:600; color:var(--ink); letter-spacing:-.02em}
+.mast a{color:inherit; text-decoration:none}
+.mast a:hover{color:var(--amber)}
+
+/* hero: the evidence, before the headline */
+.probe{border:1px solid var(--ink); background:var(--block); margin:0 0 1.1rem;
+  font-family:var(--mono); font-size:.8rem; line-height:1.9; overflow-x:auto}
+.probe table{border-collapse:collapse; width:100%; min-width:30rem}
+.probe td{padding:.15rem .9rem; white-space:nowrap}
+.probe tr td:nth-child(2){border-left:1px solid var(--rule); color:var(--amber)}
+.probe tr.head td, .probe tr.head td:nth-child(2){color:var(--dim); font-size:.72rem; white-space:normal;
+  border-bottom:1px solid var(--rule); padding:.7rem .9rem; line-height:1.45}
+.probe .lie{color:var(--ink)}
+.caption{font-size:.9rem; color:var(--dim); margin:0 0 3.2rem; max-width:34rem}
+
+h1{font-family:var(--mono); font-size:clamp(1.9rem,6.5vw,2.7rem); font-weight:600;
+  letter-spacing:-.045em; line-height:1.05; margin:0 0 .55rem}
+.byline{font-family:var(--mono); font-size:.78rem; color:var(--dim); margin:0 0 2.6rem}
+h2{font-family:var(--mono); font-size:1.02rem; font-weight:600; letter-spacing:-.02em;
+  margin:3rem 0 .9rem}
+p{margin:0 0 1.15rem}
+strong{font-weight:600}
+blockquote{margin:1.6rem 0 1.6rem; padding:0 0 0 1.1rem; border-left:2px solid var(--rule);
+  color:var(--dim); font-size:.98rem}
+blockquote p:last-child{margin-bottom:0}
+pre{background:var(--block); border-left:2px solid var(--rule); margin:1.6rem 0;
+  padding:1rem 1.1rem; overflow-x:auto; font-family:var(--mono);
+  font-size:.79rem; line-height:1.75}
+code{font-family:var(--mono); font-size:.88em}
+p code{background:var(--block); padding:.08em .32em}
+a{color:var(--ink); text-decoration-thickness:1px; text-underline-offset:.18em}
+a:hover{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+.rule-box{border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+  padding:1.3rem 0; margin:2.2rem 0}
+.rule-box p:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--rule); margin-top:4.5rem; padding-top:1.4rem;
+  font-size:.9rem; color:var(--dim)}
+footer .name{font-family:var(--mono); font-size:.82rem; color:var(--ink)}
+@media (max-width:34rem){ .wrap{padding-top:1.4rem} h2{margin-top:2.4rem} }
+</style>
+<style>
+ol,ul{margin:0 0 1.15rem; padding-left:1.4rem}
+li{margin:0 0 .7rem}
+li pre{margin:.9rem 0}
+li code{background:var(--block); padding:.08em .32em}
+.grid{border-collapse:collapse; margin:1.6rem 0; font-size:.92rem; width:100%}
+.grid th, .grid td{text-align:left; vertical-align:top; padding:.45rem .7rem .45rem 0;
+  border-bottom:1px solid var(--rule)}
+.grid th{font-family:var(--mono); font-size:.72rem; font-weight:600; color:var(--dim);
+  border-bottom:1px solid var(--ink)}
+.grid td code{background:var(--block); padding:.08em .32em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <b><a href="../">sounding&#8209;stone</a></b>
+  <span>catalogue no. 007</span>
+</header>
+
+<div class="probe">
+<table>
+  <tr class="head">
+    <td>what was printed</td>
+    <td>what it was true about</td>
+  </tr>
+  <tr><td class="lie">lint 30 tests OK</td><td>the lint's own tests pass; each one writes its own config, with 12 terms and no comment on that line</td></tr>
+  <tr><td class="lie">rsvp-lint: OK — … · P 層 SKIP（&lt;config&gt;.yaml 無 prep_veto_terms）</td><td>the layers that ran found nothing; layer P did not run; the reason given is wrong, the file had 17 terms under that key</td></tr>
+  <tr><td class="lie">rc=0</td><td>nothing that ran found anything</td></tr>
+  <tr><td class="lie">P 層啟用：否決詞 17 個 · rc=1</td><td>the same file with one trailing comment removed</td></tr>
+</table>
+</div>
+<p class="caption">The first line is from the coding agent's report for the round. The next two are from a reviewer agent running the real command on the real config file. The last is the reviewer's control. <code>P 層</code> means "layer P"; <code>無</code> means "has no". File names that point at my setup are shortened to <code>&lt;config&gt;</code> and <code>&lt;list&gt;</code>.</p>
+
+<h1>OK — P layer SKIP</h1>
+<p class="byline">2026&#8209;10&#8209;16 &nbsp; Yu Hsien Fang</p>
+
+<p>My calendar tool writes a to-do list every morning. Some items on it are reminders to answer an invitation I've marked tentative; others are things I need to prepare before a meeting. A downstream tool hides the first kind and must never hide the second. So the reminders that should be hidden carry a marker, <code>(📅tentative)</code>, and a lint checks the list after it is written. One layer of that lint, layer P, fails the run when a marked line also contains a preparation word ("before the meeting", "prepare", "read") — that line is something to do, and the marker would hide it.</p>
+<p>Layer P reads its word list from a YAML config that two tools share. The lint loads it without a YAML library, with one regular expression over one line:</p>
+<pre>VETO_LINE = re.compile(r"^\s*prep_veto_terms:\s*\[(.*)\]\s*$")</pre>
+<p>and its docstring says what happens when that fails (translated): "can't read it → print SKIP, the layer doesn't run."</p>
+<p>Agents wrote the lint, its regex, the SKIP branch and the test fixtures, during an overnight run I had set going before bed: a coding round and a review round, repeated. I chose what the run should build and how it would be reviewed; I had not read that regex or the SKIP branch. The run and the agents were mine, so what follows is written as my mistake.</p>
+<h2>What the round reported</h2>
+<p>At 01:36 the coding agent committed round "4b". Among other changes, it added five English preparation words to the list and left a note on the same line:</p>
+<pre>    prep_veto_terms: ['會前', '先看', … , 'Prepare', 'Prep', 'Draft', 'Review', 'Read']  # r4b：英文準備詞——擋來源人名槽與事件名</pre>
+<p>(The comment says, translated: "r4b: English prep words — block the source-name slot and event names.") The round's write-up listed this effect (translated): "Side effect: lint layer P and the event-name veto also pick up these 5 words (only in the keep / go-red direction)." Its verification line:</p>
+<pre>pytest 381 passed；lint 30 tests OK（3.9）</pre>
+<p>All of that was accurate about what had been run. The 30 lint tests passed. None of them read the config file the lint uses in production. The ones for layer P write their own config into a temp directory:</p>
+<pre>SOURCES = """sources:
+  &lt;tool&gt;:
+    &lt;marker_key&gt;: "(📅tentative)"  # c
+    prep_veto_terms: ['會前', '先看', … ]
+"""</pre>
+<p>Twelve terms, no comment on that line. (There is a comment one line up, on a key the regex never looks at.) One test, <code>test_loader_parses_flow_list</code>, checks that this fixture loads 12 terms. Another, <code>test_no_sources_skips_p_layer</code>, checks that with no config at all the lint exits 0. The suite asserts the skip.</p>
+<p>My agent re-ran those 30 tests today, at the version the reviewer was handed. They pass. Of the 38 lines they print, 15 contain <code>P 層 SKIP</code>, because the tests for other layers don't bother to supply the word list. On a green run of this suite, "P layer SKIP" is what the background looks like.</p>
+<h2>What the reviewer did</h2>
+<p>The next round went to a reviewer agent that had not seen the development. It did not rerun the tests and stop. It built a to-do line that layer P must fail — a tentative marker on a line that says "prepare the slides before the meeting":</p>
+<pre>暫定，會前準備投影片 (📅tentative)</pre>
+<p>and ran the real lint against the real config file:</p>
+<pre>rc=0
+rsvp-lint: OK … P 層 SKIP（&lt;config&gt;.yaml 無 prep_veto_terms）</pre>
+<p>Then it changed one thing. It made a copy of the config with only the trailing comment removed and ran the same input:</p>
+<pre>rc=1、P 層啟用：否決詞 17 個、P-prep 命中</pre>
+<p>(translated: "rc=1, layer P on: 17 veto terms, P-prep hit".) Its report listed this as the third of three blocking issues: the comment had switched the layer off, and "the existing lint tests still use the comment-free 12-term fixture, so 30 tests all green did not catch this regression."</p>
+<p>The next round replaced the regex with a small loader that tolerates trailing comments, multi-line lists and block lists, and added tests that read the real config file and compare the lint's reading of it with PyYAML's. The round's commit is timestamped 01:48. By the commit clock, layer P had been off for about twelve minutes, in the middle of the night. The first scheduled run that uses this lint is at 07:00. No real to-do list went through it while it was off.</p>
+<h2>What I got wrong</h2>
+<ul>
+<li><strong>I let "couldn't read the rules" mean "no rules".</strong> The loader has three ways to come back empty: the file is missing, no line matches the pattern, or the line is there in a shape the pattern doesn't accept. All three print SKIP and exit 0. Only the first two are about the config. The third is about the loader.</li>
+<li><strong>The reason on the SKIP line was the loader's view, printed as a fact about the file.</strong> "The file has no prep_veto_terms" means "no line matched my regex". The file had the key and 17 terms.</li>
+<li><strong>I counted "30 tests OK" as evidence about the config.</strong> Tests that write their own config can't see a change to the real one. Here the change was a comment, which is the edit an agent is most likely to make to a config, because it annotates what it touched.</li>
+<li><strong>The pipeline reads exit codes.</strong> The lint's wrapper writes <code>FAIL —</code> when the exit code is not zero, and the morning check looks for <code>FAIL —</code>. The word SKIP was on the screen, in the same line as OK, and nothing downstream reads that far.</li>
+<li><strong>The write-up said the new words would reach the lint.</strong> It said so about the edit that stopped the lint from reading them. That sentence was a prediction, written next to verified results, and I would have read it as one of them.</li>
+</ul>
+<h2>The control</h2>
+<p>The reviewer's isolation step is the part I want to keep. It ran a known-positive through the live config, saw nothing fire, and then varied exactly one thing to show which thing mattered. The known-positive answers "does this layer fire at all"; the one-variable copy answers "why not".</p>
+<p>There is a small footnote to it. During the fix round the reviewer's script was run again. It builds the comment-free copy by splitting the line on the comment's exact text, <code> # r4b：</code>. The fix round had reworded that comment, so the split found nothing, and the "comment-free" copy came out byte-identical to the real file. Both rows printed SKIP:</p>
+<pre>"actual_config":        "rc": 0, … P 層 SKIP（&lt;config&gt;.yaml 無 prep_veto_terms）
+"comment_removed_copy": "rc": 0, … P 層 SKIP（sources-without-inline-comment.yaml 無 prep_veto_terms）</pre>
+<p>Nobody was misled; the fixer checked the new lint against the real file separately and got <code>rc=1</code> and 40 terms. But in that rerun the control and the thing under test were the same file, and the only sign of it was that they agreed.</p>
+<h2>What is still true</h2>
+<p>The fix closed this shape. It did not change what the lint does when it can't read the list. My agent ran today's lint against two configs it still can't read. Both are things a person or an agent might write. The first is valid YAML (PyYAML reads two terms from it):</p>
+<pre>    prep_veto_terms: [會前, 準備]</pre>
+<pre>rsvp-lint: OK — &lt;list&gt;.md · SKIP（快照不存在：none.yaml） · P 層 SKIP（unquoted.yaml 無 prep_veto_terms）
+rc=0</pre>
+<p>The second misspells the key (<code>prep_veto_term:</code>); same output, <code>rc=0</code>. The parity test added in the fix would catch either one in the real file, the next time someone runs the tests. The morning run doesn't run the tests.</p>
+<h2>Reproducing it</h2>
+<p>Python 3, no packages. <a href="../checks/007/toy_lint.py"><code>toy_lint.py</code></a> (below, 38 lines) has one layer and the same single-line loader. Two configs that differ by a comment:</p>
+<pre>$ cat a.yaml
+rules:
+  prep_terms: ['before', 'prepare']
+$ cat b.yaml
+rules:
+  prep_terms: ['before', 'prepare', 'Read']  # added Read</pre>
+<pre>$ python3 toy_lint.py todo.md a.yaml
+lint: FAIL - 1 line(s) · P on: 2 terms
+   [P-prep] line 1: prep word 'prepare' on a tentative line
+exit 1
+$ python3 toy_lint.py todo.md b.yaml
+lint: OK · P SKIP (b.yaml has no prep_terms)
+exit 0</pre>
+<p>PyYAML on <code>b.yaml</code> returns <code>{'rules': {'prep_terms': ['before', 'prepare', 'Read']}}</code>.</p>
+<h2>What generalises</h2>
+<ul>
+<li><strong>A checker that can't load its rules should exit non-zero.</strong> Skipping a layer is a decision about the config, and only the config should be able to make it: an explicit <code>enabled: false</code>, not a regex that didn't match. Keep "absent" and "unreadable" as two different messages.</li>
+<li><strong>Test against the file in use.</strong> A fixture tests the code. To test the code with the config, read the real config in at least one test, and compare your loader's reading with a real parser's.</li>
+<li><strong>Prove each layer fires, every run, with the live config.</strong> Put one line you know is wrong through the real command and require the specific failure. If you can only afford one check, this is the one; it doesn't care why the layer went quiet.</li>
+<li><strong>Read the whole line, not the exit code.</strong> If a tool prints SKIP, the summary should say how many layers ran, and whatever reads the summary should require all of them.</li>
+<li><strong>Check that your control differs from the subject.</strong> A control built by string surgery can quietly stop changing anything.</li>
+</ul>
+<h2>The check</h2>
+<p><a href="../checks/skip_canary.py"><code>skip_canary.py</code></a> (40 lines) runs a lint command twice against the config you pass — meant to be the live one. The known-positive must exit exactly 1 and print the tag of the layer under test; the known-negative must exit 0. Anything else is a rejection, and both outputs are printed, so a skip line can't hide behind a summary.</p>
+<p>Against the real round-4b lint and its real config line (reconstructed from the round's diff):</p>
+<pre>positive rc=0
+  rsvp-lint: OK — &lt;list&gt;.md · SKIP（快照不存在：none.yaml） · P 層 SKIP（with_comment.yaml 無 prep_veto_terms）
+negative rc=0
+  rsvp-lint: OK — &lt;list&gt;.md · SKIP（快照不存在：none.yaml） · P 層 SKIP（with_comment.yaml 無 prep_veto_terms）
+REJECT: positive exited 0, not 1: the layer did not fire</pre>
+<p>The same lint with the comment removed is accepted (<code>P 層啟用：否決詞 17 個</code>, <code>[P-prep] line 4</code>). Today's lint is accepted on that config and on the live file (40 terms), and rejected on the unquoted list above.</p>
+<p><code>controls.py</code> runs the canary against 11 cases with known answers: the toy lint with a good config (accept), a trailing comment, an unquoted list, a block list, a misspelled key and a missing file (all reject), and five broken lints — always red, warn-only (prints the finding, exits 0), finds-then-errors (exit 2), crashes, and a lint where a different layer fires (all reject). 11/11. <code>mutate.py</code> breaks the canary six ways: drop the positive check, count any non-zero exit as a fire, drop the layer-tag check, drop the negative check, ignore its own problems, and test a built-in copy of the config instead of the one passed in. Each mutant makes at least one control fail. 6/6.</p>
+<p>What it doesn't cover: it runs when you run it. Wired into the morning pipeline, it would have turned the 07:00 run red if the fix had not landed first; run by hand, it catches nothing you didn't think to run it on.</p>
+
+<footer>
+<p>This is a catalogue of cases where a tool reported success, or reported nothing, and I
+believed it. Each entry gets the date, the commands, and the shape of the error. More will
+follow.</p>
+<p><span class="name">Sounding Stone</span> &mdash; before the large investment, throw a
+small stone and listen for the echo. Written by Yu Hsien Fang.</p>
+</footer>
+
+</div>
+</body>
+</html>

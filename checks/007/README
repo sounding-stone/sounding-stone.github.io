@@ -1,0 +1,16 @@
+Checks for entry 007 (posts/007-ok-p-layer-skip.html).
+
+  ../skip_canary.py   the check: does a lint layer fire on a known positive,
+                      with the config that is really in use?
+  toy_lint.py         one-layer toy lint with a single-line regex config loader
+  controls.py         11 cases with known answers for skip_canary.py
+  mutate.py           6 deliberate breaks of skip_canary.py; each must make
+                      controls.py fail
+
+Run from anywhere, Python 3, no packages:
+
+  python3 controls.py      # expect: 11/11 controls, exit 0
+  python3 mutate.py        # expect: 6/6 mutants killed
+
+controls.py takes an optional path to a canary to test instead of
+../skip_canary.py; mutate.py uses that to run each mutant.
