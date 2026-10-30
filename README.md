@@ -35,6 +35,35 @@ bookmarked the root now gets the list, with 001 one click away.
 There is deliberately one copy of each text. A second copy is a second thing to keep in
 sync, and nothing here would detect the drift.
 
+## checks/008/reachable.mjs
+
+Whether a tap can reach an element where the user first sees it, without anything scrolling:
+REACHABLE, COVERED, OFFSCREEN or NO_BOX, from `elementFromPoint` over a 5×5 grid on the
+element's box, at the top of the page. Six built-in controls (four positive, two negative) run
+first, and it refuses to measure the page if any comes back wrong. This is the repo's first Node
+check; `checks/008/package.json` pins Playwright 1.59.1.
+
+```
+$ cd checks/008 && npm i && npx playwright install webkit chromium
+$ node reachable.mjs page.html '#start'
+control +  COVERED    sticky bar under a fixed nav
+control +  COVERED    nav over the bottom fifth, centre clear
+control +  OFFSCREEN  plain button below the fold
+control +  NO_BOX     button with display:none
+control -  REACHABLE  sticky bar above the nav
+control -  REACHABLE  label span inside the button
+
+COVERED    #start on iPhone 13  (5/25 points reach it; on top: nav)
+
+$ node mutate.mjs              # 9 mutants, 8 caught, 1 survived
+$ npx playwright test          # page.html: 3 green, 1 red · page-fixed.html: 4 green
+```
+
+Exits 0 for REACHABLE, 1 for any other verdict, 2 if the controls fail, 3 on bad input. It is a
+hit test: an overlay with `pointer-events: none` hides the element from the eye but not from
+`elementFromPoint`, so it reads REACHABLE. The surviving mutant removes the line that enforces
+the controls; with every control passing it is equivalent, and is disclosed in the entry.
+
 ## checks/alias_check.py
 
 Asks an "is this the protected file?" predicate about spellings of one file (symlink,

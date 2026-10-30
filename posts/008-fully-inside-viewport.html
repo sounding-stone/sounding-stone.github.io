@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fully inside viewport — Sounding Stone</title>
+<meta name="description" content="A catalogue of tools that reported success, or reported nothing, and were believed. Entry 008: a mobile smoke test reported a sticky button fully inside the viewport and clickable, 28 checks green, while a fixed tab bar covered 36 of its 57 pixels; the test's click had scrolled and retried until it landed.">
+<style>
+:root{
+  --paper:#EDEEF0; --ink:#1A1F2B; --rule:#C9CCD1;
+  --amber:#8C5D04; --dim:#5C6472; --block:#E3E5E9;
+  --serif: ui-serif,"Iowan Old Style",Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --mono: ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161B; --ink:#E4E6EA; --rule:#343A45; --amber:#E0AE45; --dim:#8F98A6; --block:#1C1F26; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.66;
+  font-kerning:normal; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:41rem; margin:0 auto; padding:2rem 1.5rem 6rem}
+
+/* masthead */
+.mast{display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--mono); font-size:.78rem; color:var(--dim);
+  padding-bottom:.6rem; border-bottom:1px solid var(--rule); margin-bottom:3.5rem}
+.mast b{font-weight:600; color:var(--ink); letter-spacing:-.02em}
+.mast a{color:inherit; text-decoration:none}
+.mast a:hover{color:var(--amber)}
+
+/* hero: the evidence, before the headline */
+.probe{border:1px solid var(--ink); background:var(--block); margin:0 0 1.1rem;
+  font-family:var(--mono); font-size:.8rem; line-height:1.9; overflow-x:auto}
+.probe table{border-collapse:collapse; width:100%; min-width:30rem}
+.probe td{padding:.15rem .9rem; white-space:nowrap}
+.probe tr td:nth-child(2){border-left:1px solid var(--rule); color:var(--amber)}
+.probe tr.head td, .probe tr.head td:nth-child(2){color:var(--dim); font-size:.72rem; white-space:normal;
+  border-bottom:1px solid var(--rule); padding:.7rem .9rem; line-height:1.45}
+.probe .lie{color:var(--ink)}
+.caption{font-size:.9rem; color:var(--dim); margin:0 0 3.2rem; max-width:34rem}
+
+h1{font-family:var(--mono); font-size:clamp(1.9rem,6.5vw,2.7rem); font-weight:600;
+  letter-spacing:-.045em; line-height:1.05; margin:0 0 .55rem}
+.byline{font-family:var(--mono); font-size:.78rem; color:var(--dim); margin:0 0 2.6rem}
+h2{font-family:var(--mono); font-size:1.02rem; font-weight:600; letter-spacing:-.02em;
+  margin:3rem 0 .9rem}
+p{margin:0 0 1.15rem}
+strong{font-weight:600}
+blockquote{margin:1.6rem 0 1.6rem; padding:0 0 0 1.1rem; border-left:2px solid var(--rule);
+  color:var(--dim); font-size:.98rem}
+blockquote p:last-child{margin-bottom:0}
+pre{background:var(--block); border-left:2px solid var(--rule); margin:1.6rem 0;
+  padding:1rem 1.1rem; overflow-x:auto; font-family:var(--mono);
+  font-size:.79rem; line-height:1.75}
+code{font-family:var(--mono); font-size:.88em}
+p code{background:var(--block); padding:.08em .32em}
+a{color:var(--ink); text-decoration-thickness:1px; text-underline-offset:.18em}
+a:hover{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+.rule-box{border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+  padding:1.3rem 0; margin:2.2rem 0}
+.rule-box p:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--rule); margin-top:4.5rem; padding-top:1.4rem;
+  font-size:.9rem; color:var(--dim)}
+footer .name{font-family:var(--mono); font-size:.82rem; color:var(--ink)}
+@media (max-width:34rem){ .wrap{padding-top:1.4rem} h2{margin-top:2.4rem} }
+</style>
+<style>
+ol,ul{margin:0 0 1.15rem; padding-left:1.4rem}
+li{margin:0 0 .7rem}
+li pre{margin:.9rem 0}
+li code{background:var(--block); padding:.08em .32em}
+.grid{border-collapse:collapse; margin:1.6rem 0; font-size:.92rem; width:100%}
+.grid th, .grid td{text-align:left; vertical-align:top; padding:.45rem .7rem .45rem 0;
+  border-bottom:1px solid var(--rule)}
+.grid th{font-family:var(--mono); font-size:.72rem; font-weight:600; color:var(--dim);
+  border-bottom:1px solid var(--ink)}
+.grid td code{background:var(--block); padding:.08em .32em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <b><a href="../">sounding&#8209;stone</a></b>
+  <span>catalogue no. 008</span>
+</header>
+
+<div class="probe">
+<table>
+  <tr class="head">
+    <td>what was printed</td>
+    <td>what it was true about</td>
+  </tr>
+  <tr><td class="lie">28 checks, "ok": true 28 times</td><td>every check the smoke had; none of them asked what was on top of the button</td></tr>
+  <tr><td class="lie">"A 開始測驗 fully inside viewport after marking all" · "cards=60 top=595 bottom=652 vh=664"</td><td>the button's box lies between 595 and 652 on a 664-pixel screen; a tab bar fixed from 616 down sits on top of 36 of its 57 pixels</td></tr>
+  <tr><td class="lie">"A tapping 開始測驗 opens question 1" · "ok": true</td><td>the test's click got through; it has passed on all 10 runs I have, across three different layouts</td></tr>
+  <tr><td class="lie">{"hitIsButton":false,"btnBottom":652,"navTop":616}</td><td>the check added in the next round, on production after the merge</td></tr>
+</table>
+</div>
+<p class="caption">The first three rows are from the smoke's results file for a run against the change, on the iPhone 13 profile. The last is from the check added afterwards. <code>開始測驗</code> is the button's label, "Start quiz".</p>
+
+<h1>fully inside viewport</h1>
+<p class="byline">2026&#8209;10&#8209;31 &nbsp; Yu Hsien Fang</p>
+
+<p>A mobile page I maintain ends a long list of cards with one button, "Start quiz". On a phone that button sat below the fold, so a change put it in a bar with <code>position: sticky; bottom: 0</code>, which holds it at the bottom edge of the screen while you scroll. The page also has a tab bar fixed to the bottom edge, <code>position: fixed</code> with <code>z-index: 200</code>. The new bar had <code>z-index: 20</code>.</p>
+<p>Agents made the change overnight, in four parallel pieces, each with its own end-to-end test, and wrote a smoke script that runs after a deploy on two Playwright device profiles, Pixel 7 and iPhone 13. The run and the merge were mine, so what follows is written as my mistake.</p>
+
+<h2>What the smoke reported</h2>
+<p>Check A was written for the bug being fixed: a button below the fold. Clicking through the cards scrolls the page, so the script scrolls back to the top before it measures, and says why:</p>
+<pre>  // Clicking 記住了 auto-scrolls the page; measure from the top so a non-sticky
+  // button below the fold is caught (sticky one stays pinned to the bottom).
+  await page.evaluate(() =&gt; window.scrollTo(0, 0));
+  await page.waitForTimeout(300);
+  const sb = await start.boundingBox();
+  check(tag, 'A 開始測驗 fully inside viewport after marking all', !!sb &amp;&amp; sb.y &gt;= 0 &amp;&amp; sb.y + sb.height &lt;= vh, …);</pre>
+<p>(<code>記住了</code> is the "Got it" button on each card.) Then it clicks the button and waits for the first question.</p>
+<p>Before trusting check A, the agent ran it against the page as it was before the change. On iPhone 13 it failed, as it should:</p>
+<pre>"name": "A 開始測驗 fully inside viewport after marking all", "ok": false,
+"detail": "cards=60 top=651 bottom=708 vh=664"</pre>
+<p>Against the change, all 28 checks passed. The iPhone 13 rows:</p>
+<pre>"name": "A 開始測驗 fully inside viewport after marking all", "ok": true,
+"detail": "cards=60 top=595 bottom=652 vh=664"
+"name": "A tapping 開始測驗 opens question 1", "ok": true</pre>
+<p>The change was merged at 00:39 and deployed.</p>
+
+<h2>What the screenshot showed</h2>
+<p>The script also saves a screenshot at that moment, <code>iPhone13-3-all-marked.png</code>. The one from the 28/28 run shows, at the bottom of the screen, the tab bar, and above it a strip of the button's colour. The label isn't there. The numbers say the same thing: the button runs from 595 to 652, the tab bar starts at 616, so 21 of the button's 57 pixels are above it.</p>
+<p>After the merge, an agent looking at an iPhone screenshot saw this. The fix, committed at 01:00, lifts the bar's <code>bottom</code> to the tab bar's height plus the safe-area inset, and adds a check that asks the browser which element is at the centre of the button, and requires the button's bottom to be at or above the tab bar's top. Production, with the change deployed, failed it on iPhone 13 and passed everything else, 29 of 30:</p>
+<pre>"name": "A 開始測驗 not covered by BottomNav (center hit + bottom ≤ nav top)", "ok": false,
+"detail": "{\"hitIsButton\":false,\"btnBottom\":652,\"navTop\":616}"</pre>
+<p>The fix branch passed 30 of 30, with the button's bottom at 604. On Pixel 7 the button was never covered; the taller screen left it above the tab bar.</p>
+
+<h2>Why both checks passed</h2>
+<p>Nothing in the run was wrong about what it measured.</p>
+<p><strong>"Inside the viewport" is geometry.</strong> A box between 0 and the viewport height is inside the viewport whether or not something is painted over it. Playwright's own assertions say the same. On a 14-line page with a sticky button and a fixed tab bar (below), on the iPhone 13 profile:</p>
+<pre>  ✓  1 [iPhone 13] › covered.spec.mjs:8:5 › page.html › toBeVisible (271ms)
+  ✓  2 [iPhone 13] › covered.spec.mjs:11:5 › page.html › toBeInViewport (170ms)
+  ✓  3 [iPhone 13] › covered.spec.mjs:14:5 › page.html › click opens question 1 (365ms)
+  ✘  4 [iPhone 13] › covered.spec.mjs:18:5 › page.html › centre of the button is the button (145ms)</pre>
+<p><code>toBeInViewport</code> there is called with <code>ratio: 1</code>, the strictest form. It is built on IntersectionObserver, which measures overlap with the viewport, not with other elements. <code>toBeVisible</code> means a non-empty box and no <code>visibility: hidden</code>. Both are documented that way (<a href="https://playwright.dev/docs/api/class-locatorassertions">assertions</a>, <a href="https://playwright.dev/docs/actionability">"visible"</a>).</p>
+<p><strong>A click is a robot that scrolls.</strong> <code>locator.click()</code> waits for the element, scrolls it into view, checks that the click point would land on it, and retries if not. With <code>DEBUG=pw:api</code> on the same page (timestamps removed, the middle retry cut):</p>
+<pre>pw:api attempting click action
+pw:api   waiting for element to be visible, enabled and stable
+pw:api   element is visible, enabled and stable
+pw:api   scrolling into view if needed
+pw:api   done scrolling
+pw:api   &lt;nav&gt;tabs&lt;/nav&gt; intercepts pointer events
+pw:api retrying click action
+…
+pw:api   &lt;nav&gt;tabs&lt;/nav&gt; intercepts pointer events
+pw:api retrying click action
+pw:api   waiting 100ms
+…
+pw:api   performing click action
+pw:api   click action done
+pw:api &lt;= locator.click succeeded
+title: question 1  scrollY: 492</pre>
+<p>Playwright saw the tab bar on top of the button three times and said so. Then it scrolled the page 492 pixels, to the end, where a sticky element goes back to its place in the flow. The page reserves the tab bar's height as bottom padding, so at the end of the page the button sits above the bar, and the click lands. The test report says "passed". Remove the padding from the toy page and the same click times out (<code>TimeoutError</code>, at the default 30 seconds).</p>
+<p>I have not rerun the real page in the covered state. It reserves the tab bar's height the same way, and its tap check has passed on all 10 runs I have results for: the old page where the button was below the fold, the covered one, and the fixed one. On this page that check cannot fail for a layout reason.</p>
+
+<h2>What I got wrong</h2>
+<ul>
+<li><strong>I read "inside the viewport" as "on screen".</strong> It is a statement about a rectangle. Whether anyone can see the rectangle is a question about what is painted over it, and nothing in the smoke asked.</li>
+<li><strong>I took a passing click as "a person can tap it".</strong> The click answers whether something willing to wait, scroll and retry can eventually click the element. The script's author knew the clicks scroll the page; it says so in the comment above, and resets the scroll before measuring. Then it used a click as the evidence for the tap.</li>
+<li><strong>The known-positive came from the old bug.</strong> Check A had failed on the page before the change, which is why I trusted it. That proved it could see a button below the fold. The change replaced that failure with a different one, a button pinned under the tab bar, which comes from the fix itself. A check proven against the old bug had no way to see it.</li>
+<li><strong>The evidence was in the output directory.</strong> The run that printed 28 of 28 had saved the picture. A count is cheaper to read than a picture, so the count is what I read.</li>
+</ul>
+
+<h2>The control</h2>
+<p>Someone looked at the rendered screenshot. Then the thing the picture showed was turned into a question the browser answers directly: what element is at this point? The check was run against the deployed bad version, where it failed, and against the fix, where it passed, before it went into the smoke. That is the same known-positive discipline as before; this time the known-positive was the new failure, not the old one.</p>
+
+<h2>What is still true</h2>
+<ul>
+<li>A hit test answers "would a tap here land on the button", not "can the eye see it". An overlay with <code>pointer-events: none</code> hides the button from the eye and not from <code>elementFromPoint</code>. I ran the check below on that page; it says REACHABLE.</li>
+<li>Both the smoke's new check and mine measure at one scroll position, the top of the page. The user may be somewhere else.</li>
+<li>The tap check is still in the smoke and still uses <code>locator.click()</code>. It is harmless now that the hit test runs first, and it still can't fail for a layout reason.</li>
+<li>The covered version was on production between two deploys in the middle of the night. I don't have the deploy times; the two commits are 20 minutes apart. Going by the toy, which reserves the tab bar's height the same way, scrolling to the end of the page would have shown the whole button; I have not checked that on the real page.</li>
+</ul>
+
+<h2>Reproducing it</h2>
+<p>I ran this on Node 24. Everything is in <a href="../checks/008/"><code>checks/008/</code></a>; its <code>package.json</code> pins Playwright 1.59.1.</p>
+<pre>npm i playwright@1.59.1 @playwright/test@1.59.1
+npx playwright install webkit chromium
+npx playwright test                     # page.html: 3 green, 1 red · page-fixed.html: 4 green
+DEBUG=pw:api node clicklog.mjs page.html 2&gt;&amp;1 | grep -E 'intercepts|scrollY|succeeded'
+node mouseclick.mjs page.html           # mouse.click at centre -&gt; title ""  scrollY 0
+node mouseclick.mjs page-fixed.html     # mouse.click at centre -&gt; title "question 1"  scrollY 0</pre>
+<p><a href="../checks/008/page-fixed.html"><code>page-fixed.html</code></a> differs from <a href="../checks/008/page.html"><code>page.html</code></a> in one value: <code>bottom: 48px</code> instead of <code>bottom: 0</code>. <code>page.mouse.click(x, y)</code> at the button's centre does not scroll and does not retry; on the covered page the click goes to the tab bar.</p>
+
+<h2>What generalises</h2>
+<ul>
+<li><strong>When the question is whether a person can use something, don't let the test move first.</strong> <code>locator.click()</code> scrolls and retries. A raw <code>page.mouse.click()</code> at coordinates, or a hit test at the scroll position the user is at, does neither.</li>
+<li><strong>Give a fix its own known-positive.</strong> A check proven against the old bug proves it sees the old bug. When the fix changes the mechanism (in flow to sticky, static to fixed), write down how the new mechanism fails, build that failure, and make the check fail on it.</li>
+<li><strong>Read the log of the tool that passed.</strong> Playwright printed "intercepts pointer events" three times on a test that passed. Retries that end in success are worth surfacing.</li>
+<li><strong>If a run saves pictures, a pass includes looking at one.</strong> The count and the picture came out of the same run; only one of them showed the problem.</li>
+</ul>
+
+<h2>The check</h2>
+<p><a href="../checks/008/reachable.mjs"><code>reachable.mjs</code></a> (69 lines) asks one question about one element: at the top of the page, without scrolling, how much of it would a tap reach? It samples a 5×5 grid over the element's box and asks <code>elementFromPoint</code> at each point. Verdicts are REACHABLE, COVERED (something else is on top of some of it), OFFSCREEN (part of it is outside the viewport, nothing on top) and NO_BOX. Every run first measures six built-in pages with known answers, and refuses to measure yours if any comes back wrong:</p>
+<pre>$ node reachable.mjs page.html '#start'
+control +  COVERED    sticky bar under a fixed nav
+control +  COVERED    nav over the bottom fifth, centre clear
+control +  OFFSCREEN  plain button below the fold
+control +  NO_BOX     button with display:none
+control -  REACHABLE  sticky bar above the nav
+control -  REACHABLE  label span inside the button
+
+COVERED    #start on iPhone 13  (5/25 points reach it; on top: nav)
+exit 1
+$ node reachable.mjs page-fixed.html '#start'
+…
+REACHABLE  #start on iPhone 13  (25/25 points reach it)
+exit 0</pre>
+<p>It exits 0 for REACHABLE, 1 for anything else, 2 if the controls fail, 3 if the page can't be read. "Nav over the bottom fifth" is there for a check that only tests the centre point; "label span" is there for one that counts a hit on the button's own child as a cover.</p>
+<p><a href="../checks/008/mutate.mjs"><code>mutate.mjs</code></a> breaks it nine ways and runs each mutant on <code>page.html</code> and <code>page-fixed.html</code>:</p>
+<pre>original: 1 COVERED | 0 REACHABLE
+caught    centre point only              2 controls | 2 controls
+caught    label span counts as cover     2 controls | 2 controls
+caught    scroll to the end first        2 controls | 2 controls
+caught    box only, no hit test          2 controls | 2 controls
+caught    outside the viewport is fine   2 controls | 2 controls
+caught    half reachable is enough       2 controls | 2 controls
+caught    zero-size box is measured      2 controls | 2 controls
+caught    every verdict exits 0          0 COVERED | 0 REACHABLE
+SURVIVED  controls are not enforced      1 COVERED | 0 REACHABLE
+
+9 mutants, 8 caught, 1 survived</pre>
+<p>"Box only, no hit test" is the smoke's original check A. "Scroll to the end first" is what <code>locator.click()</code> did. The survivor removes the line that refuses to report when a control fails; with every control passing, removing it changes nothing a run can show. It is equivalent here, and it is the one line that has to be read rather than tested.</p>
+<p>What it doesn't cover: the <code>pointer-events: none</code> case above, other scroll positions, and anything that happens after a tap lands.</p>
+
+<footer>
+<p>This is a catalogue of cases where a tool reported success, or reported nothing, and I
+believed it. Each entry gets the date, the commands, and the shape of the error. More will
+follow.</p>
+<p><span class="name">Sounding Stone</span> &mdash; before the large investment, throw a
+small stone and listen for the echo. Written by Yu Hsien Fang.</p>
+</footer>
+
+</div>
+</body>
+</html>

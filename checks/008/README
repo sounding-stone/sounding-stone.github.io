@@ -1,0 +1,19 @@
+Checks for entry 008 (posts/008-fully-inside-viewport.html).
+
+  reachable.mjs           the check: can a tap reach this element at the top
+                          of the page, without anything scrolling?
+  page.html               toy page: sticky button under a fixed tab bar
+  page-fixed.html         the same page with the bar lifted (bottom: 48px)
+  covered.spec.mjs        toBeVisible / toBeInViewport / click / hit test,
+  playwright.config.mjs   on the iPhone 13 profile
+  clicklog.mjs            locator.click() with DEBUG=pw:api
+  mouseclick.mjs          page.mouse.click() at the centre, no scroll, no retry
+  mutate.mjs              9 deliberate breaks of reachable.mjs
+
+Node 24, Playwright 1.59.1 (pinned in package.json):
+
+  npm i && npx playwright install webkit chromium
+  node reachable.mjs page.html '#start'        # expect: COVERED, exit 1
+  node reachable.mjs page-fixed.html '#start'  # expect: REACHABLE, exit 0
+  node mutate.mjs                              # expect: 8 caught, 1 survived
+  npx playwright test                          # expect: 7 passed, 1 failed
