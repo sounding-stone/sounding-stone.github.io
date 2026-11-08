@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "devDependencies": {
+    "firebase-functions": "7.4.0"
+  }
+}

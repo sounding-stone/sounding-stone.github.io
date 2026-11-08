@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>message equality is false — Sounding Stone</title>
+<meta name="description" content="A catalogue of tools that reported success, or reported nothing, and were believed. Entry 009: an alert clause matched each failure line by its exact message, two test suites agreed with it, and the logger had been rewriting that message all along; for almost five weeks the clause matched nothing, which looked the same as nothing failing.">
+<style>
+:root{
+  --paper:#EDEEF0; --ink:#1A1F2B; --rule:#C9CCD1;
+  --amber:#8C5D04; --dim:#5C6472; --block:#E3E5E9;
+  --serif: ui-serif,"Iowan Old Style",Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --mono: ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161B; --ink:#E4E6EA; --rule:#343A45; --amber:#E0AE45; --dim:#8F98A6; --block:#1C1F26; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.66;
+  font-kerning:normal; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:41rem; margin:0 auto; padding:2rem 1.5rem 6rem}
+
+/* masthead */
+.mast{display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--mono); font-size:.78rem; color:var(--dim);
+  padding-bottom:.6rem; border-bottom:1px solid var(--rule); margin-bottom:3.5rem}
+.mast b{font-weight:600; color:var(--ink); letter-spacing:-.02em}
+.mast a{color:inherit; text-decoration:none}
+.mast a:hover{color:var(--amber)}
+
+/* hero: the evidence, before the headline */
+.probe{border:1px solid var(--ink); background:var(--block); margin:0 0 1.1rem;
+  font-family:var(--mono); font-size:.8rem; line-height:1.9; overflow-x:auto}
+.probe table{border-collapse:collapse; width:100%; min-width:30rem}
+.probe td{padding:.15rem .9rem; white-space:nowrap}
+.probe tr td:nth-child(2){border-left:1px solid var(--rule); color:var(--amber)}
+.probe tr.head td, .probe tr.head td:nth-child(2){color:var(--dim); font-size:.72rem; white-space:normal;
+  border-bottom:1px solid var(--rule); padding:.7rem .9rem; line-height:1.45}
+.probe .lie{color:var(--ink)}
+.caption{font-size:.9rem; color:var(--dim); margin:0 0 3.2rem; max-width:34rem}
+
+h1{font-family:var(--mono); font-size:clamp(1.9rem,6.5vw,2.7rem); font-weight:600;
+  letter-spacing:-.045em; line-height:1.05; margin:0 0 .55rem}
+.byline{font-family:var(--mono); font-size:.78rem; color:var(--dim); margin:0 0 2.6rem}
+h2{font-family:var(--mono); font-size:1.02rem; font-weight:600; letter-spacing:-.02em;
+  margin:3rem 0 .9rem}
+p{margin:0 0 1.15rem}
+strong{font-weight:600}
+blockquote{margin:1.6rem 0 1.6rem; padding:0 0 0 1.1rem; border-left:2px solid var(--rule);
+  color:var(--dim); font-size:.98rem}
+blockquote p:last-child{margin-bottom:0}
+pre{background:var(--block); border-left:2px solid var(--rule); margin:1.6rem 0;
+  padding:1rem 1.1rem; overflow-x:auto; font-family:var(--mono);
+  font-size:.79rem; line-height:1.75}
+code{font-family:var(--mono); font-size:.88em}
+p code{background:var(--block); padding:.08em .32em}
+a{color:var(--ink); text-decoration-thickness:1px; text-underline-offset:.18em}
+a:hover{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+.rule-box{border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+  padding:1.3rem 0; margin:2.2rem 0}
+.rule-box p:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--rule); margin-top:4.5rem; padding-top:1.4rem;
+  font-size:.9rem; color:var(--dim)}
+footer .name{font-family:var(--mono); font-size:.82rem; color:var(--ink)}
+@media (max-width:34rem){ .wrap{padding-top:1.4rem} h2{margin-top:2.4rem} }
+</style>
+<style>
+ol,ul{margin:0 0 1.15rem; padding-left:1.4rem}
+li{margin:0 0 .7rem}
+li pre{margin:.9rem 0}
+li code{background:var(--block); padding:.08em .32em}
+.grid{border-collapse:collapse; margin:1.6rem 0; font-size:.92rem; width:100%}
+.grid th, .grid td{text-align:left; vertical-align:top; padding:.45rem .7rem .45rem 0;
+  border-bottom:1px solid var(--rule)}
+.grid th{font-family:var(--mono); font-size:.72rem; font-weight:600; color:var(--dim);
+  border-bottom:1px solid var(--ink)}
+.grid td code{background:var(--block); padding:.08em .32em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <b><a href="../">sounding&#8209;stone</a></b>
+  <span>catalogue no. 009</span>
+</header>
+
+<div class="probe">
+<table>
+  <tr class="head">
+    <td>what was printed</td>
+    <td>what it was true about</td>
+  </tr>
+  <tr><td class="lie">assert.match(summary, /Scheduled &lt;item&gt; failed/) · ℹ pass 12</td><td>the alert's filter contains the text of the per-item failure line</td></tr>
+  <tr><td class="lie">message === "[&lt;job&gt;] Scheduled &lt;item&gt; failed — continuing run" · Tests  16 passed (16)</td><td>the job hands that text to the logger; in this test the logger is a mock that does nothing</td></tr>
+  <tr><td class="lie">"message":"Error: [&lt;job&gt;] Scheduled &lt;item&gt; failed — continuing run\n    at entryFromArgs (…/firebase-functions/lib/logger/index.js:144:19)…"</td><td>what the real logger writes for that call</td></tr>
+  <tr><td class="lie">jsonPayload.message="[&lt;job&gt;] Scheduled &lt;item&gt; failed — continuing run"</td><td>the clause meant to catch it; <code>=</code> is exact equality</td></tr>
+</table>
+</div>
+<p class="caption">The first two rows are the two test suites at the October 1 commit, rerun today. The third is the real SDK (firebase-functions 6.6.0, the version that repo locks) writing that call today. The fourth is from the alert policy. <code>&lt;job&gt;</code>, <code>&lt;item&gt;</code> and <code>&lt;worker&gt;</code> replace names from my setup.</p>
+
+<h1>message equality is false</h1>
+<p class="byline">2026&#8209;11&#8209;08 &nbsp; Yu Hsien Fang</p>
+
+<p>I run a scheduled job on Cloud Functions. Each run works through a batch of items. For every item that fails, it logs one ERROR line; at the end of the run it logs one INFO summary with counts. Alert policies in Cloud Monitoring match those lines and email me. The policies live in code, and CI applies them after each deploy.</p>
+<p>One policy has a clause for the per-item line. The service that runs the job also logs ERRORs that belong to a different alert, so for that service the clause counts only the per-item line, which it recognises by its text:</p>
+<pre>severity&gt;=ERROR AND (resource.labels.service_name!="&lt;worker&gt;" OR jsonPayload.message="[&lt;job&gt;] Scheduled &lt;item&gt; failed — continuing run")</pre>
+<p>The logging call and the job's tests are older. The clause and the policy test came from an agent run on October 1, a coding agent and then rounds of review by a second one, and I merged it. The run and the merge were mine, so what follows is written as my mistake.</p>
+
+<h2>Two suites, both green</h2>
+<p>The policy suite checks the filter it generates:</p>
+<pre>  assert.match(summary, /Scheduled &lt;item&gt; failed/);</pre>
+<p>The job's suite runs a batch where two items fail and checks what the job logged:</p>
+<pre>    const error = vi.spyOn(logger, "error").mockImplementation(() =&gt; undefined);
+    …
+    const failures = error.mock.calls.filter(([message]) =&gt;
+      message === "[&lt;job&gt;] Scheduled &lt;item&gt; failed — continuing run");</pre>
+<p>Rerun today at the October 1 commit, the policy suite:</p>
+<pre>ℹ tests 12
+ℹ pass 12
+ℹ fail 0</pre>
+<p>and the job's suite:</p>
+<pre> Test Files  1 passed (1)
+      Tests  16 passed (16)</pre>
+<p>The two suites agree with each other: the string in the filter is the string in the code. Neither looks at what reaches Cloud Logging. The second one replaces <code>logger.error</code> with a function that returns <code>undefined</code>, so whatever the real one does with its arguments never happens in the test.</p>
+
+<h2>What the logger writes</h2>
+<p>The SDK's type declaration for <code>logger.error</code>:</p>
+<pre> * Writes an `ERROR` severity log. If the last argument provided is a plain object,
+ * it is added to the `jsonPayload` in the Cloud Logging entry.
+ * @param args - Arguments, concatenated into the log message with space separators.</pre>
+<p>The implementation, in <code>lib/logger/index.js</code> (6.6.0, line 142):</p>
+<pre>    let message = (0, util_1.format)(...args);
+    if (severity === "ERROR" &amp;&amp; !args.find((arg) =&gt; arg instanceof Error)) {
+        message = new Error(message).stack || message;
+    }</pre>
+<p>At ERROR, when none of the arguments is an <code>Error</code>, the message is replaced by the stack of a new <code>Error</code> built from it: <code>Error: </code> in front, stack frames after. When one of the arguments is an <code>Error</code>, <code>util.format</code> prints that error's stack into the message anyway. Either way, the message of an ERROR line is not the string the code passed. The latest release, 7.4.0, has the same four lines. I haven't found this behaviour in Firebase's logging guide; it is in the source.</p>
+<p>Cloud Logging's query language says "The <code>=</code> operator is exact equality." So <code>jsonPayload.message="[&lt;job&gt;] Scheduled &lt;item&gt; failed — continuing run"</code> cannot match a value that begins with <code>Error: </code>. And if the field ended up anywhere other than <code>jsonPayload.message</code>, the same page covers that too: "Using a missing field won't display an error, but all comparisons using missing fields fail silently."</p>
+<p>The same shape, in 14 lines anyone can install (below):</p>
+<pre>✔ the job hands the logger the message the filter expects (0.455666ms)
+✔ the filter matches that message exactly (0.062875ms)
+✖ the entry the real logger writes has that message (28.7765ms)</pre>
+
+<h2>It had been printed</h2>
+<p>CI applied the October 1 version of the policy about 40 minutes after the merge. The deploy for the merge itself stopped at a failing end-to-end test; the next deploy on the main branch applied all six policies and read them back. Before the apply step, that deploy runs the job's tests, and one of them, written for a different behaviour, doesn't mock the logger. Four and a half minutes before the policy was applied, the deploy log has, three times:</p>
+<pre>"severity":"ERROR","message":"Error: [&lt;job&gt;] Scheduled &lt;item&gt; failed — continuing run\n    at entryFromArgs (…/firebase-functions/lib/logger/index.js:144:19)…</pre>
+<p>It went by as stderr from a passing test, in a step that passed.</p>
+
+<h2>Who noticed</h2>
+<p>On November 4 a different change touched the same policy. A fresh reviewer session was told to judge only against the acceptance list, not against the developer's notes. It ran the job with the real SDK logger in a subprocess, parsed the JSON the logger printed, and reported (my translation):</p>
+<blockquote><p>Reproduced with the real logger: the log with <code>failedAttempts=2</code> is ERROR, but message equality is false; the ingestion policy excludes it by its category. So this single log matches zero policies.</p></blockquote>
+<p>The fix matches the per-item line on fields the job sets itself (a fixed <code>failureCategory</code> and the severity) instead of the message. Its test starts a child process with the real logger, parses what it prints, and evaluates the generated filter against that, with a small evaluator for the operators these policies use. That evaluator is not Cloud Logging, and the test says so.</p>
+
+<h2>What it cost</h2>
+<p>The end-of-run summary had its own clause, matching <code>jsonPayload.message="[&lt;job&gt;] Scheduled run done"</code> with a failure count above zero. That line is INFO, the logger leaves INFO messages alone, and that clause can match. So a run with failures should still have emailed me, from the summary. What was dead was the per-item clause: the one that carries each item's error code, and the only one that fires if a run dies before it writes its summary. CI applied it on the evening of October 1, and it stayed until the fix was applied on the afternoon of November 4. I haven't checked whether any run in that window died before its summary.</p>
+
+<h2>What I got wrong</h2>
+<ul>
+<li><strong>I read two green suites as one check.</strong> One proved the filter contains a string. The other proved the code passes that string to a function. The link between them, that the function writes the string, was in neither.</li>
+<li><strong>A mocked logger is a statement about my code, not about my logs.</strong> The mock answered "what did the job ask for". The alert depends on "what got written", and the mock is exactly the part that was removed.</li>
+<li><strong>I took silence as health.</strong> A clause that matches nothing looks the same as a clause on a system that isn't failing. For almost five weeks that clause sent nothing, and that was consistent with both.</li>
+</ul>
+
+<h2>The control</h2>
+<p>Someone ran the real logger and read what it wrote. That is the known-positive for an alert: one real event, through the real logging path, and the alert's condition evaluated against the entry that came out, not against the argument that went in.</p>
+
+<h2>The other alert I added that day</h2>
+<p>The same change added a metric-absence policy: warn if no "run complete" line arrives for 23.5 hours, counted by a log-based metric created that afternoon. CI applied it alongside seven updated policies and read every policy back. From the deploy log, names replaced:</p>
+<pre>"policy":"&lt;job&gt; completion absent for 23.5h","action":"created"
+"verifiedPolicies":8,"ownerChannels":1</pre>
+<p>A readback proves the stored policy equals the definition. It doesn't prove the policy can fire. Two lines from Google's documentation:</p>
+<ul>
+<li>Metric-absence: "For the condition to be met, the monitored subsystem must write at least one data point after you create or modify the alerting policy."</li>
+<li>Log-based metrics: "The data for a user-defined log-based metric comes only from log entries received after the metric is created."</li>
+</ul>
+<p>So on the day it was applied, with <code>verifiedPolicies:8</code>, that policy could not have fired. It can from the first run that writes a point after it. I haven't yet checked that the point arrived.</p>
+
+<h2>What generalises</h2>
+<ul>
+<li><strong>Alert on fields you set, not on fields a library formats.</strong> A message string passes through code you didn't write. A field with a fixed value you put there yourself usually doesn't.</li>
+<li><strong>Test an alert against the real logger's output.</strong> Run the logging call for real, capture what it prints, and evaluate the condition against that. A test with a mocked logger checks what you passed.</li>
+<li><strong>After creating or changing an absence alert, check the metric has a point.</strong> Until it does, the alert is armed and cannot fire.</li>
+<li><strong>"No incidents" is also what a dead alert shows.</strong> It only means something once the alert has fired at least once on purpose.</li>
+</ul>
+
+<h2>Reproducing it</h2>
+<p>I ran this on Node 24. Everything is in <a href="../checks/009/"><code>checks/009/</code></a>; its <code>package.json</code> pins firebase-functions 7.4.0.</p>
+<pre>npm i --legacy-peer-deps
+node --test pair.test.mjs        # 2 pass, 1 fail; same with firebase-functions@6.6.0</pre>
+<p><code>--legacy-peer-deps</code> skips installing <code>firebase-admin</code>; the logger doesn't need it, as long as you require <code>firebase-functions/logger</code> rather than the package root. The logger writes ERROR lines to stderr and INFO lines to stdout, so capture both. <a href="../checks/009/job.cjs"><code>job.cjs</code></a> is the job, <a href="../checks/009/policy.cjs"><code>policy.cjs</code></a> the filter, <a href="../checks/009/pair.test.mjs"><code>pair.test.mjs</code></a> the two green tests and the red one.</p>
+
+<h2>The check</h2>
+<p><a href="../checks/009/written.mjs"><code>written.mjs</code></a> (64 lines) asks one question: for a logging call you describe, does the entry the real logger writes still carry the values you passed, field by field? It runs the call in a child process with the <code>firebase-functions</code> installed next to it and compares. Verdicts per field are SAME, CHANGED and MISSING. Every run first checks seven calls with known answers and refuses to check yours if any comes back wrong:</p>
+<pre>$ node written.mjs error "nightly job failed" '{"category":"nightly"}' message category
+control +  CHANGED  message   error("x")
+control +  CHANGED  message   error("x", err)
+control +  MISSING  category  error("x"), no fields
+control -  SAME     message   info("x")
+control -  SAME     message   warn("x")
+control -  SAME     message   info("two\nlines")
+control -  SAME     category  error("x", {category})
+
+CHANGED  message   passed "nightly job failed"  written "Error: nightly job failed\n    at entryFromA..."
+SAME     category  passed "nightly"
+exit 1</pre>
+<p>It exits 0 if every field you named is SAME, 1 otherwise, 2 if the controls fail, 3 on bad input or when the logger can't be loaded. Run with only <code>category</code> named, the same call exits 0: that is the field to alert on.</p>
+<p><a href="../checks/009/mutate.mjs"><code>mutate.mjs</code></a> breaks it eight ways and runs each mutant on two calls, one naming <code>message</code> and one naming <code>category</code>:</p>
+<pre>original: 1 CHANGED | 0 SAME
+caught    compare the argument with itself     2 controls | 2 controls
+caught    build the entry from the arguments   2 controls | 2 controls
+caught    substring match (the : operator)     2 controls | 2 controls
+caught    read stdout only                     2 controls | 2 controls
+caught    first line of the message only       2 controls | 2 controls
+caught    a missing field counts as same       2 controls | 2 controls
+caught    every verdict exits 0                0 CHANGED | 0 SAME
+SURVIVED  controls are not enforced            1 CHANGED | 0 SAME
+
+8 mutants, 7 caught, 1 survived</pre>
+<p>"Build the entry from the arguments" is what a mocked logger does. "Substring match" is Logging's <code>:</code> operator, which would have matched the rewritten message; switching the clause to <code>:</code> would have hidden the problem rather than fixed it. The survivor removes the line that refuses to report when a control fails; with every control passing, removing it changes nothing a run can show. It is the one line that has to be read rather than tested.</p>
+<p>What it doesn't cover: what Cloud Logging stores, what a filter matches there, and loggers other than this one. For those, the rule above still applies: one real event, the real path, the real entry.</p>
+
+<footer>
+<p>This is a catalogue of cases where a tool reported success, or reported nothing, and I
+believed it. Each entry gets the date, the commands, and the shape of the error. More will
+follow.</p>
+<p><span class="name">Sounding Stone</span> &mdash; before the large investment, throw a
+small stone and listen for the echo. Written by Yu Hsien Fang.</p>
+</footer>
+
+</div>
+</body>
+</html>

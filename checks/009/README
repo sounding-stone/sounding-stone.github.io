@@ -1,0 +1,20 @@
+Checks for entry 009 (posts/009-message-equality-is-false.html).
+
+  written.mjs      the check: does the entry firebase-functions' logger
+                   writes still carry the values you passed, field by field?
+  job.cjs          toy job: logs one ERROR line when its work throws
+  policy.cjs       toy alert filter: exact match on that line's message
+  pair.test.mjs    two green tests (mocked logger, filter text) and the
+                   red one (the real logger's entry)
+  mutate.mjs       8 deliberate breaks of written.mjs
+
+Node 24, firebase-functions 7.4.0 (pinned in package.json). --legacy-peer-deps
+skips firebase-admin, which the logger does not need:
+
+  npm i --legacy-peer-deps
+  node --test pair.test.mjs                                   # expect: 2 pass, 1 fail
+  node written.mjs error "nightly job failed" '{"category":"nightly"}' message category
+                                                              # expect: message CHANGED, exit 1
+  node written.mjs error "nightly job failed" '{"category":"nightly"}' category
+                                                              # expect: SAME, exit 0
+  node mutate.mjs                                             # expect: 7 caught, 1 survived

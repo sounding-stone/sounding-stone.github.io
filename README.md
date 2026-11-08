@@ -12,6 +12,9 @@ a valid response, a confident string, and a conclusion that was never in the dat
 
 | No. | Title | Date |
 |-----|-------|------|
+| 009 | [message equality is false](posts/009-message-equality-is-false.html) | 2026-11-08 |
+| 008 | [fully inside viewport](posts/008-fully-inside-viewport.html) | 2026-10-31 |
+| 007 | [OK — P layer SKIP](posts/007-ok-p-layer-skip.html) | 2026-10-16 |
 | 006 | [resolve equal: False](posts/006-resolve-equal-false.html) | 2026-10-08 |
 | 005 | [69 passed (10.0m)](posts/005-69-passed.html) | 2026-10-02 |
 | 004 | [yaml ok](posts/004-yaml-ok.html) | 2026-09-25 |
@@ -34,6 +37,37 @@ bookmarked the root now gets the list, with 001 one click away.
 
 There is deliberately one copy of each text. A second copy is a second thing to keep in
 sync, and nothing here would detect the drift.
+
+## checks/009/written.mjs
+
+Whether the entry firebase-functions' logger writes still carries the values you passed, field
+by field: SAME, CHANGED or MISSING. It runs the real logger in a child process and reads both
+stdout and stderr. Seven built-in controls (three positive, four negative) run first, and it
+refuses to check your call if any comes back wrong. `checks/009/package.json` pins
+firebase-functions 7.4.0.
+
+```
+$ cd checks/009 && npm i --legacy-peer-deps
+$ node written.mjs error "nightly job failed" '{"category":"nightly"}' message category
+control +  CHANGED  message   error("x")
+control +  CHANGED  message   error("x", err)
+control +  MISSING  category  error("x"), no fields
+control -  SAME     message   info("x")
+control -  SAME     message   warn("x")
+control -  SAME     message   info("two\nlines")
+control -  SAME     category  error("x", {category})
+
+CHANGED  message   passed "nightly job failed"  written "Error: nightly job failed\n    at entryFromA..."
+SAME     category  passed "nightly"
+
+$ node mutate.mjs                  # 8 mutants, 7 caught, 1 survived
+$ node --test pair.test.mjs        # 2 pass, 1 fail
+```
+
+Exits 0 if every named field is SAME, 1 otherwise, 2 if the controls fail, 3 on bad input or
+when the logger can't be loaded. It checks the entry as the library writes it, not what Cloud
+Logging stores or what a filter matches there. The surviving mutant removes the line that
+enforces the controls; with every control passing it is equivalent, and is disclosed in the entry.
 
 ## checks/008/reachable.mjs
 
