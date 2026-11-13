@@ -12,6 +12,7 @@ a valid response, a confident string, and a conclusion that was never in the dat
 
 | No. | Title | Date |
 |-----|-------|------|
+| 010 | [return False](posts/010-return-false.html) | 2026-11-13 |
 | 009 | [message equality is false](posts/009-message-equality-is-false.html) | 2026-11-08 |
 | 008 | [fully inside viewport](posts/008-fully-inside-viewport.html) | 2026-10-31 |
 | 007 | [OK — P layer SKIP](posts/007-ok-p-layer-skip.html) | 2026-10-16 |
@@ -37,6 +38,43 @@ bookmarked the root now gets the list, with 001 one click away.
 
 There is deliberately one copy of each text. A second copy is a second thing to keep in
 sync, and nothing here would detect the drift.
+
+## checks/010/failopen.py
+
+Whether a guard refuses when it cannot look at its flag: OK, FAIL-OPEN or WRONG. The guard is
+any command (exit 0 = "no flag, go ahead", anything else = "refuse"; `{}` is replaced by the flag
+path). It builds five flags in a temp directory (absent, present, a dangling symlink, a parent
+that is a symlink loop, a parent with no permissions) and checks each with `os.lstat` before
+using it. Six built-in controls (two FAIL-OPEN, two OK, two WRONG) run first, and it refuses to
+judge your guard if any comes back wrong. Python 3, no packages.
+
+```
+$ cd checks/010
+$ python3 failopen.py env 'VAULT_FREEZE_LOCK={}' sh precommit_r2.sh
+control  FAIL-OPEN os.path.lexists
+control  FAIL-OPEN [ -e ] || [ -L ]
+control  OK        lstat, only ENOENT allows
+control  OK        same, refusing with exit 78
+control  WRONG     always allows
+control  WRONG     always refuses
+
+FAIL-OPEN  env VAULT_FREEZE_LOCK={} sh precommit_r2.sh
+  ok  absent                    allowed
+  ok  present                   refused
+  ok  dangling symlink          refused
+  BAD parent is a symlink loop  allowed
+  BAD parent not searchable     allowed
+
+$ python3 failopen.py env 'VAULT_FREEZE_LOCK={}' sh precommit_r3.sh    # OK, exit 0
+$ python3 mutate.py                 # 10 mutants, 8 caught, 2 survived
+```
+
+Exits 0 for OK, 1 for FAIL-OPEN or WRONG, 2 if the controls fail, 3 on bad input or a fixture
+that isn't what it claims to be. The parent-not-searchable fixture is skipped as root. A guard
+that crashes on the unreachable cases counts as refusing, which is right only if nothing above it
+catches the crash. Run on macOS only. The two surviving mutants turn off the fixture self-check
+and the control enforcement; with fixtures and controls already right they are equivalent, and
+are disclosed in the entry.
 
 ## checks/009/written.mjs
 

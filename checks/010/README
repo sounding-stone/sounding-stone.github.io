@@ -1,0 +1,17 @@
+Checks for entry 010 (posts/010-return-false.html).
+
+  failopen.py       the check: does a guard refuse when it cannot look
+                    at its flag?
+  precommit_r2.sh   the commit hook before the fix ([ -e ] || [ -L ])
+  precommit_r3.sh   the commit hook after the fix (only ENOENT allows)
+  mutate.py         10 deliberate breaks of failopen.py
+
+Python 3, no packages. Run from this directory (mutate.py reads
+failopen.py and the two hooks from here). macOS only so far; the
+parent-not-searchable fixture is skipped as root:
+
+  python3 failopen.py env 'VAULT_FREEZE_LOCK={}' sh precommit_r2.sh
+                                                  # expect: FAIL-OPEN, exit 1
+  python3 failopen.py env 'VAULT_FREEZE_LOCK={}' sh precommit_r3.sh
+                                                  # expect: OK, exit 0
+  python3 mutate.py                               # expect: 8 caught, 2 survived

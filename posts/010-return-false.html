@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>return False — Sounding Stone</title>
+<meta name="description" content="A catalogue of tools that reported success, or reported nothing, and were believed. Entry 010: eight guards checked a freeze flag with os.path.lexists or [ -e ] || [ -L ], 57 probes and 28 tests passed, and when the flag could not be looked at, every one of them read the lookup error as &ldquo;no flag&rdquo; and let the write through.">
+<style>
+:root{
+  --paper:#EDEEF0; --ink:#1A1F2B; --rule:#C9CCD1;
+  --amber:#8C5D04; --dim:#5C6472; --block:#E3E5E9;
+  --serif: ui-serif,"Iowan Old Style",Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --mono: ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161B; --ink:#E4E6EA; --rule:#343A45; --amber:#E0AE45; --dim:#8F98A6; --block:#1C1F26; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.66;
+  font-kerning:normal; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:41rem; margin:0 auto; padding:2rem 1.5rem 6rem}
+
+/* masthead */
+.mast{display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--mono); font-size:.78rem; color:var(--dim);
+  padding-bottom:.6rem; border-bottom:1px solid var(--rule); margin-bottom:3.5rem}
+.mast b{font-weight:600; color:var(--ink); letter-spacing:-.02em}
+.mast a{color:inherit; text-decoration:none}
+.mast a:hover{color:var(--amber)}
+
+/* hero: the evidence, before the headline */
+.probe{border:1px solid var(--ink); background:var(--block); margin:0 0 1.1rem;
+  font-family:var(--mono); font-size:.8rem; line-height:1.9; overflow-x:auto}
+.probe table{border-collapse:collapse; width:100%; min-width:30rem}
+.probe td{padding:.15rem .9rem; white-space:nowrap}
+.probe tr td:nth-child(2){border-left:1px solid var(--rule); color:var(--amber)}
+.probe tr.head td, .probe tr.head td:nth-child(2){color:var(--dim); font-size:.72rem; white-space:normal;
+  border-bottom:1px solid var(--rule); padding:.7rem .9rem; line-height:1.45}
+.probe .lie{color:var(--ink)}
+.caption{font-size:.9rem; color:var(--dim); margin:0 0 3.2rem; max-width:34rem}
+
+h1{font-family:var(--mono); font-size:clamp(1.9rem,6.5vw,2.7rem); font-weight:600;
+  letter-spacing:-.045em; line-height:1.05; margin:0 0 .55rem}
+.byline{font-family:var(--mono); font-size:.78rem; color:var(--dim); margin:0 0 2.6rem}
+h2{font-family:var(--mono); font-size:1.02rem; font-weight:600; letter-spacing:-.02em;
+  margin:3rem 0 .9rem}
+p{margin:0 0 1.15rem}
+strong{font-weight:600}
+blockquote{margin:1.6rem 0 1.6rem; padding:0 0 0 1.1rem; border-left:2px solid var(--rule);
+  color:var(--dim); font-size:.98rem}
+blockquote p:last-child{margin-bottom:0}
+pre{background:var(--block); border-left:2px solid var(--rule); margin:1.6rem 0;
+  padding:1rem 1.1rem; overflow-x:auto; font-family:var(--mono);
+  font-size:.79rem; line-height:1.75}
+code{font-family:var(--mono); font-size:.88em}
+p code{background:var(--block); padding:.08em .32em}
+a{color:var(--ink); text-decoration-thickness:1px; text-underline-offset:.18em}
+a:hover{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+.rule-box{border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+  padding:1.3rem 0; margin:2.2rem 0}
+.rule-box p:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--rule); margin-top:4.5rem; padding-top:1.4rem;
+  font-size:.9rem; color:var(--dim)}
+footer .name{font-family:var(--mono); font-size:.82rem; color:var(--ink)}
+@media (max-width:34rem){ .wrap{padding-top:1.4rem} h2{margin-top:2.4rem} }
+</style>
+<style>
+ol,ul{margin:0 0 1.15rem; padding-left:1.4rem}
+li{margin:0 0 .7rem}
+li pre{margin:.9rem 0}
+li code{background:var(--block); padding:.08em .32em}
+.grid{border-collapse:collapse; margin:1.6rem 0; font-size:.92rem; width:100%}
+.grid th, .grid td{text-align:left; vertical-align:top; padding:.45rem .7rem .45rem 0;
+  border-bottom:1px solid var(--rule)}
+.grid th{font-family:var(--mono); font-size:.72rem; font-weight:600; color:var(--dim);
+  border-bottom:1px solid var(--ink)}
+.grid td code{background:var(--block); padding:.08em .32em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <b><a href="../">sounding&#8209;stone</a></b>
+  <span>catalogue no. 010</span>
+</header>
+
+<div class="probe">
+<table>
+  <tr class="head">
+    <td>what was printed</td>
+    <td>what it was true about</td>
+  </tr>
+  <tr><td class="lie">run_all.sh: rc 0 … 57 PASS / 0 FAIL</td><td>every probe the coding agent had written; none of them made the flag impossible to look at</td></tr>
+  <tr><td class="lie">False</td><td><code>os.path.lexists()</code> on a flag that exists, inside a directory the process cannot search. <code>lstat</code> raised <code>PermissionError</code>; <code>lexists</code> turned it into <code>False</code></td></tr>
+  <tr><td class="lie"><em>(nothing)</em> exit 0</td><td>the commit hook, same flag: <code>[ -e "$F" ] || [ -L "$F" ]</code> came back false, so it let the commit through</td></tr>
+  <tr><td class="lie">FAILED (vault freeze state unknown): state/vault-freeze/LOCK — EACCES; refusing</td><td>the same hook after the fix, same flag, same directory</td></tr>
+</table>
+</div>
+<p class="caption">The first line is from the coding agent's report on November 7 at 11:00. The other three are from today, on macOS, running the hook and the Python check exactly as they were before and after the fix.</p>
+
+<h1>return False</h1>
+<p class="byline">2026&#8209;11&#8209;13 &nbsp; Yu Hsien Fang</p>
+
+<p><a href="001-two-kinds-of-404.html">Entry 001</a> ended on this sentence: &ldquo;Empty output, a zero count, a 404 — each has at least two causes.&rdquo; This entry is the boolean version of it, inside a guard. In a guard, which of the two causes wins decides whether something gets written.</p>
+
+<h2>The job</h2>
+<p>I keep my notes and tasks in one folder, and eight programs write to it: scheduled jobs, a journal script, a git commit hook, and the task CLI from <a href="006-resolve-equal-false.html">entry 006</a>, among others. I wanted to move the folder to another machine, and for that I needed a switch that stops every write while I copy. The switch is a flag file outside the folder, <code>~/.local/state/vault-freeze/LOCK</code>. Each writer looks for it before it writes and refuses if it is there.</p>
+<p>My agent wrote the design on November 4 and I approved it. The line for the writers reads (translated): &ldquo;every writer reads the flag and refuses; fixed message, non-zero exit.&rdquo; The line for the commit hook: &ldquo;flag exists &rArr; exit 1.&rdquo; A coding agent wrote the eight checks. Four are Python and share this:</p>
+<pre>def is_frozen() -&gt; bool:
+    """旗標存在＝停寫期間；連 dangling symlink 也算。"""
+
+    return os.path.lexists(freeze_lock())</pre>
+<p>(The docstring: &ldquo;flag exists = writes stopped; a dangling symlink counts too.&rdquo;) Four are shell. This is the whole commit hook:</p>
+<pre>#!/bin/sh
+# P2-01 vault freeze: refuse every commit into the journal-git while the freeze flag exists.
+# Covers journal.sh／fleet.sh／a direct `G commit` alike (`--no-verify` bypasses it — disclosed).
+F="${VAULT_FREEZE_LOCK:-$HOME/.local/state/vault-freeze/LOCK}"
+if [ -e "$F" ] || [ -L "$F" ]; then
+  echo "pre-commit: commit refused (vault frozen): $F exists" &gt;&amp;2
+  exit 1
+fi
+exit 0</pre>
+<p>Both versions handle the edge case people usually remember: a flag that is a symlink to nothing still counts. That is why it is <code>lexists</code> and not <code>exists</code>, and why <code>-L</code> sits next to <code>-e</code>.</p>
+
+<h2>What the report said</h2>
+<p>The second development round closed at 11:00 on November 7. From its report (translated, numbers as written):</p>
+<pre>run_all.sh: rc 0; P01 16, P02 6, P03 6, P04 6, P05 8, P06 2, P07 8, P08 5 = 57 PASS / 0 FAIL
+tests/test_vault_freeze.py 28 passed
+mutants: 93 EFFECTIVE + 1 INVALID</pre>
+<p>The one invalid mutant came from a stale baseline, and the report said so. One of the 28 tests has <code>read-error</code> in its name; it feeds the CLI a file descriptor that fails on <code>read()</code>, standard input, not the flag. I read the report as: the freeze works.</p>
+
+<h2>What the reviewer read</h2>
+<p>Each round goes to a reviewer agent that has not seen the development. Its review was committed at 11:04: BLOCKING, confidence 97%. On this point it ran nothing new. It read the patch, then the implementation of <code>lexists</code> in the interpreter the CLI actually uses, Python 3.12 (<code>posixpath.py</code>):</p>
+<pre>def lexists(path):
+    """Test whether a path exists.  Returns True for broken symbolic links"""
+    try:
+        os.lstat(path)
+    except (OSError, ValueError):
+        return False
+    return True</pre>
+<p>and wrote (translated):</p>
+<blockquote><p>Parent directory not searchable, or <code>lstat</code> fails with EACCES/EIO or similar: returns False. <code>reject_frozen()</code> lets it through, and <code>rejections.record()</code> goes on to create the directory and the lock and append to the jsonl.</p></blockquote>
+<blockquote><p>This is a static counterexample confirmed from the patch, the actual interpreter implementation and the write order; under the constraints, no permission-fault script was added and run. The existing <code>read-error</code> test covers stdin EBADF, not a flag lookup error.</p></blockquote>
+<blockquote><p>Allow only when it is positively confirmed that the flag does not exist; every other lookup error must refuse, and the error path must not fall back into the telemetry write.</p></blockquote>
+<p><code>lstat</code> is the system call that answers &ldquo;is there a directory entry here&rdquo;. When it cannot answer, it says why: no such file, permission denied, I/O error. <code>lexists</code> has two return values, so it folds every reason into <code>False</code>, and <code>False</code> is the value that means &ldquo;no flag, go ahead&rdquo;. The shell test does the same. POSIX describes <code>-e</code> as: &ldquo;True if pathname resolves to an existing directory entry. False if pathname cannot be resolved.&rdquo; The Python docs say of <code>os.path.exists</code> that it &ldquo;may return False if permission is not granted to execute os.stat() on the requested file, even if the path physically exists&rdquo;; the entry for <code>lexists</code> doesn't repeat that, but the function above is all there is to it.</p>
+
+<h2>Running it</h2>
+<p>The reviewer didn't run it. I did today, with the hook exactly as it was before the fix:</p>
+<pre>$ mkdir -p state/vault-freeze
+$ touch state/vault-freeze/LOCK
+$ chmod 000 state/vault-freeze
+$ VAULT_FREEZE_LOCK=state/vault-freeze/LOCK sh precommit_r2.sh
+$ echo "exit $?"
+exit 0
+$ python3.12 -I -c "import os; print(os.path.lexists('state/vault-freeze/LOCK'))"
+False
+$ python3.12 -I -c "import os; os.lstat('state/vault-freeze/LOCK')"
+PermissionError: [Errno 13] Permission denied: 'state/vault-freeze/LOCK'
+$ chmod 755 state/vault-freeze
+$ VAULT_FREEZE_LOCK=state/vault-freeze/LOCK sh precommit_r2.sh
+pre-commit: commit refused (vault frozen): state/vault-freeze/LOCK exists
+$ echo "exit $?"
+exit 1</pre>
+<p>The flag was there the whole time. With the directory locked, the hook printed nothing and allowed the commit. With the directory open, it refused. Each command reported something true. The lookup failed and said so, the existence check turned the failure into <code>False</code>, and the hook read <code>False</code> as &ldquo;not frozen&rdquo;.</p>
+<p>This has never happened on my machine. It needs a broken permission on a directory in my home folder, or a disk error. It is the case the switch exists for, though: the copy I'm protecting would run on a machine where something has already gone wrong.</p>
+
+<h2>What I got wrong</h2>
+<ul>
+<li><strong>The design sentence had two outcomes.</strong> &ldquo;Refuses if the flag exists&rdquo; divides the world into exists and doesn't exist. The system call has a third answer, couldn't tell, and the sentence gave it nowhere to go. The code wrote down what the sentence said.</li>
+<li><strong>I had already been told.</strong> On November 4, three days earlier, a reviewer blocked the command that <em>raises</em> the flag for the same shape in two places, and a close relative of it in a third: a state file that could not be parsed was accepted as safe. One of the two (translated): &ldquo;every non-zero <code>launchctl print</code> is treated as not loaded; a lookup error other than &lsquo;no such service&rsquo; also skips the bootout.&rdquo; Those three were fixed. The code that <em>reads</em> the flag was first written that afternoon, and the fix didn't carry over to it, because I fixed instances and wrote no rule.</li>
+<li><strong>It was in all eight.</strong> After the review I searched for the same check in the other writers. Every one had it: <code>os.path.lexists</code> in the four Python files, <code>[ -e ] || [ -L ]</code> (or <code>[[ … ]]</code>) in the four shell files. The review had named one function. Fixing that one would have left seven.</li>
+</ul>
+
+<h2>How the fix was checked</h2>
+<p>The third round, at 12:47, changed all eight checks to the same rule: <code>lstat</code> succeeds &rArr; frozen; <code>lstat</code> fails with ENOENT &rArr; go ahead; anything else &rArr; refuse with the error name. In Python:</p>
+<pre>    try:
+        os.lstat(freeze_lock())
+    except FileNotFoundError:
+        return None
+    except OSError as error:
+        return errno.errorcode.get(error.errno or -1, "EUNKNOWN")
+    except ValueError:
+        return "ValueError"
+    return "present"</pre>
+<p>New tests make the flag unreachable two ways, a directory with no permissions and a parent path that is a file, and expect a refusal at each of the eight places. Run against the old code first, the harness tests went (translated, numbers as written): &ldquo;<strong>18 failed</strong> (16 cells <code>write was not refused on a flag lookup error</code>, wm telemetry 2 cells <code>flag lookup error let a write change state</code>; unlocked controls all passed).&rdquo; Against the new code they passed. The round closed at 16:40 with <code>87 PASS / 0 FAIL</code> on the probes and 102 of 102 mutants effective; the next fresh review passed it at 16:44, and the eight checks went live at 17:45.</p>
+<p>The fix has a price, and the round report lists it. Shell has no portable way to get the errno from a failed lookup, so the four shell checks ask <code>/usr/bin/stat</code> and match its English error text. That is macOS-specific. If the wording changes, the checks see an error they don't recognise and refuse, so every shell writer stops until I fix the match. If the permission on that directory breaks for real, every write in the folder stops, and the only signal is stderr. That is what fail-closed means here. The next morning the scheduled jobs ran and wrote as usual.</p>
+
+<h2>The same question on four Pythons</h2>
+<p>While writing the check for this entry I ran the same probe on every Python I have:</p>
+<pre>== python3.11 Python 3.11.14
+os.path.lexists  False
+os.path.exists   False
+Path.exists      raised PermissionError [Errno 13] Permission denied: 'state/FROZEN'
+os.lstat         raised PermissionError [Errno 13] Permission denied: 'state/FROZEN'
+== python3.12 Python 3.12.12
+os.path.lexists  False
+os.path.exists   False
+Path.exists      raised PermissionError [Errno 13] Permission denied: 'state/FROZEN'
+os.lstat         raised PermissionError [Errno 13] Permission denied: 'state/FROZEN'
+== python3.14 Python 3.14.6
+os.path.lexists  False
+os.path.exists   False
+Path.exists      False
+os.lstat         raised PermissionError [Errno 13] Permission denied: 'state/FROZEN'
+== /usr/bin/python3 Python 3.9.6
+os.path.lexists  False
+os.path.exists   False
+Path.exists      raised PermissionError [Errno 13] Permission denied: 'state/FROZEN'
+os.lstat         raised PermissionError [Errno 13] Permission denied: 'state/FROZEN'</pre>
+<p>In 3.9, 3.11 and 3.12 (which I ran) and 3.13 (whose source I read), <code>pathlib.Path.exists()</code> returned <code>False</code> only for a short list of errors (<code>ENOENT, ENOTDIR, EBADF, ELOOP</code>) and re-raised the rest. In 3.14 it calls <code>os.path.exists()</code> and returns <code>False</code> for all of them. The changelog entry, under 3.14.0a1: &ldquo;Suppress all OSError exceptions from pathlib.Path.exists and is_*() methods, rather than a selection of more common errors.&rdquo; The 3.14 documentation now says &ldquo;False will be returned if the path is invalid, inaccessible or missing. Use Path.stat to distinguish between these cases.&rdquo; The change is documented and the docs are accurate. I didn't find it in What's New in 3.14.</p>
+<p>So a guard written as <code>if Path(flag).exists(): refuse()</code> on 3.13 would, by accident, refuse on a permission error: the exception stops the program before it writes, unless something above it catches the exception. On 3.14 the same line returns <code>False</code> and the write goes ahead. Nothing in the guard changed.</p>
+<p>Node behaves like <code>lexists</code>: <code>fs.existsSync()</code> on the same path printed <code>false</code> (v24.9.0).</p>
+
+<h2>The rule</h2>
+<div class="rule-box">
+<p><strong>In a guard, only a positive &ldquo;not there&rdquo; opens the gate.</strong> In Python that means calling <code>os.lstat</code> (or <code>os.stat</code>) yourself and allowing only on <code>FileNotFoundError</code>. <code>exists</code>, <code>lexists</code>, <code>isfile</code>, <code>Path.exists</code>, <code>[ -e ]</code>, <code>[ -f ]</code> and <code>fs.existsSync</code> each answer two of the three cases, and in a guard the third case goes to whichever side <code>False</code> means.</p>
+<p><strong>And when a reviewer finds the shape once, search for it everywhere before fixing the one they found.</strong> Between November 4 and 7 I had the same shape in ten places and a close relative of it in one more, and three of those eleven had already been caught and fixed.</p>
+</div>
+
+<h2>Run it</h2>
+<p><a href="../checks/010/failopen.py"><code>checks/010/failopen.py</code></a> takes any guard as a command. Exit 0 means &ldquo;go ahead&rdquo;, anything else means &ldquo;refuse&rdquo;, and <code>{}</code> in any argument is replaced by the flag path. It builds five flags in a temp directory: absent, present, a dangling symlink, a parent that is a symlink loop, and a parent with no permissions (skipped when running as root, since root ignores directory permissions). Before testing, it checks each one with <code>os.lstat</code> and stops if a fixture isn't what it claims to be. It runs six controls first and refuses to judge your guard if they don't come out as expected:</p>
+<pre>$ python3 failopen.py env 'VAULT_FREEZE_LOCK={}' sh precommit_r2.sh
+control  FAIL-OPEN os.path.lexists
+control  FAIL-OPEN [ -e ] || [ -L ]
+control  OK        lstat, only ENOENT allows
+control  OK        same, refusing with exit 78
+control  WRONG     always allows
+control  WRONG     always refuses
+
+FAIL-OPEN  env VAULT_FREEZE_LOCK={} sh precommit_r2.sh
+  ok  absent                    allowed
+  ok  present                   refused
+  ok  dangling symlink          refused
+  BAD parent is a symlink loop  allowed
+  BAD parent not searchable     allowed
+$ echo $?
+1</pre>
+<p>The same command against the fixed hook prints <code>OK</code> and exits 0. Both hooks are in the same directory: <a href="../checks/010/precommit_r2.sh"><code>precommit_r2.sh</code></a> before the fix, <a href="../checks/010/precommit_r3.sh"><code>precommit_r3.sh</code></a> after. Against <code>Path(p).exists(follow_symlinks=False)</code> it prints <code>FAIL-OPEN</code> on both 3.12 and 3.14: on 3.12 the symlink-loop flag gets through (ELOOP is on the old ignore list) and the permission case is refused only because the exception ends the process; on 3.14 both get through.</p>
+<p>It is 77 lines. I broke it ten ways with <a href="../checks/010/mutate.py"><code>checks/010/mutate.py</code></a>; eight changed its verdict or exit status on the two hooks. The two that didn't, turning off the fixture self-check and not enforcing the controls, change nothing when the fixtures and controls are already right. They are there for a machine where they aren't.</p>
+<p>Two limits. A guard that crashes only on the unreachable cases counts as refusing, which is right only if nothing above it catches the crash. I ran it on macOS only.</p>
+
+<footer>
+<p>This is a catalogue of cases where a tool reported success, or reported nothing, and I
+believed it. Each entry gets the date, the commands, and the shape of the error. More will
+follow.</p>
+<p><span class="name">Sounding Stone</span> &mdash; before the large investment, throw a
+small stone and listen for the echo. Written by Yu Hsien Fang.</p>
+</footer>
+
+</div>
+</body>
+</html>

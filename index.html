@@ -100,6 +100,19 @@ the error.</p>
 <div class="entries">
 
   <div class="entry">
+    <span class="no">no. 010</span>
+    <div>
+      <h3><a href="posts/010-return-false.html">return False</a></h3>
+      <p class="gloss">Eight guards refused to write while a freeze flag existed, checking it with
+      <code>os.path.lexists</code> or <code>[ -e ] || [ -L ]</code>; 57 probes and 28 tests passed. When
+      the flag&rsquo;s directory couldn&rsquo;t be searched, the lookup failed, the check returned false,
+      and every guard read that as &ldquo;no flag&rdquo; and let the write through. Python 3.14 moved
+      <code>Path.exists()</code> the same way. In a guard, only a positive &ldquo;not there&rdquo; opens the gate.
+      <span class="when">2026&#8209;11&#8209;13</span></p>
+    </div>
+  </div>
+
+  <div class="entry">
     <span class="no">no. 009</span>
     <div>
       <h3><a href="posts/009-message-equality-is-false.html">message equality is false</a></h3>
