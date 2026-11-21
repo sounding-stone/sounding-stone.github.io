@@ -1,0 +1,26 @@
+Checks for entry 011 (posts/011-left-0.html).
+
+  cleanup_check.py  the check: does a cleanup command and the count that
+                    confirms it share a blind spot?
+  mutate.py         11 deliberate breaks of cleanup_check.py
+  repro.zsh         the 2026-11-13 commands replayed against ./tmp (a
+                    symlink) and ./T, standing in for /tmp and $TMPDIR
+
+Python 3, no packages. Run from this directory (mutate.py reads
+cleanup_check.py from here). Tested on macOS only:
+
+  python3 cleanup_check.py "find {root} -maxdepth 1 -name {pat} -exec rmdir {} +" \
+      "find {root} -maxdepth 1 -name {pat} | wc -l"
+                                                  # expect: FALSE-CLEAN, exit 1
+  python3 cleanup_check.py "find {root}/ -maxdepth 1 -name {pat} -exec rmdir {} +" \
+      "ls -d {root}/{glob} 2>/dev/null | wc -l"
+                                                  # expect: OK, exit 0
+  python3 mutate.py                               # expect: 8/11 killed
+
+repro.zsh deletes with rm -rf inside the directory you run it from. Build
+the fixture in an empty scratch directory first:
+
+  mkdir private-tmp T && ln -s private-tmp tmp
+  for i in $(seq 1 53); do mkdir private-tmp/proj-$i; done
+  for i in $(seq 1 42); do mkdir T/proj-$i; done
+  zsh /path/to/repro.zsh                          # expect: 42, left= 0, 53

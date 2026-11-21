@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>left= 0 — Sounding Stone</title>
+<meta name="description" content="A catalogue of tools that reported success, or reported nothing, and were believed. Entry 011: an agent deleted its temp files with find, counted what was left with the same find, and printed left= 0. On macOS /tmp is a symbolic link, find does not follow it by default, and a review that counted with ls found 53. A check that shares the action&rsquo;s way of looking can only confirm the action.">
+<style>
+:root{
+  --paper:#EDEEF0; --ink:#1A1F2B; --rule:#C9CCD1;
+  --amber:#8C5D04; --dim:#5C6472; --block:#E3E5E9;
+  --serif: ui-serif,"Iowan Old Style",Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --mono: ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161B; --ink:#E4E6EA; --rule:#343A45; --amber:#E0AE45; --dim:#8F98A6; --block:#1C1F26; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.66;
+  font-kerning:normal; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:41rem; margin:0 auto; padding:2rem 1.5rem 6rem}
+
+/* masthead */
+.mast{display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--mono); font-size:.78rem; color:var(--dim);
+  padding-bottom:.6rem; border-bottom:1px solid var(--rule); margin-bottom:3.5rem}
+.mast b{font-weight:600; color:var(--ink); letter-spacing:-.02em}
+.mast a{color:inherit; text-decoration:none}
+.mast a:hover{color:var(--amber)}
+
+/* hero: the evidence, before the headline */
+.probe{border:1px solid var(--ink); background:var(--block); margin:0 0 1.1rem;
+  font-family:var(--mono); font-size:.8rem; line-height:1.9; overflow-x:auto}
+.probe table{border-collapse:collapse; width:100%; min-width:30rem}
+.probe td{padding:.15rem .9rem; white-space:nowrap}
+.probe tr td:nth-child(2){border-left:1px solid var(--rule); color:var(--amber)}
+.probe tr.head td, .probe tr.head td:nth-child(2){color:var(--dim); font-size:.72rem; white-space:normal;
+  border-bottom:1px solid var(--rule); padding:.7rem .9rem; line-height:1.45}
+.probe .lie{color:var(--ink)}
+.caption{font-size:.9rem; color:var(--dim); margin:0 0 3.2rem; max-width:34rem}
+
+h1{font-family:var(--mono); font-size:clamp(1.9rem,6.5vw,2.7rem); font-weight:600;
+  letter-spacing:-.045em; line-height:1.05; margin:0 0 .55rem}
+.byline{font-family:var(--mono); font-size:.78rem; color:var(--dim); margin:0 0 2.6rem}
+h2{font-family:var(--mono); font-size:1.02rem; font-weight:600; letter-spacing:-.02em;
+  margin:3rem 0 .9rem}
+p{margin:0 0 1.15rem}
+strong{font-weight:600}
+blockquote{margin:1.6rem 0 1.6rem; padding:0 0 0 1.1rem; border-left:2px solid var(--rule);
+  color:var(--dim); font-size:.98rem}
+blockquote p:last-child{margin-bottom:0}
+pre{background:var(--block); border-left:2px solid var(--rule); margin:1.6rem 0;
+  padding:1rem 1.1rem; overflow-x:auto; font-family:var(--mono);
+  font-size:.79rem; line-height:1.75}
+code{font-family:var(--mono); font-size:.88em}
+p code{background:var(--block); padding:.08em .32em}
+a{color:var(--ink); text-decoration-thickness:1px; text-underline-offset:.18em}
+a:hover{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+.rule-box{border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+  padding:1.3rem 0; margin:2.2rem 0}
+.rule-box p:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--rule); margin-top:4.5rem; padding-top:1.4rem;
+  font-size:.9rem; color:var(--dim)}
+footer .name{font-family:var(--mono); font-size:.82rem; color:var(--ink)}
+@media (max-width:34rem){ .wrap{padding-top:1.4rem} h2{margin-top:2.4rem} }
+</style>
+<style>
+ol,ul{margin:0 0 1.15rem; padding-left:1.4rem}
+li{margin:0 0 .7rem}
+li pre{margin:.9rem 0}
+li code{background:var(--block); padding:.08em .32em}
+.grid{border-collapse:collapse; margin:1.6rem 0; font-size:.92rem; width:100%}
+.grid th, .grid td{text-align:left; vertical-align:top; padding:.45rem .7rem .45rem 0;
+  border-bottom:1px solid var(--rule)}
+.grid th{font-family:var(--mono); font-size:.72rem; font-weight:600; color:var(--dim);
+  border-bottom:1px solid var(--ink)}
+.grid td code{background:var(--block); padding:.08em .32em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <b><a href="../">sounding&#8209;stone</a></b>
+  <span>catalogue no. 011</span>
+</header>
+
+<div class="probe">
+<table>
+  <tr class="head">
+    <td>what was printed</td>
+    <td>what it was true about</td>
+  </tr>
+  <tr><td class="lie">42 · 1.9G total</td><td>the matching entries under <code>$TMPDIR</code>. The same command was also pointed at <code>/tmp</code>, and never looked inside it</td></tr>
+  <tr><td class="lie">left= 0</td><td>that command run again after the delete, still not looking inside <code>/tmp</code></td></tr>
+  <tr><td class="lie">/tmp: · 53</td><td><code>ls /tmp</code>, five minutes later, run by the check that reviewed the agent&rsquo;s report</td></tr>
+  <tr><td class="lie">/tmp -&gt; private/tmp</td><td>why: on macOS <code>/tmp</code> is a symbolic link, and <code>find</code> does not follow a link named on its command line unless you ask it to</td></tr>
+</table>
+</div>
+<p class="caption">The first two rows are from an agent cleaning up after a day of work on November 13, at 18:06 and 18:10. The third is from 18:15, the fourth from 18:32. The project prefix in the file names is replaced with <code>&lt;prefix&gt;</code>.</p>
+
+<h1>left= 0</h1>
+<p class="byline">2026&#8209;11&#8209;21 &nbsp; Yu Hsien Fang</p>
+
+<p><a href="001-two-kinds-of-404.html">Entry 001</a> was about a zero that had two causes. <a href="010-return-false.html">Entry 010</a> was about a lookup that failed and was folded into &ldquo;not there&rdquo;. This one has no failure in it. Every command did what its manual says. The problem is that the command that checked the work was the command that did the work, run a second time.</p>
+
+<h2>The job</h2>
+<p>An agent had spent a day building and shipping a feature for me. Its test runs and reviews had left scratch directories and log files named <code>&lt;prefix&gt;-*</code> in two places: <code>$TMPDIR</code>, which on macOS is a per-user directory under <code>/var/folders</code>, and <code>/tmp</code>. At the end of the day I asked it to clean up.</p>
+<p>It took inventory first. This is the command and everything it printed:</p>
+<pre>$ find /tmp "$TMPDIR" -maxdepth 1 -name '&lt;prefix&gt;-*' -newermt '2026-11-13 00:00' | wc -l; du -shc $(find /tmp "$TMPDIR" -maxdepth 1 -name '&lt;prefix&gt;-*' -newermt '2026-11-13 00:00') 2&gt;/dev/null | tail -1
+      42
+1.9G	total</pre>
+<p>It told me there were 42 items from that day, about 1.9 GB of test logs and used test copies. A permission check stopped its first attempt to delete them, so it asked me, and I told it to delete the old temp files as well. It ran:</p>
+<pre>$ find /tmp "$TMPDIR" -maxdepth 1 -name '&lt;prefix&gt;-*' -exec rm -rf {} +; echo left=$(find /tmp "$TMPDIR" -maxdepth 1 -name '&lt;prefix&gt;-*' | wc -l)
+left= 0</pre>
+<p>(The space after <code>=</code> is <code>wc -l</code> padding the number, split by the shell.) Its report, twelve seconds later (translated):</p>
+<blockquote><p>Every <code>&lt;prefix&gt;-*</code> temp item under <code>/tmp</code> and <code>$TMPDIR</code> is deleted, including the ones from before today. 0 left.</p></blockquote>
+<p>I moved on to the next thing.</p>
+
+<h2>What the review found</h2>
+<p>When a session finishes I have another session close it out: it asks the first one what it did, then a separate agent checks each claim with its own commands. For the temp files that agent ran this (trimmed from a longer command):</p>
+<pre>$ echo "/tmp:"; ls /tmp | grep -c &lt;prefix&gt;; echo "TMPDIR:"; ls "$TMPDIR" 2&gt;/dev/null | grep -c &lt;prefix&gt;
+/tmp:
+53
+TMPDIR:
+0</pre>
+<p>Fifty-three entries. The most recently modified ones were last touched at 10:08 that morning, eight hours before the inventory ran. The cleanup session confirmed it and showed why:</p>
+<pre>$ ls -ld /tmp
+lrwxr-xr-x@ 1 root  wheel  11 Oct 23 07:10 /tmp -&gt; private/tmp</pre>
+
+<h2>Why nothing was wrong</h2>
+<p>On macOS, <code>/tmp</code> is a symbolic link to <code>/private/tmp</code>. <code>find</code> has three modes for symbolic links, and the default does not follow them, including one you name as a starting point. POSIX puts it this way: &ldquo;If neither the -H nor the -L option is specified, then the file information and type for symbolic links encountered as a path operand on the command line or encountered during the traversal of a file hierarchy shall be that of the link itself.&rdquo; The macOS man page lists <code>-P</code>, &ldquo;the file information and file type &hellip; returned for each symbolic link to be those of the link itself&rdquo;, and adds: &ldquo;This is the default.&rdquo;</p>
+<p>So <code>find /tmp</code> looks at one thing, the link, whose name is <code>tmp</code>. It does not match <code>&lt;prefix&gt;-*</code>, and a link is not a directory, so there is nothing to descend into. On this machine today, read-only:</p>
+<pre>$ find /tmp -maxdepth 1
+/tmp
+$ find /tmp -maxdepth 1 | wc -l
+       1
+$ find /tmp/ -maxdepth 1 | wc -l
+     333
+$ find -H /tmp -maxdepth 1 | wc -l
+     333</pre>
+<p><code>$TMPDIR</code> is a real directory, so <code>find</code> did go into that one. The 42 and the 1.9 GB were <code>$TMPDIR</code> alone. The delete removed what was in <code>$TMPDIR</code> and nothing in <code>/tmp</code>. The recount looked at the same two places the same way and found nothing in either. Nothing printed an error, <code>rm</code> was never handed a <code>/tmp</code> path, and <code>wc</code> counted the lines it was given. Each number was correct about what had been looked at.</p>
+<p>To be sure the story holds without my reading it into the transcript, I rebuilt it in a scratch directory, with a symbolic link named <code>tmp</code> pointing at a directory holding 53 entries and a second directory standing in for <code>$TMPDIR</code> with 42, and ran the agent&rsquo;s commands unchanged except for those two paths and the prefix (<a href="../checks/011/repro.zsh"><code>repro.zsh</code></a>):</p>
+<pre>$ find tmp "$T" -maxdepth 1 -name 'proj-*' | wc -l
+      42
+$ find tmp "$T" -maxdepth 1 -name 'proj-*' -exec rm -rf {} +; echo left=$(find tmp "$T" -maxdepth 1 -name 'proj-*' | wc -l)
+left= 0
+$ ls -d tmp/proj-* | wc -l
+      53</pre>
+
+<h2>What I got wrong</h2>
+<p>I accepted a deletion as verified because the selector that chose what to delete then reported nothing left to delete. Those two runs of <code>find</code> were never going to disagree. Anything the first one could not see, the second could not see either. A check that shares the action&rsquo;s way of looking can only confirm the action; it cannot catch it.</p>
+<p>The inventory had the same problem, and that one reached me. &ldquo;42 items, about 1.9 GB&rdquo; was the scope I was agreeing to clear, and it came from the same lookup. Nothing in that number could have told me it was missing a directory.</p>
+<p>I had a rule for the opposite case. When I compare a measurement before and after a fix, I use the same instrument both times, because a different instrument makes the comparison meaningless. That rule is right, and I had stretched it to cover this one, where it is wrong. Confirming that an action took effect is a different question from comparing two states, and it needs a different instrument.</p>
+
+<h2>How the review caught it</h2>
+<p>It did not know about the symlink. It counted with <code>ls /tmp</code>, a different program, and <code>ls</code> follows a symbolic link named as an argument when it lists a directory. That was enough for the two answers to disagree, 0 against 53.</p>
+<p><code>ls</code> is not independent by nature. <code>ls -l /tmp</code> or <code>ls -d /tmp</code> shows the link itself and would have counted nothing. The review was right because it took a different path to the same files, and that path happened to resolve the link.</p>
+
+<h2>The rule I installed</h2>
+<div class="rule-box">
+<p><strong>Confirm a deletion with a lookup that resolves paths differently from the one that chose the targets.</strong> If <code>find</code> selected them, count with the shell&rsquo;s glob (<code>ls -d /tmp/&lt;prefix&gt;-*</code>), or list the resolved directory (<code>realpath</code>, then read it). Better still, name one target you know was there and check that it is gone.</p>
+<p><strong>Calibrate the selector before you act, with a planted positive.</strong> Create one <code>&lt;prefix&gt;-canary</code> where the files live and make sure the inventory counts it. A <code>find /tmp</code> that cannot see the canary would have printed 42 instead of 43, and that would have stopped the run.</p>
+<p><strong>For <code>find</code> in particular</strong>: start from <code>/tmp/</code> with the slash, or pass <code>-H</code>. Either makes the starting point the directory rather than the link.</p>
+<p><strong>Keep both rules.</strong> Before-and-after comparisons use the same instrument. &ldquo;Did my action take effect&rdquo; uses a different one.</p>
+</div>
+
+<h2>Run it</h2>
+<p><a href="../checks/011/cleanup_check.py"><code>checks/011/cleanup_check.py</code></a> takes a cleanup command and a count command as templates. <code>{root}</code> is the directory, <code>{pat}</code> is the pattern quoted for <code>find -name</code>, <code>{glob}</code> is the same pattern unquoted for the shell. It builds two fixtures in a temp directory: a real directory, and a symbolic link to a directory. Each holds four targets, one of them with a space in its name, and two decoys that must survive. It knows what is left by listing <code>os.path.realpath(root)</code> with <code>os.listdir</code> and <code>fnmatch</code>, so its answer does not come from <code>find</code> or from the shell. It runs five controls first and refuses to judge the target if they do not come out as expected.</p>
+<p>On the shape the agent used (with <code>rmdir</code> in place of <code>rm -rf</code>, since the fixtures are empty directories):</p>
+<pre>$ python3 cleanup_check.py "find {root} -maxdepth 1 -name {pat} -exec rmdir {} +" "find {root} -maxdepth 1 -name {pat} | wc -l"
+control OK    find deletes, same find counts: FALSE-CLEAN
+control OK    find deletes, ls counts: NOT-CLEAN
+control OK    nothing deleted, count is echo 0: FALSE-CLEAN
+control OK    glob rmdir, ls counts: ok
+control OK    find with trailing slash, same find counts: ok
+FALSE-CLEAN
+  ok  real directory     ok
+  BAD root is a symlink  FALSE-CLEAN   count said 0, 4 still there
+$ echo $?
+1</pre>
+<p><code>FALSE-CLEAN</code> means the count said 0 while targets were still there, exit 1. <code>NOT-CLEAN</code> means the cleanup failed but the count told the truth, exit 4, which is also what you get when a decoy is removed. Starting <code>find</code> from <code>{root}/</code> and counting with <code>ls</code> prints <code>OK</code> and exits 0. It takes about 0.1 seconds.</p>
+<p>The controls earned their place on the first run. My first version quoted the pattern everywhere, so <code>ls -d '&lt;root&gt;/proj-*'</code> looked for a file literally named <code>proj-*</code>, found none, printed nothing to the pipe, and <code>wc -l</code> said 0:</p>
+<pre>control WRONG find deletes, ls counts: FALSE-CLEAN
+control WRONG glob rmdir, ls counts: FALSE-CLEAN
+controls did not separate; not judging the target</pre>
+<p>The script that looks for a count that reads 0 because nothing looked had a count that read 0 because nothing looked. It stopped itself because two controls disagreed with what they should have been.</p>
+<p>I broke it eleven ways with <a href="../checks/011/mutate.py"><code>checks/011/mutate.py</code></a> and ran each version against nine cleanup and count pairs with known answers. Eight changed at least one answer. Three did not: switching off the control enforcement, removing the fixture self-check, and returning exit 1 instead of 3 on a fixture error. On a healthy run those three behave exactly like the original, so these tests cannot tell them apart. I also tried the mistake this entry is about: an oracle that uses <code>find</code> to see what is left, with the self-check removed so nothing else stops it. The first control then comes out <code>ok</code> instead of <code>FALSE-CLEAN</code>, and the script exits 2 without judging anything.</p>
+<p>I ran all of this on macOS 27.2.1 with Python 3.14.6 and 3.9.6 and the system <code>find</code>. Tested on macOS only. The fixture makes its own symbolic link, so the check does not depend on how a machine sets up its <code>/tmp</code>. For other implementations of <code>find</code> I claim only what the POSIX text quoted above says; I have not run the script against GNU findutils.</p>
+
+<footer>
+<p>This is a catalogue of cases where a tool reported success, or reported nothing, and I
+believed it. Each entry gets the date, the commands, and the shape of the error. More will
+follow.</p>
+<p><span class="name">Sounding Stone</span> &mdash; before the large investment, throw a
+small stone and listen for the echo. Written by Yu Hsien Fang.</p>
+</footer>
+
+</div>
+</body>
+</html>

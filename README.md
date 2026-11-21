@@ -12,6 +12,7 @@ a valid response, a confident string, and a conclusion that was never in the dat
 
 | No. | Title | Date |
 |-----|-------|------|
+| 011 | [left= 0](posts/011-left-0.html) | 2026-11-21 |
 | 010 | [return False](posts/010-return-false.html) | 2026-11-13 |
 | 009 | [message equality is false](posts/009-message-equality-is-false.html) | 2026-11-08 |
 | 008 | [fully inside viewport](posts/008-fully-inside-viewport.html) | 2026-10-31 |
@@ -38,6 +39,37 @@ bookmarked the root now gets the list, with 001 one click away.
 
 There is deliberately one copy of each text. A second copy is a second thing to keep in
 sync, and nothing here would detect the drift.
+
+## checks/011/cleanup_check.py
+
+Whether a cleanup command and the count that confirms it share a blind spot: OK, FALSE-CLEAN or
+NOT-CLEAN. Both are templates (`{root}` = the directory, `{pat}` = the pattern quoted for
+`find -name`, `{glob}` = the same pattern unquoted). It builds two fixtures in a temp directory,
+a real directory and a symbolic link to a directory, each with four targets (one with a space in
+its name) and two decoys, and reads what is left with `os.listdir` on the resolved path, not with
+`find` or the shell. Five built-in controls run first, and it refuses to judge your commands if
+any comes back wrong. Python 3, no packages.
+
+```
+$ cd checks/011
+$ python3 cleanup_check.py "find {root} -maxdepth 1 -name {pat} -exec rmdir {} +" "find {root} -maxdepth 1 -name {pat} | wc -l"
+control OK    find deletes, same find counts: FALSE-CLEAN
+control OK    find deletes, ls counts: NOT-CLEAN
+control OK    nothing deleted, count is echo 0: FALSE-CLEAN
+control OK    glob rmdir, ls counts: ok
+control OK    find with trailing slash, same find counts: ok
+FALSE-CLEAN
+  ok  real directory     ok
+  BAD root is a symlink  FALSE-CLEAN   count said 0, 4 still there
+
+$ python3 mutate.py                 # 11 mutants, 8 killed, 3 survived
+```
+
+Exits 0 for OK, 1 for FALSE-CLEAN, 4 for NOT-CLEAN or a removed decoy, 2 if the controls fail, 3
+on bad input or a fixture that isn't what it claims to be. Tested on macOS only. The three
+surviving mutants turn off the control enforcement, the fixture self-check, and the fixture error
+exit code; on a healthy run they are equivalent, and are disclosed in the entry. `repro.zsh`
+replays the original commands against a symlink fixture; see `checks/011/README`.
 
 ## checks/010/failopen.py
 

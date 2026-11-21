@@ -100,6 +100,19 @@ the error.</p>
 <div class="entries">
 
   <div class="entry">
+    <span class="no">no. 011</span>
+    <div>
+      <h3><a href="posts/011-left-0.html">left= 0</a></h3>
+      <p class="gloss">An agent deleted its temp files with <code>find /tmp "$TMPDIR"</code>, counted
+      what was left with the same <code>find</code>, and printed <code>left= 0</code>. On macOS
+      <code>/tmp</code> is a symbolic link and <code>find</code> does not follow it by default, so neither
+      run ever looked inside it; a review that counted with <code>ls</code> found 53. A check that
+      shares the action&rsquo;s way of looking can only confirm the action.
+      <span class="when">2026&#8209;11&#8209;21</span></p>
+    </div>
+  </div>
+
+  <div class="entry">
     <span class="no">no. 010</span>
     <div>
       <h3><a href="posts/010-return-false.html">return False</a></h3>
