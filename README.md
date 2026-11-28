@@ -12,6 +12,7 @@ a valid response, a confident string, and a conclusion that was never in the dat
 
 | No. | Title | Date |
 |-----|-------|------|
+| 012 | [Removing non-directory](posts/012-removing-non-directory.html) | 2026-11-28 |
 | 011 | [left= 0](posts/011-left-0.html) | 2026-11-21 |
 | 010 | [return False](posts/010-return-false.html) | 2026-11-13 |
 | 009 | [message equality is false](posts/009-message-equality-is-false.html) | 2026-11-08 |
@@ -39,6 +40,30 @@ bookmarked the root now gets the list, with 001 one click away.
 
 There is deliberately one copy of each text. A second copy is a second thing to keep in
 sync, and nothing here would detect the drift.
+
+## checks/012/linkguard.py
+
+Whether a command changed what a path is: missing, a file, a directory, or a symbolic link and where
+it points. It describes each path you name with `os.lstat` and `os.readlink` before and after the
+command, and does not use the command's output or exit code to decide anything. Five controls run
+first, in a temp directory (a link replaced by a directory, a command that does nothing, a file
+written through the link, a link pointed somewhere else, a link replaced by a command that then
+fails), and it stops if they do not come out as expected. Python 3, no packages.
+
+```
+$ python3 linkguard.py node_modules -- npm install --no-audit --no-fund --offline
+...
+command exit 0
+  CHANGED node_modules: link -> node_modules.nosync  =>  directory
+$ echo $?
+1
+```
+
+Exits 0 if every path is what it was, 1 if a path changed and the command exited 0, 4 if a path
+changed and the command failed, 2 if the controls fail, 3 on a usage error. Tested on macOS only.
+`demo.sh` builds the toy project used in the entry, offline. `mutate.py` breaks the script twelve
+ways and runs each version against seven commands with known answers: 10 of 12 killed, and the two
+that survive switch off the control enforcement and the fixture check; see `checks/012/README`.
 
 ## checks/011/cleanup_check.py
 

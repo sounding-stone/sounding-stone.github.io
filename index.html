@@ -100,6 +100,19 @@ the error.</p>
 <div class="entries">
 
   <div class="entry">
+    <span class="no">no. 012</span>
+    <div>
+      <h3><a href="posts/012-removing-non-directory.html">Removing non-directory</a></h3>
+      <p class="gloss">A workaround made <code>node_modules</code> a symbolic link and was verified right
+      after it was set up. Then <code>npm install</code> found a symbolic link where it expected a
+      directory, deleted it, created a real directory and installed into it. It said so on stderr, and
+      exited 0. Check a workaround after the next run of the tool that owns the path, not after you set
+      it up.
+      <span class="when">2026&#8209;11&#8209;28</span></p>
+    </div>
+  </div>
+
+  <div class="entry">
     <span class="no">no. 011</span>
     <div>
       <h3><a href="posts/011-left-0.html">left= 0</a></h3>

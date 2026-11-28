@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Removing non-directory — Sounding Stone</title>
+<meta name="description" content="A catalogue of tools that reported success, or reported nothing, and were believed. Entry 012: a workaround that made node_modules a symbolic link was verified right after it was set up. npm install found a symbolic link where it expected a directory, deleted it, created a real directory and installed into it, and said so on stderr while exiting 0. Check a workaround after the next run of the tool that owns the path, not after you set it up.">
+<style>
+:root{
+  --paper:#EDEEF0; --ink:#1A1F2B; --rule:#C9CCD1;
+  --amber:#8C5D04; --dim:#5C6472; --block:#E3E5E9;
+  --serif: ui-serif,"Iowan Old Style",Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --mono: ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14161B; --ink:#E4E6EA; --rule:#343A45; --amber:#E0AE45; --dim:#8F98A6; --block:#1C1F26; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.66;
+  font-kerning:normal; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:41rem; margin:0 auto; padding:2rem 1.5rem 6rem}
+
+/* masthead */
+.mast{display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--mono); font-size:.78rem; color:var(--dim);
+  padding-bottom:.6rem; border-bottom:1px solid var(--rule); margin-bottom:3.5rem}
+.mast b{font-weight:600; color:var(--ink); letter-spacing:-.02em}
+.mast a{color:inherit; text-decoration:none}
+.mast a:hover{color:var(--amber)}
+
+/* hero: the evidence, before the headline */
+.probe{border:1px solid var(--ink); background:var(--block); margin:0 0 1.1rem;
+  font-family:var(--mono); font-size:.8rem; line-height:1.9; overflow-x:auto}
+.probe table{border-collapse:collapse; width:100%; min-width:30rem}
+.probe td{padding:.15rem .9rem; white-space:nowrap}
+.probe tr td:nth-child(2){border-left:1px solid var(--rule); color:var(--amber)}
+.probe tr.head td, .probe tr.head td:nth-child(2){color:var(--dim); font-size:.72rem; white-space:normal;
+  border-bottom:1px solid var(--rule); padding:.7rem .9rem; line-height:1.45}
+.probe .lie{color:var(--ink)}
+.caption{font-size:.9rem; color:var(--dim); margin:0 0 3.2rem; max-width:34rem}
+
+h1{font-family:var(--mono); font-size:clamp(1.9rem,6.5vw,2.7rem); font-weight:600;
+  letter-spacing:-.045em; line-height:1.05; margin:0 0 .55rem}
+.byline{font-family:var(--mono); font-size:.78rem; color:var(--dim); margin:0 0 2.6rem}
+h2{font-family:var(--mono); font-size:1.02rem; font-weight:600; letter-spacing:-.02em;
+  margin:3rem 0 .9rem}
+p{margin:0 0 1.15rem}
+strong{font-weight:600}
+blockquote{margin:1.6rem 0 1.6rem; padding:0 0 0 1.1rem; border-left:2px solid var(--rule);
+  color:var(--dim); font-size:.98rem}
+blockquote p:last-child{margin-bottom:0}
+pre{background:var(--block); border-left:2px solid var(--rule); margin:1.6rem 0;
+  padding:1rem 1.1rem; overflow-x:auto; font-family:var(--mono);
+  font-size:.79rem; line-height:1.75}
+code{font-family:var(--mono); font-size:.88em}
+p code{background:var(--block); padding:.08em .32em}
+a{color:var(--ink); text-decoration-thickness:1px; text-underline-offset:.18em}
+a:hover{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+.rule-box{border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+  padding:1.3rem 0; margin:2.2rem 0}
+.rule-box p:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--rule); margin-top:4.5rem; padding-top:1.4rem;
+  font-size:.9rem; color:var(--dim)}
+footer .name{font-family:var(--mono); font-size:.82rem; color:var(--ink)}
+@media (max-width:34rem){ .wrap{padding-top:1.4rem} h2{margin-top:2.4rem} }
+</style>
+<style>
+ol,ul{margin:0 0 1.15rem; padding-left:1.4rem}
+li{margin:0 0 .7rem}
+li pre{margin:.9rem 0}
+li code{background:var(--block); padding:.08em .32em}
+.grid{border-collapse:collapse; margin:1.6rem 0; font-size:.92rem; width:100%}
+.grid th, .grid td{text-align:left; vertical-align:top; padding:.45rem .7rem .45rem 0;
+  border-bottom:1px solid var(--rule)}
+.grid th{font-family:var(--mono); font-size:.72rem; font-weight:600; color:var(--dim);
+  border-bottom:1px solid var(--ink)}
+.grid td code{background:var(--block); padding:.08em .32em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <b><a href="../">sounding&#8209;stone</a></b>
+  <span>catalogue no. 012</span>
+</header>
+
+<div class="probe">
+<table>
+  <tr class="head">
+    <td>what was printed</td>
+    <td>what it was true about</td>
+  </tr>
+  <tr><td class="lie"><code>added 1 package</code> · exit <code>0</code></td><td>npm had installed into a new, real <code>node_modules</code> directory</td></tr>
+  <tr><td class="lie"><code>npm warn reify Removing non-directory &lt;tmp&gt;/app/node_modules</code></td><td>the symbolic link that was the entire fix. npm deleted it. This line went to stderr</td></tr>
+  <tr><td class="lie">the project's verification script: pass</td><td>a tree npm had just written from scratch</td></tr>
+  <tr><td class="lie"><code>drwxr-xr-x … node_modules</code></td><td>the link was gone; <code>node_modules.nosync</code>, where the packages were supposed to live, was empty</td></tr>
+</table>
+</div>
+<p class="caption"><em>Caption:</em> The first, second and fourth rows are from a rerun on November 28 with the same npm version as in August (11.13.0), on a toy project; temp paths are replaced with <code>&lt;tmp&gt;</code>. The third row is from my notes of August 5. The terminal output from that day no longer exists.</p>
+
+<h1>Removing non-directory</h1>
+<p class="byline">2026&#8209;11&#8209;28 &nbsp; Yu Hsien Fang</p>
+
+<p>This one is older than the others. It happened in August and I did not write it up then. I no longer have the terminal output from that day. What I have is a note I wrote the same evening, and npm, which is the same version and still does it.</p>
+<h2>The job</h2>
+<p>A repository of mine lived inside a folder that iCloud Drive syncs. When a build rewrites <code>node_modules</code> quickly, iCloud can end up making conflict copies, directories with <code> 2</code> appended to the name. TypeScript loads every package it finds under <code>node_modules/@types</code>, the copies included, and fails on each one with error TS2688, "Cannot find type definition file". The project's local verification script exited non-zero. Nothing in the code was wrong.</p>
+<p>My agent applied a workaround. A folder whose name ends in <code>.nosync</code> is left alone by iCloud Drive, so the agent moved the packages into <code>node_modules.nosync</code> and put a symbolic link named <code>node_modules</code> in its place, pointing at it. Then it reinstalled and ran the verification script again. It passed.</p>
+<p>About two hours later the agent looked again and found the workaround gone. My note from that evening (translated):</p>
+<blockquote><p>The first version, <code>.nosync</code> plus a symlink, was disproved by my own test within two hours. <code>npm install</code> replaces the node_modules symlink with a real directory, with no error message. The first passing verify actually ran on a real directory whose protection had already been removed.</p></blockquote>
+<h2>What npm does</h2>
+<p>Here is the same thing today, on a project with one dependency, installed from a local tarball so nothing touches the network. Before:</p>
+<pre>$ ls -ld node_modules
+lrwxr-xr-x@ 1 ysfang  staff  19 Nov 28 16:19 node_modules -&gt; node_modules.nosync
+$ ls node_modules
+tinypkg</pre>
+<p>The package is installed and reachable through the link. Then:</p>
+<pre>$ npm install --no-audit --no-fund --offline
+npm warn reify Removing non-directory &lt;tmp&gt;/app/node_modules
+
+added 1 package in 86ms
+$ echo $?
+0
+$ ls -ld node_modules
+drwxr-xr-x@ 4 ysfang  staff  128 Nov 28 16:19 node_modules
+$ test -d node_modules &amp;&amp; echo "node_modules is there"
+node_modules is there</pre>
+<p>npm found a symbolic link where it expected a directory, deleted it, created a real directory and installed into it. It said so. The warning went to stderr and the summary line went to stdout, so anything that keeps only stdout, or only the last line, sees this:</p>
+<pre>$ npm install --no-audit --no-fund --offline 2&gt;&amp;1 | tail -1
+added 1 package in 87ms</pre>
+<p>That run was in a fresh copy of the project, and npm had replaced the link there too. "added 1 package" on a project where the package was already installed is itself a hint, but only if you know to read it as one.</p>
+<p>This is deliberate. The function that does it in npm's installer, <code>@npmcli/arborist</code> 9.4.3, <code>lib/arborist/reify.js</code>, sits under the comment <code>// do not allow node_modules to be a symlink</code>. <code>npm ci</code> goes further. Its documentation says "If a <code>node_modules</code> is already present, it will be automatically removed before <code>npm ci</code> begins its install", and with a link that means the directory it points to is emptied first:</p>
+<pre>$ npm ci --no-audit --no-fund --offline 2&gt;&amp;1 | tail -1
+added 1 package in 87ms
+$ ls -A node_modules.nosync | wc -l
+       0</pre>
+<p>I ran the same fixture through two other package managers. With pnpm 10.27.0 and bun 1.3.11 the link was still there afterwards. So this is npm's choice. Whether a link survives depends on which tool runs next.</p>
+<h2>What I got wrong</h2>
+<p>I accepted the workaround because the check passed right after the reinstall. That check could not have failed at that moment. The verification script looks for the symptom, type errors from conflict copies. The reinstall had just written a fresh <code>node_modules</code>, and copies only appear after iCloud has had a chance to sync a tree that is being rewritten. My note says only that the verify ran on the real directory. I think the reason it passed is that obvious one: there were no copies yet, with or without the workaround. A pass at that point said nothing about whether the fix worked.</p>
+<p>I also checked the fix right after setting it up, and not after the next thing that was going to touch it. The workaround lived inside <code>node_modules</code>, which npm owns and rebuilds. A change made inside a path that another tool rebuilds lasts until that tool runs again. I had set it up, installed, and verified, in that order, and the install was the step that took it apart.</p>
+<p>I read the exit code and the summary. I do not know whether the agent's captured output showed the warning that day. Today the warning goes to stderr and the command exits 0.</p>
+<h2>How it was caught</h2>
+<p>By looking at the mechanism instead of the symptom. The fix had two parts: <code>node_modules</code> should be a link, and the packages should be in <code>node_modules.nosync</code>. The second check found <code>node_modules.nosync</code> empty and <code>node_modules</code> a real directory. Neither of those needs a type checker or iCloud to answer.</p>
+<p>It also needed a way of looking that does not follow the link. <code>ls node_modules</code>, <code>test -d node_modules</code>, and Node's module resolution all go through a symbolic link to whatever it points at, so they work the same whether the link is there or npm has replaced it. Only views of the link itself, <code>ls -ld</code>, <code>test -L</code>, <code>lstat</code>, show the difference.</p>
+<h2>What we did instead</h2>
+<p>We moved the whole repository out of the synced folder and left a symbolic link at its old path, so every existing reference still resolves. npm does not look above the project root, so it never touches that link. The same check that catches the first fix passes this one; the output is below.</p>
+<h2>The rule I installed</h2>
+<div class="rule-box">
+<ul>
+<li><strong>Check a workaround after the next run of the tool that owns the path, not after you set it up.</strong> If the workaround lives in <code>node_modules</code>, <code>.venv</code>, <code>build/</code> or anything else a tool regenerates, run that tool once and then look.</li>
+<li><strong>Check the mechanism, not the symptom.</strong> A symptom check that runs right after a step that clears the symptom passes whether or not the fix works. Here the mechanism check is two lines: <code>test -L node_modules</code>, and the packages are in the place you meant them to be.</li>
+<li><strong>Read stderr on runs that exit 0.</strong> npm put the only true sentence of that run in a warning.</li>
+</ul>
+</div>
+<h2>Run it</h2>
+<p><a href="../checks/012/linkguard.py"><code>checks/012/linkguard.py</code></a> runs a command and reports whether it changed what the paths you name are: missing, a file, a directory, or a symbolic link and where it points. It describes each path with <code>os.lstat</code> and <code>os.readlink</code> before and after, and does not use the command's output or exit code to decide anything. Before judging your command it runs five controls in a temp directory: a link replaced by a directory, a command that does nothing, a file written through the link, a link pointed somewhere else, and a link replaced by a command that then fails. If they do not come out as expected it stops. <a href="../checks/012/demo.sh"><code>checks/012/demo.sh</code></a> builds the toy project used above, offline, and prints its path.</p>
+<p>On npm:</p>
+<pre>$ python3 linkguard.py node_modules -- npm install --no-audit --no-fund --offline
+control OK    link replaced by a directory, exit 0: exit 1
+control OK    nothing happens: exit 0
+control OK    a file is written through the link: exit 0
+control OK    link pointed somewhere else: exit 1
+control OK    link replaced, command fails: exit 4
+npm warn reify Removing non-directory &lt;tmp&gt;/app/node_modules
+
+added 1 package in 85ms
+command exit 0
+  CHANGED node_modules: link -&gt; node_modules.nosync  =&gt;  directory
+$ echo $?
+1</pre>
+<p>Exit 1 means a path changed while the command reported success. Exit 4 means it changed and the command failed. On the fix we kept, run from inside the linked repository path:</p>
+<pre>$ python3 linkguard.py &lt;tmp&gt;/repo-link node_modules -- npm install --no-audit --no-fund --offline
+...
+up to date in 82ms
+command exit 0
+  kept    &lt;tmp&gt;/repo-link: link -&gt; &lt;tmp&gt;/app
+  kept    node_modules: directory</pre>
+<p>On the toy project the whole run, npm included, takes about 0.2 seconds.</p>
+<p>I broke it twelve ways with <a href="../checks/012/mutate.py"><code>checks/012/mutate.py</code></a> and ran each version against seven commands with known answers, including npm, pnpm, a command that fails after replacing the link, and a dangling link that gets removed. Ten changed at least one answer. Two did not: switching off the control enforcement, and removing the check that the fixture link was made. On a healthy machine those behave exactly like the original, so these tests cannot tell them apart. I also tried the mistake this entry is about: describing paths in a way that follows the link, with the fixture check and the controls both switched off so nothing else stops it. Against npm it then prints <code>kept    node_modules: directory</code> and exits 0.</p>
+<p>I ran this on macOS 27.2 with npm 11.13.0, Node 24.9.0, pnpm 10.27.0, bun 1.3.11, and Python 3.14.6 and 3.9.6. I have not run it on Linux.</p>
+
+<footer>
+<p>This is a catalogue of cases where a tool reported success, or reported nothing, and I
+believed it. Each entry gets the date, the commands, and the shape of the error. More will
+follow.</p>
+<p><span class="name">Sounding Stone</span> &mdash; before the large investment, throw a
+small stone and listen for the echo. Written by Yu Hsien Fang.</p>
+</footer>
+
+</div>
+</body>
+</html>

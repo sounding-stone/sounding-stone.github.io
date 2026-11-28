@@ -1,0 +1,28 @@
+Checks for entry 012 (posts/012-removing-non-directory.html).
+
+  linkguard.py  the check: runs a command and reports whether it changed
+                what the paths you name are (missing, file, directory, or a
+                symbolic link and where it points)
+  demo.sh       builds the toy project used in the entry, offline, and
+                prints its path
+  mutate.py     12 deliberate breaks of linkguard.py, each run against seven
+                commands with known answers
+
+Python 3, no packages. Tested on macOS only. Run from this directory
+(mutate.py reads linkguard.py and demo.sh from here). demo.sh and
+mutate.py need npm.
+
+linkguard.py describes each path with os.lstat and os.readlink before and
+after the command, and does not use the command's output or exit code to
+decide anything. Before judging your command it runs five controls in a
+temp directory; if they do not come out as expected it stops.
+
+  cd "$(./demo.sh)"
+  python3 /path/to/checks/012/linkguard.py node_modules -- \
+      npm install --no-audit --no-fund --offline
+                                                  # expect: CHANGED node_modules, exit 1
+  python3 mutate.py                               # expect: 10/12 killed
+
+Exit 0: every path is what it was. 1: a path changed and the command
+exited 0. 4: a path changed and the command failed. 2: the built-in
+controls did not come out as expected. 3: usage error.
